@@ -1,0 +1,12 @@
+pip install -U "transformers==4.38.1" --upgrade
+pip install -q pypdf
+pip install -q python-dotenv
+pip install  llama-index==0.10.12
+pip install -q gradio
+pip install einops
+pip install accelerate
+pip install llama-index-llms-huggingface
+pip install llama-index-embeddings-fastembed
+pip install fastembed
+pip install llama-index-readers-file
+pip install gradio
