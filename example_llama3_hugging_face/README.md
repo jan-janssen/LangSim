@@ -27,6 +27,7 @@ Upon successful execution, a user interface will be available on port 7860 in th
 
 - Tried on Nvidia V100 32GB GPU  
 - The 8B LLAMA model requires approximately 20GB of GPU memory.
+- Update: For groq models use rag_llm_groq.py
 
 Adapted from : https://www.fahdmirza.com/2024/02/tutorial-to-implement-rag-with-gemma.html
 
