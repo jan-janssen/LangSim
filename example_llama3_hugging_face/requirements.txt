@@ -10,3 +10,4 @@ pip install llama-index-embeddings-fastembed
 pip install fastembed
 pip install llama-index-readers-file
 pip install gradio
+pip install llama-index-llms-groq # for groq
