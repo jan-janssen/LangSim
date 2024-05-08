@@ -35,7 +35,6 @@ def main():
         input_files=[f"{data_dir}ASE.pdf"]
     ).load_data()
 
-    # llm = Groq(model="Llama3-70b-8192", api_key="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")
     # build index
     from llama_index.embeddings.fastembed import FastEmbedEmbedding
     embed_model = FastEmbedEmbedding(model_name="BAAI/bge-small-en-v1.5")
