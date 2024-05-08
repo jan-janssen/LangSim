@@ -1,4 +1,4 @@
-# RAG (Retrieval Augmented Generation) on PDFs(present in data folder)
+# 1.RAG (Retrieval Augmented Generation) on PDFs(present in data folder)
 
 ![Example Output](assets/example.png)
 
@@ -30,7 +30,7 @@ Upon successful execution, a user interface will be available on port 7860 in th
 
 Adapted from : https://www.fahdmirza.com/2024/02/tutorial-to-implement-rag-with-gemma.html
 
-# react_agent_with_query_engine:
+# 2.react_agent_with_query_engine:
 Adapted from : https://docs.llamaindex.ai/en/stable/examples/agent/react_agent_with_query_engine/
 
 ## youll need a groq account to run this example(however you can use any LLM you have access to) - https://groq.com/
