@@ -4,8 +4,6 @@ dependencies:
 - ase
 - langchain
 - numexpr
-- arxiv
-- wikipedia
 - langchain-openai
 - langchain-experimental
 - pymace
