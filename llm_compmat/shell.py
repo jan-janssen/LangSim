@@ -1,4 +1,4 @@
-from llm_compmat.llm import get_extension
+from llm_compmat.llm import get_executor
 import matplotlib.pyplot as plt
 
 
