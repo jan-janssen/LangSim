@@ -1,15 +1,15 @@
 channels:
-- conda-forge
+  - conda-forge
 dependencies:
-- ase
-- langchain
-- numexpr
-- langchain-openai
-- langchain-experimental
-- pymace
-- langchainhub
-- voila
-- ipykernel
-- ipywidgets
-- pip:
-  - langchain-groq
+  - ase
+  - langchain
+  - numexpr
+  - langchain-openai
+  - langchain-experimental
+  - pymace
+  - langchainhub
+  - voila
+  - ipykernel
+  - ipywidgets
+  - pip:
+    - langchain-groq
