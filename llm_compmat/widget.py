@@ -1,7 +1,7 @@
 import ipywidgets as widgets
 from IPython.display import display
 
-from llm_compmat.llm import get_extension
+from llm_compmat.llm import get_exexutor
 
 
 key_widget = widgets.Text(
@@ -22,8 +22,8 @@ out = widgets.Output()
 
 
 def run_refresh(*ignore):
-    agent_executor = get_extension(OPENAI_API_KEY=key_widget.value)
-    output = list(agent_executor.stream({"input": query_widget.value}))
+    agent_executor = get_executor(OPENAI_API_KEY=key_widget.value)
+    output = list(agent_executor.stream({"input": [("user", query_widget.value)]}))
     with out:
         display(output[-1]["output"])
 
