@@ -15,8 +15,9 @@ setup(
         "mace",
         "matplotlib",
         "langchainhub",
-        "voila",
-        "ipykernel",
-        "ipywidgets",
     ],
+    extra_requires={
+        "mace": ["mace"],
+        "jupyter": ["voila", "ipykernel", "ipywidgets",]
+    }
 )
