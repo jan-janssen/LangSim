@@ -13,6 +13,7 @@ setup(
         "langchain-openai",
         "langchain-experimental",
         "mace",
+        "matplotlib",
         "langchainhub",
         "voila",
         "ipykernel",
