@@ -13,11 +13,15 @@ from llm_compmat.tools.datatypes import AtomsDict
 @tool
 def get_equilibrium_lattice(chemical_symbol: str, calculator_str: str) -> AtomsDict:
     """Returns equilibrium atoms dictionary for a given chemical symbol and a selected model specified by the calculator string"""
-    atoms = bulk(name=chemical_symbol)
-    atoms.calc = get_calculator(calculator_str=calculator_str)
-    ase_optimizer_obj = LBFGS(UnitCellFilter(atoms))
-    ase_optimizer_obj.run(fmax=0.000001)
-    return AtomsDict(**{k: v.tolist() for k, v in atoms.todict().items()})
+    try:
+        atoms = bulk(name=chemical_symbol)
+        atoms.calc = get_calculator(calculator_str=calculator_str)
+        ase_optimizer_obj = LBFGS(UnitCellFilter(atoms))
+        ase_optimizer_obj.run(fmax=0.000001)
+        return AtomsDict(**{k: v.tolist() for k, v in atoms.todict().items()})
+    except Exception as error:
+        # handle the exception
+        return("An exception occurred: {}")
 
 
 @tool
@@ -33,11 +37,15 @@ def plot_equation_of_state(atom_dict: AtomsDict, calculator_str: str) -> str:
 @tool
 def get_bulk_modulus(atom_dict: AtomsDict, calculator_str: str) -> str:
     """Returns the bulk modulus of chemcial symbol for a given atoms dictionary and a selected model specified by the calculator string in GPa"""
-    atoms = Atoms(**atom_dict.dict())
-    atoms.calc = get_calculator(calculator_str=calculator_str)
-    eos = calculate_eos(atoms)
-    v, e, B = eos.fit()
-    return B / kJ * 1.0e24
+    try:
+        atoms = Atoms(**atom_dict.dict())
+        atoms.calc = get_calculator(calculator_str=calculator_str)
+        eos = calculate_eos(atoms)
+        v, e, B = eos.fit()
+        return B / kJ * 1.0e24
+    except Exception as error:
+        # handle the exception
+        return("An exception occurred: {}")
 
 
 @tool
