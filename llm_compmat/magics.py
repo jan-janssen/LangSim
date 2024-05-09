@@ -16,13 +16,13 @@ from IPython.core.magic_arguments import (magic_arguments, argument,
 parse_argstring)
 
 from IPython.display import display, Image, JSON, Markdown
-from .llm import get_extension
+from .llm import get_extension, get_executor
 
 OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
 
 def get_output(messages):
-    agent_executor = get_extension(OPENAI_API_KEY=OPENAI_API_KEY)
-    return list(agent_executor.stream({"conversation": messages))[-1]
+    agent_executor = get_executor(OPENAI_API_KEY=OPENAI_API_KEY)
+    return list(agent_executor.stream({"conversation": messages}))[-1]
 
 # Utility functions
 MESSAGES = []
