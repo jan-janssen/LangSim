@@ -1,0 +1,2 @@
+# Install llm_compmat package
+pip install .
