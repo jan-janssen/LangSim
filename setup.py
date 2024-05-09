@@ -12,6 +12,8 @@ setup(
         "numexpr",
         "langchain-openai",
         "langchain-experimental",
+        "mace",
+        "matplotlib",
         "langchainhub",
     ],
     extra_requires={
