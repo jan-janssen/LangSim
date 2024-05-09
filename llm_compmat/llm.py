@@ -10,7 +10,8 @@ def get_executor(OPENAI_API_KEY):
     from llm_compmat.tools import interface
 
     llm = ChatOpenAI(
-        model="gpt-3.5-turbo", temperature=0, openai_api_key=OPENAI_API_KEY
+        model="gpt-4", temperature=0, openai_api_key=OPENAI_API_KEY
+        #model="gpt-3.5-turbo", temperature=0, openai_api_key=OPENAI_API_KEY
     )
     tools = [
         interface.get_equilibrium_volume,
