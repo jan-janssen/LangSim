@@ -5,12 +5,24 @@ from langchain.agents.format_scratchpad.openai_tools import (
     format_to_openai_tool_messages,
 )
 from langchain.agents.output_parsers.openai_tools import OpenAIToolsAgentOutputParser
-from llm_compmat.tools.interface import get_equilibrium_volume, get_equilibirum_lattice, plot_equation_of_state, get_bulk_modulus
+from llm_compmat.tools.interface import (
+    get_equilibrium_volume,
+    get_equilibirum_lattice,
+    plot_equation_of_state,
+    get_bulk_modulus,
+)
 
 
 def get_extension(OPENAI_API_KEY):
-    llm = ChatOpenAI(model="gpt-3.5-turbo", temperature=0, openai_api_key=OPENAI_API_KEY)
-    tools = [get_equilibrium_volume, get_equilibirum_lattice, plot_equation_of_state, get_bulk_modulus]
+    llm = ChatOpenAI(
+        model="gpt-3.5-turbo", temperature=0, openai_api_key=OPENAI_API_KEY
+    )
+    tools = [
+        get_equilibrium_volume,
+        get_equilibirum_lattice,
+        plot_equation_of_state,
+        get_bulk_modulus,
+    ]
     prompt = ChatPromptTemplate.from_messages(
         [
             (

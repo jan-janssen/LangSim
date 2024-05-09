@@ -7,8 +7,5 @@ def get_calculator(calculator_str: str = "emt"):
         return EMT()
     elif calculator_str == "mace":
         return mace_mp(
-            model="medium",
-            dispersion=False,
-            default_dtype="float32",
-            device='cpu'
+            model="medium", dispersion=False, default_dtype="float32", device="cpu"
         )
