@@ -22,7 +22,7 @@ out = widgets.Output()
 
 
 def run_refresh(*ignore):
-    agent_executor = get_extension(OPENAI_API_KEY=key_widget.value)
+    agent_executor = get_extension()
     output = list(agent_executor.stream({"input": query_widget.value}))
     with out:
         display(output[-1]["output"])

@@ -1,10 +1,10 @@
 from langchain.agents import AgentExecutor
-from langchain_openai import ChatOpenAI
 from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
 from langchain.agents.format_scratchpad.openai_tools import (
     format_to_openai_tool_messages,
 )
 from langchain.agents.output_parsers.openai_tools import OpenAIToolsAgentOutputParser
+from llm_compmat.backend import get_backend
 from llm_compmat.tools.interface import (
     get_equilibrium_volume,
     get_equilibirum_lattice,
@@ -13,10 +13,8 @@ from llm_compmat.tools.interface import (
 )
 
 
-def get_extension(OPENAI_API_KEY):
-    llm = ChatOpenAI(
-        model="gpt-3.5-turbo", temperature=0, openai_api_key=OPENAI_API_KEY
-    )
+def get_extension(openapi_token=None, groq_token=None, temperature=0, **kwargs):
+    llm = get_backend(openapi_token=openapi_token, groq_token=groq_token, temperature=temperature, **kwargs)
     tools = [
         get_equilibrium_volume,
         get_equilibirum_lattice,
