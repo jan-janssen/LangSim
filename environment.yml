@@ -7,10 +7,11 @@ dependencies:
 - arxiv
 - wikipedia
 - langchain-openai
-- langchain_groq
 - langchain-experimental
 - pymace
 - langchainhub
 - voila
 - ipykernel
 - ipywidgets
+- pip:
+  - langchain-groq
