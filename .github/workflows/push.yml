@@ -1,4 +1,4 @@
-name: Binder
+name: push
 on:
   push:
     branches:
