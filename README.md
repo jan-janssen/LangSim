@@ -78,3 +78,4 @@ This opens a small application in the webbrowser:
 * [Trung Vo](https://github.com/btrungvo)
 * [Gabriel Vogel](https://github.com/GaVogel)
 * [Luke Zondagh](https://github.com/Luke-Zondagh)
+* [Sebastian Pagel](https://github.com/pagel-s)
