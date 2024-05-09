@@ -2,7 +2,7 @@ import ipywidgets as widgets
 from IPython.display import display
 import matplotlib.pyplot as plt
 
-from llm_compmat.llm import get_extension
+from llm_compmat.llm import get_executor
 
 
 key_widget = widgets.Text(
@@ -29,8 +29,8 @@ def get_plot(output_steps):
 
 
 def run_refresh(*ignore):
-    agent_executor = get_extension(OPENAI_API_KEY=key_widget.value)
-    output = list(agent_executor.stream({"input": query_widget.value}))
+    agent_executor = get_executor(OPENAI_API_KEY=key_widget.value)
+    output = list(agent_executor.stream({"input": [("user", query_widget.value)]}))
     with out:
         for part in output:
             if "steps" in part.keys():
