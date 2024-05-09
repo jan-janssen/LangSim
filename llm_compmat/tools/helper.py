@@ -8,6 +8,6 @@ def get_calculator(calculator_str: str = "emt"):
     elif calculator_str == "mace":
         import contextlib
         with contextlib.redirect_stdout(None):
-        return mace_mp(
-            model="medium", dispersion=False, default_dtype="float32", device="cpu"
-        )
+            return mace_mp(
+                model="medium", dispersion=False, default_dtype="float32", device="cpu"
+            )
