@@ -11,5 +11,4 @@ dependencies:
 - voila
 - ipykernel
 - ipywidgets
-- pip:
-  - langchain-groq
+- langchain-groq
