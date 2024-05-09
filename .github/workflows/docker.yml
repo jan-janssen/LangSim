@@ -1,7 +1,11 @@
 name: Binder
-on: [push]
+on:
+  push:
+    branches:
+      - main
 
 jobs:
+  # populate mybinder.org cache
   Create-MyBinderOrg-Cache:
     runs-on: ubuntu-latest
     steps:
@@ -10,6 +14,8 @@ jobs:
       with:
         NO_PUSH: true
         MYBINDERORG_TAG: ${{ github.event.ref }} # This builds the container on mybinder.org with the branch that was pushed on.
+
+  # push to Dockerhub
   build:
     runs-on: ubuntu-latest
     steps:
