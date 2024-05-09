@@ -1,3 +1,2 @@
-# Welcome to the "Application of Large Language Models (LLM) for computational materials science" team
-We primarily communicate via SLACK, still this respositoy is definitley helpful to collect and share examples.
-
+# Run Calculations with an Large Language Model
+[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/jan-janssen/comp-mat-sci-llm/HEAD)
