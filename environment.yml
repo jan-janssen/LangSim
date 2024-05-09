@@ -9,5 +9,4 @@ dependencies:
 - langchain-openai 
 - langchain-experimental 
 - pymace
-- pip:
-  - langchainhub
+- langchainhub
