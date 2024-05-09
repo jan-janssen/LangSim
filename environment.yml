@@ -1,13 +1,18 @@
 channels:
-- conda-forge
+  - conda-forge
 dependencies:
-- ase
-- langchain
-- numexpr 
-- arxiv
-- wikipedia 
-- langchain-openai 
-- langchain-experimental 
-- pymace
-- pip:
+  - ase
+  - langchain
+  - numexpr
+  - langchain-openai
+  - langchain-experimental
+  - pymace
   - langchainhub
+  - voila
+  - ipykernel
+  - ipywidgets
+  - langchain-groq
+  - pandas
+  - mendeleev
+  - pip:
+    - lxml
