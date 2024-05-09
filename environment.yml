@@ -4,8 +4,6 @@ dependencies:
   - ase
   - langchain
   - numexpr
-  - arxiv
-  - wikipedia
   - langchain-openai
   - langchain-experimental
   - pymace
@@ -13,3 +11,5 @@ dependencies:
   - voila
   - ipykernel
   - ipywidgets
+  - pip:
+    - langchain-groq
