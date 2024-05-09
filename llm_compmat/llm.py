@@ -6,6 +6,20 @@ from langchain.agents.format_scratchpad.openai_tools import (
 )
 from langchain.agents.output_parsers.openai_tools import OpenAIToolsAgentOutputParser
 
+
+SYSTEM_PROMPT = """
+You are very powerful assistant, but don't know current events.
+You can calculate materials properties with EMT and MACE.
+- Effective medium theory (EMT) is a cheap, analytical model that describes the macroscopic properties of composite materials, but is not available for all elements. 
+  To calculate with EMT use the calculator string "emt".
+- MACE is a powerful machine learning force field for predicting many-body atomic interactions that covers the periodic table.
+  To calculate with MACE use the calculator string "mace".
+If the user does not specify a calculator string, ask the user to provide one.
+
+If no chemical element is provided, use Aluminum as the default chemical element.
+"""
+# and emt as the default calculator string
+
 def get_executor(OPENAI_API_KEY):
     from llm_compmat.tools import interface
 
@@ -24,7 +38,7 @@ def get_executor(OPENAI_API_KEY):
         [
             (
                 "system",
-                "You are very powerful assistant, but don't know current events. To calculate with emt use the calculator string emt and to calculate with mace use the calculator string mace. For each query vailidate that it contains a chemical element and a calculator string and otherwise use Alumninum as the default chemical element and emt as the default calculator string.",
+                SYSTEM_PROMPT,
             ),
             ("placeholder", "{conversation}"),
             MessagesPlaceholder(variable_name="agent_scratchpad"),
