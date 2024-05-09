@@ -10,3 +10,4 @@ dependencies:
 - langchain-experimental 
 - pymace
 - langchainhub
+- voila
