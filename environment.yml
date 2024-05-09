@@ -3,12 +3,14 @@ channels:
 dependencies:
 - ase
 - langchain
-- numexpr 
+- numexpr
 - arxiv
-- wikipedia 
-- langchain-openai 
+- wikipedia
+- langchain-openai
 - langchain_groq
-- langchain-experimental 
+- langchain-experimental
 - pymace
 - langchainhub
 - voila
+- ipykernel
+- ipywidgets
