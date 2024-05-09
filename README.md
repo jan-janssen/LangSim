@@ -1,7 +1,7 @@
 # Run Calculations with a Large Language Model
-[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/jan-janssen/comp-mat-sci-llm/HEAD)
-[![Open-with-Voila](https://img.shields.io/badge/Open%20with-Voila-4eafa0.svg)](https://mybinder.org/v2/gh/jan-janssen/comp-mat-sci-llm/main?urlpath=/voila/render/7_voila.ipynb)
-[![Docker](https://img.shields.io/badge/docker-%230db7ed.svg?style=for-the-badge&logo=docker&logoColor=white)](https://hub.docker.com/r/ltalirz/comp-mat-sci-llm)
+[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/jan-janssen/LangSim/HEAD)
+[![Open-with-Voila](https://img.shields.io/badge/Open%20with-Voila-4eafa0.svg)](https://mybinder.org/v2/gh/jan-janssen/LangSim/main?urlpath=/voila/render/7_voila.ipynb)
+[![Docker](https://img.shields.io/badge/docker-%230db7ed.svg?style=for-the-badge&logo=docker&logoColor=white)](https://hub.docker.com/r/ltalirz/LangSim)
 
 The computational chemistry and computational materials science community have both developed a great number of 
 simulation tools. Still these tools typically require either rather cryptic input files or at least a fundamental 
@@ -18,7 +18,7 @@ LLM to scientific simulation codes and calculate physical properties from a natu
 ### Via pip 
 While our package is not yet available on the Python Package Index, you can install it directly using:
 ```
-pip install git+https://github.com/jan-janssen/comp-mat-sci-llm.git
+pip install git+https://github.com/jan-janssen/LangSim.git
 ```
 The pip package includes optional dependencies for the `mace` model and the `jupyter` integration.  
 
@@ -31,9 +31,9 @@ Prerequisites:
 - [conda](https://docs.conda.io/en/latest/miniconda.html)
 
  ```bash
-git clone https://github.com/jan-janssen/comp-mat-sci-llm
-cd comp-mat-sci-llm
-conda env create -f environment.yml --name comp-mat-sci-llm
+git clone https://github.com/jan-janssen/LangSim
+cd LangSim
+conda env create -f environment.yml --name LangSim
 ```
 
 ### As Docker Container 

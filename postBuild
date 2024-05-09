@@ -6,6 +6,6 @@ rm -rf build llm_compmat.egg-info
 
 # Autoload line magic
 mkdir -p ~/.ipython/profile_default/startup
-cat ~/.ipython/profile_default/startup/load_extensions.py <<EOF
+cat > ~/.ipython/profile_default/startup/load_extensions.py <<EOF
 get_ipython().run_line_magic('load_ext', 'llm_compmat')
 EOF
