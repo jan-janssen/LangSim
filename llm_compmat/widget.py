@@ -1,5 +1,5 @@
 import ipywidgets as widgets
-from IPython import display
+from IPython.display import display
 
 from llm_compmat.llm import get_extension
 
