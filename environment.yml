@@ -1,15 +1,15 @@
 channels:
-  - conda-forge
+- conda-forge
 dependencies:
-  - ase
-  - langchain
-  - numexpr
-  - arxiv
-  - wikipedia
-  - langchain-openai
-  - langchain-experimental
-  - pymace
-  - langchainhub
-  - voila
-  - ipykernel
-  - ipywidgets
+- ase
+- langchain
+- numexpr
+- arxiv
+- wikipedia
+- langchain-openai
+- langchain-experimental
+- pymace
+- langchainhub
+- voila
+- ipykernel
+- ipywidgets
