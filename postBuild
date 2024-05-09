@@ -1,5 +1,5 @@
 # Install llm_compmat package
 pip install .
 
-# Clean up 
+# Clean up
 rm -rf build llm_compmat.egg-info
