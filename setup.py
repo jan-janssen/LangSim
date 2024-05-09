@@ -13,9 +13,11 @@ setup(
         "langchain-openai",
         "langchain-experimental",
         "mace",
+        "matplotlib",
         "langchainhub",
-        "voila",
-        "ipykernel",
-        "ipywidgets",
     ],
+    extra_requires={
+        "mace": ["mace"],
+        "jupyter": ["voila", "ipykernel", "ipywidgets",]
+    }
 )
