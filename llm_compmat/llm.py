@@ -6,7 +6,6 @@ from langchain.agents.format_scratchpad.openai_tools import (
 )
 from langchain.agents.output_parsers.openai_tools import OpenAIToolsAgentOutputParser
 
-
 def get_executor(OPENAI_API_KEY):
     from llm_compmat.tools import interface
 
@@ -15,9 +14,10 @@ def get_executor(OPENAI_API_KEY):
     )
     tools = [
         interface.get_equilibrium_volume,
-        interface.get_equilibirum_lattice,
+        interface.get_equilibrium_lattice,
         interface.plot_equation_of_state,
         interface.get_bulk_modulus,
+        interface.get_experimental_elastic_property_wikipedia,
     ]
     prompt = ChatPromptTemplate.from_messages(
         [

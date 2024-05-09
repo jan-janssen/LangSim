@@ -12,3 +12,7 @@ dependencies:
   - ipykernel
   - ipywidgets
   - langchain-groq
+  - pandas
+  - mendeleev
+  - pip:
+    - lxml
