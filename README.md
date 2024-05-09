@@ -1,5 +1,5 @@
 # Run Calculations with a Large Language Model
-[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/jan-janssen/LangSim/HEAD)
+[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/jan-janssen/LangSim/HEAD?labpath=9_experimental_reference.ipynb)
 [![Open-with-Voila](https://img.shields.io/badge/Open%20with-Voila-4eafa0.svg)](https://mybinder.org/v2/gh/jan-janssen/LangSim/main?urlpath=/voila/render/7_voila.ipynb)
 [![Docker](https://img.shields.io/badge/docker-%230db7ed.svg?style=for-the-badge&logo=docker&logoColor=white)](https://hub.docker.com/r/ltalirz/LangSim)
 
