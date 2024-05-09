@@ -16,10 +16,8 @@ parse_argstring)
 from IPython.display import Markdown
 from .llm import get_executor
 
-OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
-
 def get_output(messages):
-    agent_executor = get_executor(OPENAI_API_KEY=OPENAI_API_KEY)
+    agent_executor = get_executor(OPENAI_API_KEY=os.getenv("OPENAI_API_KEY"))
     return list(agent_executor.stream({"conversation": messages}))[-1]
 
 # Class to manage state and expose the main magics
@@ -29,7 +27,6 @@ class CompMatMagics(Magics):
     def __init__(self, shell):
         # You must call the parent constructor
         super(CompMatMagics, self).__init__(shell)
-        #self.api_key = openai.api_key = os.getenv("OPENAI_API_KEY")
         self.api_key = os.getenv("OPENAI_API_KEY")
         self.last_code = ""
         self.messages = []

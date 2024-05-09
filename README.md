@@ -36,8 +36,12 @@ cd LangSim
 conda env create -f environment.yml --name LangSim
 ```
 
-### As Docker Container 
-Work in Progress 
+### Via Docker Container
+We build a docker container on every commit to the `main` branch.
+You can pull the container from the [Docker Hub](https://hub.docker.com/r/ltalirz/langsim) using:
+```bash
+docker run -p 8866:8866 ltalirz/langsim
+```
 
 ## Using the package
 The package currently provides two interfaces, one for python / jupyter users to query the large language model directly

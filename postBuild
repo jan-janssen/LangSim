@@ -5,7 +5,8 @@ pip install .
 rm -rf build llm_compmat.egg-info
 
 # Autoload line magic
-mkdir -p ~/.ipython/profile_default/startup
-cat > ~/.ipython/profile_default/startup/load_extensions.py <<EOF
-get_ipython().run_line_magic('load_ext', 'llm_compmat')
-EOF
+# Unfortunately seems to cause mybinder startup to time out
+#mkdir -p ~/.ipython/profile_default/startup
+#cat > ~/.ipython/profile_default/startup/load_extensions.py <<EOF
+#get_ipython().run_line_magic('load_ext', 'llm_compmat')
+#EOF
