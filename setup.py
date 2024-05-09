@@ -15,6 +15,9 @@ setup(
         "mace",
         "matplotlib",
         "langchainhub",
+        "pandas",
+        "lxml",
+        "mendeleev"
     ],
     extra_requires={
         "mace": ["mace"],
