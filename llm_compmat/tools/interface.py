@@ -131,6 +131,9 @@ def get_element_property_mendeleev(chemical_symbol: str, property: str) -> str:
     if hasattr(elem, property):
         property_value = getattr(elem, property)
         unit = property_units.get(property, '')
-        return f"{property_value} {unit}"
+        if unit != "":
+            return f"{property_value} {unit}"
+        else:
+            return str(property_value)
     else:
         return f"Property '{property}' is not available for the element '{chemical_symbol}'."
