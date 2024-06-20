@@ -13,6 +13,8 @@ documentation, like:
 We address this challenge by developing a Large Language Model (LLM) extension which provides LLM agents to couple the 
 LLM to scientific simulation codes and calculate physical properties from a natural language interface.
 
+![Demonstration](docs/images/demonstration.gif)
+
 ## Installation 
 ### Via pip 
 While our package is not yet available on the Python Package Index, you can install it directly using:
