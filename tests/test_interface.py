@@ -52,19 +52,19 @@ class TestInterfaceMace(TestCase):
 
 
 class TestExperimentalReference(TestCase):
-#     def test_wikipedia(self):
-#         self.assertAlmostEqual(
-#             get_experimental_elastic_property_wikipedia.invoke({"chemical_symbol": "Al", "property": "youngs_modulus"}),
-#             70.0)
-#         self.assertAlmostEqual(
-#             get_experimental_elastic_property_wikipedia.invoke({"chemical_symbol": "Al", "property": "poissons_ratio"}),
-#             0.35)
-#         self.assertAlmostEqual(
-#             get_experimental_elastic_property_wikipedia.invoke({"chemical_symbol": "Al", "property": "bulk_modulus"}),
-#             76.0)
-#         self.assertAlmostEqual(
-#             get_experimental_elastic_property_wikipedia.invoke({"chemical_symbol": "Al", "property": "shear_modulus"}),
-#             26.0)
+    def test_wikipedia(self):
+        self.assertAlmostEqual(
+            get_experimental_elastic_property_wikipedia.invoke({"chemical_symbol": "Al", "property": "youngs_modulus"}),
+            70.0)
+        self.assertAlmostEqual(
+            get_experimental_elastic_property_wikipedia.invoke({"chemical_symbol": "Al", "property": "poissons_ratio"}),
+            0.35)
+        self.assertAlmostEqual(
+            get_experimental_elastic_property_wikipedia.invoke({"chemical_symbol": "Al", "property": "bulk_modulus"}),
+            76.0)
+        self.assertAlmostEqual(
+            get_experimental_elastic_property_wikipedia.invoke({"chemical_symbol": "Al", "property": "shear_modulus"}),
+            26.0)
 
     def test_mendeleev(self):
         self.assertEqual(get_element_property_mendeleev.invoke({"chemical_symbol": "Al", "property": "atomic_number"}), "13")
