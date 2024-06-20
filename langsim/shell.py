@@ -1,4 +1,4 @@
-from llm_compmat.llm import get_executor
+from langsim.llm import get_executor
 import matplotlib.pyplot as plt
 
 
