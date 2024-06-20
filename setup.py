@@ -18,6 +18,5 @@ setup(
         "lxml==4.9.4",
         "mendeleev==0.17.0",
         "ipython==8.25.0",
-        "ipywidgets==8.1.3",
     ]
 )

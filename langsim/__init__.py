@@ -1,5 +1,4 @@
 from langsim.shell import dialog as dialog_python
-from langsim.widget import dialog as dialog_widget
 
 
 def load_ipython_extension(ipython):
