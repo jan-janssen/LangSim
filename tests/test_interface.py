@@ -55,16 +55,16 @@ class TestExperimentalReference(TestCase):
     def test_wikipedia(self):
         self.assertEqual(
             get_experimental_elastic_property_wikipedia.invoke({"chemical_symbol": "Al", "property": "youngs_modulus"}),
-            "70")
+            "70 GPa")
         self.assertEqual(
             get_experimental_elastic_property_wikipedia.invoke({"chemical_symbol": "Al", "property": "poissons_ratio"}),
             "0.35")
         self.assertEqual(
             get_experimental_elastic_property_wikipedia.invoke({"chemical_symbol": "Al", "property": "bulk_modulus"}),
-            "76")
+            "76 GPa")
         self.assertEqual(
             get_experimental_elastic_property_wikipedia.invoke({"chemical_symbol": "Al", "property": "shear_modulus"}),
-            "26")
+            "26 GPa")
 
     def test_mendeleev(self):
         self.assertEqual(get_element_property_mendeleev.invoke({"chemical_symbol": "Al", "property": "atomic_number"}), "13")
