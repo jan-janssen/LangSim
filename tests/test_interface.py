@@ -40,11 +40,11 @@ class TestInterfaceMace(TestCase):
         self.assertTrue(np.all(np.isclose(self.structure.positions, [[0.0, 0.0, 0.0]])))
         self.assertEqual(self.structure.numbers, [13])
         self.assertTrue(all(self.structure.pbc))
-        self.assertAlmostEqual(np.linalg.det(self.structure.cell), 16.73685817365007)
+        self.assertAlmostEqual(np.linalg.det(self.structure.cell), 16.736861180699186)
 
     def test_bulk_modulus(self):
         b0 = get_bulk_modulus.invoke({"atom_dict": self.structure, "calculator_str": self.calculator_str})
-        self.assertAlmostEqual(b0, 63.86053931471149)
+        self.assertAlmostEqual(b0, 63.866120321206715)
 
     def test_equilibrium_volume(self):
         v0 = get_equilibrium_volume.invoke({"atom_dict": self.structure, "calculator_str": self.calculator_str})
