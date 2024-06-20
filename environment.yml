@@ -11,3 +11,5 @@ dependencies:
   - pandas =2.2.2
   - mendeleev =0.17.0
   - lxml =4.9.4
+  - ipython =8.25.0
+  - ipywidgets =8.1.3

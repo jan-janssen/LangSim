@@ -16,10 +16,8 @@ setup(
         "matplotlib==3.8.4",
         "pandas==2.2.2",
         "lxml==4.9.4",
-        "mendeleev==0.17.0"
-    ],
-    extra_requires={
-        "mace": ["mace"],
-        "jupyter": ["voila", "ipykernel", "ipywidgets",]
-    }
+        "mendeleev==0.17.0",
+        "ipython==8.25.0",
+        "ipywidgets==8.1.3",
+    ]
 )
