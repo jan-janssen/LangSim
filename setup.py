@@ -1,9 +1,9 @@
 from setuptools import setup, find_packages
 
 setup(
-    name='llm_compmat',
+    name='langsim',
     version='0.0.1',
-    url='https://github.com/jan-janssen/comp-mat-sci-llm',
+    url='https://github.com/jan-janssen/LangSim',
     description='Application of Large Language Models (LLM) for computational materials science',
     packages=find_packages(),
     install_requires=[

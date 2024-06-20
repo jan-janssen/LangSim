@@ -6,8 +6,8 @@ from ase.optimize import LBFGS
 from ase.units import kJ
 from langchain.agents import tool
 
-from llm_compmat.tools.helper import get_calculator
-from llm_compmat.tools.datatypes import AtomsDict
+from langsim.tools.helper import get_calculator
+from langsim.tools.datatypes import AtomsDict
 
 
 @tool

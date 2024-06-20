@@ -2,7 +2,7 @@ import ipywidgets as widgets
 from IPython.display import display
 import matplotlib.pyplot as plt
 
-from llm_compmat.llm import get_executor
+from langsim.llm import get_executor
 
 
 key_widget = widgets.Text(

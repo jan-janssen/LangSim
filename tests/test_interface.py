@@ -1,6 +1,6 @@
 from unittest import TestCase
 import numpy as np
-from llm_compmat.tools.interface import (
+from langsim.tools.interface import (
     get_equilibrium_lattice,
     get_bulk_modulus,
     get_equilibrium_volume,
