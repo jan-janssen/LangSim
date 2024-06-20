@@ -12,7 +12,7 @@ setup(
         "numexpr==2.10.0",
         "langchain-openai==0.1.8",
         "langchain-experimental==0.0.61",
-        "mace=0.3.5",
+        "mace==0.3.5",
         "matplotlib==3.8.4",
         "pandas==2.2.2",
         "lxml==4.9.4",
