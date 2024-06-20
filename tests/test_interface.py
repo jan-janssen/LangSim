@@ -64,7 +64,7 @@ class TestExperimentalReference(TestCase):
             "76 GPa")
         self.assertEqual(
             get_experimental_elastic_property_wikipedia.invoke({"chemical_symbol": "Al", "property": "shear_modulus"}),
-            "26 GPa")
+            "26.0 GPa")
 
     def test_mendeleev(self):
         self.assertEqual(get_element_property_mendeleev.invoke({"chemical_symbol": "Al", "property": "atomic_number"}), "13")
