@@ -58,7 +58,7 @@ class TestExperimentalReference(TestCase):
             "70 GPa")
         self.assertEqual(
             get_experimental_elastic_property_wikipedia.invoke({"chemical_symbol": "Al", "property": "poissons_ratio"}),
-            "0.35")
+            "0.35 ")
         self.assertEqual(
             get_experimental_elastic_property_wikipedia.invoke({"chemical_symbol": "Al", "property": "bulk_modulus"}),
             "76 GPa")
