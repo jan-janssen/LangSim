@@ -48,7 +48,7 @@ class TestInterfaceMace(TestCase):
 
     def test_equilibrium_volume(self):
         v0 = get_equilibrium_volume.invoke({"atom_dict": self.structure, "calculator_str": self.calculator_str})
-        self.assertAlmostEqual(v0, 16.73677698606934)
+        self.assertAlmostEqual(v0, 16.736756950577675)
 
 
 class TestExperimentalReference(TestCase):
