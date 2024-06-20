@@ -14,5 +14,4 @@ dependencies:
   - langchain-groq
   - pandas
   - mendeleev
-  - pip:
-    - lxml
+  - lxml
