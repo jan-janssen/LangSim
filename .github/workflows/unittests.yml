@@ -7,13 +7,31 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.operating-system }}
+    strategy:
+      matrix:
+        include:
+          - operating-system: macos-latest
+            python-version: '3.12'
+
+          - operating-system: windows-latest
+            python-version: '3.12'
+
+          - operating-system: ubuntu-latest
+            python-version: '3.12'
+
+          - operating-system: ubuntu-latest
+            python-version: '3.11'
+
+          - operating-system: ubuntu-latest
+            python-version: '3.10'
+
     steps:
     - uses: actions/checkout@v4
     - name: Setup Mambaforge
       uses: conda-incubator/setup-miniconda@v2
       with:
-        python-version: "3.11"
+        python-version: ${{ matrix.python-version }}
         miniforge-variant: Mambaforge
         channels: conda-forge
         channel-priority: strict
