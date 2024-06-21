@@ -7,18 +7,32 @@ Adapted from fperez/jupytee
 # Stdlib imports
 import os
 
-# from IPython/Jupyter APIs
-from IPython.core.magic import (Magics, magics_class, line_cell_magic)
-
-from IPython.core.magic_arguments import (magic_arguments, argument,
-parse_argstring)
-
+from IPython import get_ipython
+from IPython.core.magic import (
+    Magics,
+    magics_class,
+    line_cell_magic,
+)
+from IPython.core.magic_arguments import (
+    magic_arguments,
+    argument,
+    parse_argstring,
+)
 from IPython.display import Markdown
-from .llm import get_executor
+from langsim.llm import get_executor
+
 
 def get_output(messages):
-    agent_executor = get_executor(OPENAI_API_KEY=os.getenv("OPENAI_API_KEY"))
+    env = os.environ
+    agent_executor = get_executor(
+        api_provider=env.get("LANGSIM_PROVIDER", "OPENAI"),
+        api_key=env.get("LANGSIM_API_KEY"),
+        api_url=env.get("LANGSIM_API_URL", None),
+        api_model=env.get("LANGSIM_MODEL", None),
+        api_temperature=env.get("LANGSIM_TEMP", 0),
+    )
     return list(agent_executor.stream({"conversation": messages}))[-1]
+
 
 # Class to manage state and expose the main magics
 # The class MUST call this class decorator at creation time
@@ -27,7 +41,6 @@ class CompMatMagics(Magics):
     def __init__(self, shell):
         # You must call the parent constructor
         super(CompMatMagics, self).__init__(shell)
-        self.api_key = os.getenv("OPENAI_API_KEY")
         self.last_code = ""
         self.messages = []
 
@@ -47,7 +60,9 @@ class CompMatMagics(Magics):
         """)
     @line_cell_magic
     def chat(self, line, cell=None):
-        "Chat with GPTChat."
+        """
+        Chat with GPTChat.
+        """
         args = parse_argstring(self.chat, line)
 
         if cell is None:
@@ -58,12 +73,10 @@ class CompMatMagics(Magics):
         response = get_output(self.messages)
         output = response['output']
         self.messages.append(("ai", output))
-        #output = response.choices[0].text.strip()
         if args.raw:
             return Markdown(f"```\n{output}\n```\n")
         else:
             return Markdown(output)
-
 
 
 # If testing interactively, it's convenient to %run as a script in Jupyter

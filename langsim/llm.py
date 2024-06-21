@@ -1,49 +1,45 @@
 from langchain.agents import AgentExecutor
-from langchain_openai import ChatOpenAI
+from langchain.agents.output_parsers.openai_tools import OpenAIToolsAgentOutputParser
 from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
 from langchain.agents.format_scratchpad.openai_tools import (
     format_to_openai_tool_messages,
 )
-from langchain.agents.output_parsers.openai_tools import OpenAIToolsAgentOutputParser
+
+from langsim.tools.interface import (
+    get_bulk_modulus,
+    get_equilibrium_volume,
+    get_experimental_elastic_property_wikipedia,
+    plot_equation_of_state,
+    get_equilibrium_lattice,
+)
+from langsim.prompt import SYSTEM_PROMPT
 
 
-SYSTEM_PROMPT = """
-You are very powerful assistant, but don't know current events.
-You can calculate materials properties with EMT and MACE.
-- Effective medium theory (EMT) is a cheap, analytical model that describes the macroscopic properties of composite materials, but is not available for all elements. 
-  To calculate with EMT use the calculator string "emt".
-- MACE is a powerful machine learning force field for predicting many-body atomic interactions that covers the periodic table.
-  To calculate with MACE use the calculator string "mace".
-If the user does not specify a calculator string, ask the user to provide one.
-
-If no chemical element is provided, use Aluminum as the default chemical element.
-"""
-# and emt as the default calculator string
-
-def get_executor(OPENAI_API_KEY):
-    from langsim.tools import interface
-
-    llm = ChatOpenAI(
-        model="gpt-4", temperature=0, openai_api_key=OPENAI_API_KEY
-        # model="gpt-3.5-turbo", temperature=0, openai_api_key=OPENAI_API_KEY
-    )
+def get_executor(api_provider, api_key, api_url=None, api_model=None, api_temperature=0):
+    if api_provider.lower() == "openai":
+        print("loading openai")
+        from langchain_openai import ChatOpenAI
+        if api_model is None:
+            api_model = "gpt-4"
+        llm = ChatOpenAI(
+            model=api_model, temperature=api_temperature, openai_api_key=api_key, base_url=api_url,
+        )
+        prompt = ChatPromptTemplate.from_messages(
+            [
+                ("system", SYSTEM_PROMPT),
+                ("placeholder", "{conversation}"),
+                MessagesPlaceholder(variable_name="agent_scratchpad"),
+            ]
+        )
+    else:
+        raise ValueError()
     tools = [
-        interface.get_equilibrium_volume,
-        interface.get_equilibrium_lattice,
-        interface.plot_equation_of_state,
-        interface.get_bulk_modulus,
-        interface.get_experimental_elastic_property_wikipedia,
+        get_equilibrium_volume,
+        get_equilibrium_lattice,
+        plot_equation_of_state,
+        get_bulk_modulus,
+        get_experimental_elastic_property_wikipedia,
     ]
-    prompt = ChatPromptTemplate.from_messages(
-        [
-            (
-                "system",
-                SYSTEM_PROMPT,
-            ),
-            ("placeholder", "{conversation}"),
-            MessagesPlaceholder(variable_name="agent_scratchpad"),
-        ]
-    )
     llm_with_tools = llm.bind_tools(tools)
     agent = (
         {
