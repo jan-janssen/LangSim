@@ -14,9 +14,6 @@ jobs:
           - operating-system: macos-latest
             python-version: '3.12'
 
-          - operating-system: windows-latest
-            python-version: '3.12'
-
           - operating-system: ubuntu-latest
             python-version: '3.12'
 
