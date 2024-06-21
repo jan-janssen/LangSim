@@ -17,7 +17,6 @@ from langsim.prompt import SYSTEM_PROMPT
 
 def get_executor(api_provider, api_key, api_url=None, api_model=None, api_temperature=0):
     if api_provider.lower() == "openai":
-        print("loading openai")
         from langchain_openai import ChatOpenAI
         if api_model is None:
             api_model = "gpt-4"
