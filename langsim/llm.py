@@ -27,7 +27,7 @@ def get_executor(api_provider, api_key, api_url=None, api_model=None, api_temper
         prompt = ChatPromptTemplate.from_messages(
             [
                 ("system", SYSTEM_PROMPT),
-                ("placeholder", "{conversation}"),
+                ("human", "{conversation}"),
                 MessagesPlaceholder(variable_name="agent_scratchpad"),
             ]
         )
