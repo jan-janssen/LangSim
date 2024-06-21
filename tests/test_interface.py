@@ -1,7 +1,8 @@
 from unittest import TestCase
 import numpy as np
 from langsim.tools.interface import (
-    get_equilibrium_lattice,
+    get_atom_dict_bulk_structure,
+    get_atom_dict_equilibrated_structure,
     get_bulk_modulus,
     get_equilibrium_volume,
     get_experimental_elastic_property_wikipedia,
@@ -13,7 +14,10 @@ class TestInterfaceEMT(TestCase):
     @classmethod
     def setUpClass(cls):
         cls.calculator_str = "emt"
-        cls.structure = get_equilibrium_lattice.invoke({"chemical_symbol": "Al", "calculator_str": cls.calculator_str})
+        atom_dict = get_atom_dict_bulk_structure.invoke({"chemical_symbol": "Al"})
+        cls.structure = get_atom_dict_equilibrated_structure.invoke(
+            {"atom_dict": atom_dict, "calculator_str": cls.calculator_str}
+        )
 
     def test_structure(self):
         self.assertTrue(np.all(np.isclose(self.structure.positions, [[0.0, 0.0, 0.0]])))
@@ -34,7 +38,10 @@ class TestInterfaceMace(TestCase):
     @classmethod
     def setUpClass(cls):
         cls.calculator_str = "mace"
-        cls.structure = get_equilibrium_lattice.invoke({"chemical_symbol": "Al", "calculator_str": cls.calculator_str})
+        atom_dict = get_atom_dict_bulk_structure.invoke({"chemical_symbol": "Al"})
+        cls.structure = get_atom_dict_equilibrated_structure.invoke(
+            {"atom_dict": atom_dict, "calculator_str": cls.calculator_str}
+        )
 
     def test_structure(self):
         self.assertTrue(np.all(np.isclose(self.structure.positions, [[0.0, 0.0, 0.0]])))
