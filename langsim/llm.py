@@ -10,14 +10,14 @@ from langsim.tools.interface import (
     get_equilibrium_volume,
     get_experimental_elastic_property_wikipedia,
     plot_equation_of_state,
-    get_equilibrium_lattice,
+    get_atom_dict_bulk_structure,
+    get_atom_dict_equilibrated_structure,
 )
 from langsim.prompt import SYSTEM_PROMPT
 
 
 def get_executor(api_provider, api_key, api_url=None, api_model=None, api_temperature=0):
     if api_provider.lower() == "openai":
-        print("loading openai")
         from langchain_openai import ChatOpenAI
         if api_model is None:
             api_model = "gpt-4"
@@ -35,7 +35,8 @@ def get_executor(api_provider, api_key, api_url=None, api_model=None, api_temper
         raise ValueError()
     tools = [
         get_equilibrium_volume,
-        get_equilibrium_lattice,
+        get_atom_dict_bulk_structure,
+        get_atom_dict_equilibrated_structure,
         plot_equation_of_state,
         get_bulk_modulus,
         get_experimental_elastic_property_wikipedia,

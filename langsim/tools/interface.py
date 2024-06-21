@@ -11,10 +11,21 @@ from langsim.tools.datatypes import AtomsDict
 
 
 @tool
-def get_equilibrium_lattice(chemical_symbol: str, calculator_str: str) -> AtomsDict:
-    """Returns equilibrium atoms dictionary for a given chemical symbol and a selected model specified by the calculator string"""
+def get_atom_dict_bulk_structure(chemical_symbol: str) -> AtomsDict:
+    """
+    Returns bulk structure atoms dictionary for a given chemical symbol
+    """
+    atoms = bulk(name=chemical_symbol)
+    return AtomsDict(**{k: v.tolist() for k, v in atoms.todict().items()})
+
+
+@tool
+def get_atom_dict_equilibrated_structure(atom_dict: AtomsDict, calculator_str: str) -> AtomsDict:
+    """
+    Returns equilibrated atoms dictionary for a given bulk atoms dictionary and a selected model specified by the calculator string.
+    """
     try:
-        atoms = bulk(name=chemical_symbol)
+        atoms = Atoms(**atom_dict.dict())
         atoms.calc = get_calculator(calculator_str=calculator_str)
         ase_optimizer_obj = LBFGS(UnitCellFilter(atoms))
         ase_optimizer_obj.run(fmax=0.000001)
@@ -26,7 +37,9 @@ def get_equilibrium_lattice(chemical_symbol: str, calculator_str: str) -> AtomsD
 
 @tool
 def plot_equation_of_state(atom_dict: AtomsDict, calculator_str: str) -> str:
-    """Returns plot of equation of state of chemical symbol for a given atoms dictionary and a selected model specified by the calculator string"""
+    """
+    Returns plot of equation of state of chemical symbol for a given equilibrated atoms dictionary and a selected model specified by the calculator string
+    """
     atoms = Atoms(**atom_dict.dict())
     atoms.calc = get_calculator(calculator_str=calculator_str)
     eos = calculate_eos(atoms)
@@ -36,7 +49,9 @@ def plot_equation_of_state(atom_dict: AtomsDict, calculator_str: str) -> str:
 
 @tool
 def get_bulk_modulus(atom_dict: AtomsDict, calculator_str: str) -> str:
-    """Returns the bulk modulus of chemcial symbol for a given atoms dictionary and a selected model specified by the calculator string in GPa"""
+    """
+    Returns the bulk modulus in GPa of chemical symbol for a given equilibrated atoms dictionary and a selected model specified by the calculator string
+    """
     try:
         atoms = Atoms(**atom_dict.dict())
         atoms.calc = get_calculator(calculator_str=calculator_str)
@@ -50,7 +65,9 @@ def get_bulk_modulus(atom_dict: AtomsDict, calculator_str: str) -> str:
 
 @tool
 def get_equilibrium_volume(atom_dict: AtomsDict, calculator_str: str) -> str:
-    """Returns the equilibrium volume of chemcial symbol for a given atoms dictionary and a selected model specified by the calculator string in Angstrom^3"""
+    """
+    Returns the equilibrium volume in Angstrom^3 of chemical symbol for a given equilibrated atoms dictionary and a selected model specified by the calculator string
+    """
     atoms = Atoms(**atom_dict.dict())
     atoms.calc = get_calculator(calculator_str=calculator_str)
     eos = calculate_eos(atoms)
@@ -75,13 +92,18 @@ def get_experimental_elastic_property_wikipedia(chemical_symbol: str, property: 
     tables=pd.read_html("https://en.wikipedia.org/wiki/Elastic_properties_of_the_elements_(data_page)")
     # Check if the property exists for the element
     try:
-        property_options = {"youngs_modulus":[0,"GPa"], "poissons_ratio":[1,""], "bulk_modulus":[2,"GPa"], "shear_modulus":[3, "GPa"]}
+        property_options = {
+            "youngs_modulus": [0, "GPa"],
+            "poissons_ratio": [1, ""],
+            "bulk_modulus": [2, "GPa"],
+            "shear_modulus": [3, "GPa"],
+        }
         lookup = property_options.get(property)
         lookup_id =lookup[0]
         unit = lookup[1]
         lookup_table = tables[lookup_id]
         # Take the column that extracts experimental value from 
-        property_value = lookup_table[lookup_table['symbol']==chemical_symbol]['WEL[1]'].item()
+        property_value = lookup_table[lookup_table['symbol'] == chemical_symbol]['WEL[1]'].item()
         return f"{property_value} {unit}"
     except:
         return f"Property '{property}' is not available for the element '{chemical_symbol}'."
@@ -102,30 +124,29 @@ def get_element_property_mendeleev(chemical_symbol: str, property: str) -> str:
     from mendeleev import element
     
     property_units = {
-    'atomic_number': '',
-    'symbol': '',
-    'name': '',
-    'atomic_mass': 'g/mol',
-    'density': 'g/cm³',
-    'melting_point': 'K',
-    'boiling_point': 'K',
-    'electronegativity': '',
-    'ionenergies': 'eV',
-    'electron_affinity': 'eV',
-    'covalent_radius': 'Å',
-    'vdw_radius': 'Å',
-    'atomic_volume': 'cm³/mol',
-    'poissons_ratio': '',
-    'specific_heat_capacity': 'J/(g*K)',
-    'thermal_conductivity': 'W/(m*K)',
-    'electrical_resistivity': 'µΩ*cm'
+        'atomic_number': '',
+        'symbol': '',
+        'name': '',
+        'atomic_mass': 'g/mol',
+        'density': 'g/cm³',
+        'melting_point': 'K',
+        'boiling_point': 'K',
+        'electronegativity': '',
+        'ionenergies': 'eV',
+        'electron_affinity': 'eV',
+        'covalent_radius': 'Å',
+        'vdw_radius': 'Å',
+        'atomic_volume': 'cm³/mol',
+        'poissons_ratio': '',
+        'specific_heat_capacity': 'J/(g*K)',
+        'thermal_conductivity': 'W/(m*K)',
+        'electrical_resistivity': 'µΩ*cm'
     }
 
     elem = element(chemical_symbol)
     
     # Convert property name to lowercase for case insensitivity
     property = property.lower()
-    
 
     # Check if the property exists for the element
     if hasattr(elem, property):
