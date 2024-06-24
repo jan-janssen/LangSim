@@ -31,6 +31,20 @@ def get_executor(api_provider, api_key, api_url=None, api_model=None, api_temper
                 MessagesPlaceholder(variable_name="agent_scratchpad"),
             ]
         )
+    elif api_provider.lower() == "anthropic":
+        from langchain_anthropic import ChatAnthropic
+        if api_model is None:
+            api_model = "claude-3-5-sonnet-20240620"
+        llm = ChatAnthropic(
+            model=api_model, temperature=api_temperature, anthropic_api_key=api_key,
+        )
+        prompt = ChatPromptTemplate.from_messages(
+            [
+                ("system", SYSTEM_PROMPT),
+                ("human", "{conversation}"),
+                MessagesPlaceholder(variable_name="agent_scratchpad"),
+            ]
+        )
     else:
         raise ValueError()
     tools = [
