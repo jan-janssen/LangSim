@@ -31,6 +31,18 @@ def get_executor(api_provider, api_key, api_url=None, api_model=None, api_temper
                 MessagesPlaceholder(variable_name="agent_scratchpad"),
             ]
         )
+    elif api_provider.lower() == "mistral":
+        from langchain_mistralai.chat_models import ChatMistralAI
+        llm = ChatMistralAI(
+            model=api_model, temperature=api_temperature, api_key=api_key, base_url=api_url,
+        )
+        prompt = ChatPromptTemplate.from_messages(
+            [
+                ("system", SYSTEM_PROMPT),
+                ("human", "{conversation}"),
+                MessagesPlaceholder(variable_name="agent_scratchpad"),
+            ]
+        )
     elif api_provider.lower() == "anthropic":
         from langchain_anthropic import ChatAnthropic
         if api_model is None:
