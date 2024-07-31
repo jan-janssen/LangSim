@@ -75,6 +75,8 @@ class CompMatMagics(Magics):
         self.messages.append(("ai", output))
         if args.raw:
             return Markdown(f"```\n{output}\n```\n")
+        elif isinstance(output, list) and isinstance(output[-1], dict):
+            return Markdown(output[-1]['text'])
         else:
             return Markdown(output)
 
