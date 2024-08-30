@@ -1,14 +1,17 @@
+import os
 from ase.atoms import Atoms
 from ase.build import bulk
 from ase.constraints import UnitCellFilter
 from ase.eos import calculate_eos, plot
 from ase.optimize import LBFGS
 from ase.units import kJ
+import pandas
 from langchain.agents import tool
 from mendeleev.fetch import fetch_table
 
 from langsim.tools.helper import get_calculator
 from langsim.tools.datatypes import AtomsDict
+from langsim.tools.wolfram import download as wolframalpha_download
 
 
 @tool
@@ -272,3 +275,39 @@ def get_chemical_information_from_mendeleev(chemical_symbol: str) -> dict:
     """
     df = fetch_table('elements')
     return df[df.symbol == chemical_symbol].squeeze(axis=0).to_dict()
+ 
+
+@tool
+def get_chemical_information_from_wolframalpha(chemical_element):
+    """
+    Get information of a given chemical element
+
+    Args:
+        chemical_element: Chemical Element like Au for Gold
+
+    Returns:
+        dict: Dictionary with the following keys
+            element: chemical element
+            thermalcondictivity: thermal conductivity
+            atomicradius: calculated distance from nucleus of outermost electron
+            bulkmodulus: bulk modulus (incompressibility)
+            shearmodulus: shear modulus of solid
+            youngmodulus: Young's modulus of solid
+            poissonratio: Poisson ratio of solid
+            density: density at standard temperature and pressure
+            liquiddensity: liquid density at melting point
+            thermalexpansion: linear thermal expansion coefficient
+            meltingpoint: melting temperature in kelvin
+            vaporizationheat: latent heat for liquid-gas transition
+            specificheat: specific heat capacity
+            latticeconstant: crystal lattice constants
+            crystal: basic crystal lattice structure
+            volmolar: molar volume
+            mass: average atomic weight in atomic mass units
+            volume: Volume
+    """
+    filename = os.path.join(os.path.dirname(__file__), "..", "data", "wolfram.csv")
+    if not os.path.exists(filename):
+        wolframalpha_download()
+    df = pandas.read_csv(filename)
+    return df[df.element==chemical_element].squeeze(axis=0).to_dict()
