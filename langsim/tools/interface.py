@@ -31,7 +31,9 @@ def get_atom_dict_bulk_structure(chemical_symbol: str) -> AtomsDict:
 
 
 @tool
-def get_atom_dict_equilibrated_structure(atom_dict: AtomsDict, calculator_str: str) -> AtomsDict:
+def get_atom_dict_equilibrated_structure(
+    atom_dict: AtomsDict, calculator_str: str
+) -> AtomsDict:
     """
     Returns equilibrated atoms dictionary for a given bulk atoms dictionary and a selected model specified by the calculator string.
 
@@ -39,9 +41,9 @@ def get_atom_dict_equilibrated_structure(atom_dict: AtomsDict, calculator_str: s
         atom_dict (AtomsDict): DataClass representing the atomic structure
         calculator_str (str): a model from the following options: "emt", "mace"
                               - "emt": Effective medium theory is a computationally efficient, analytical model
-                                 that describes the macroscopic properties of composite materials. 
+                                 that describes the macroscopic properties of composite materials.
                               - "mace": this is a machine learning force field for predicting many-body atomic
-                                 interactions that covers the periodic table.     
+                                 interactions that covers the periodic table.
 
     Returns:
         AtomsDict: DataClass representing the equilibrated atomic structure
@@ -54,7 +56,7 @@ def get_atom_dict_equilibrated_structure(atom_dict: AtomsDict, calculator_str: s
         return AtomsDict(**{k: v.tolist() for k, v in atoms.todict().items()})
     except Exception as error:
         # handle the exception
-        return("An exception occurred: {}")
+        return "An exception occurred: {}"
 
 
 @tool
@@ -66,9 +68,9 @@ def plot_equation_of_state(atom_dict: AtomsDict, calculator_str: str) -> str:
         atom_dict (AtomsDict): DataClass representing the atomic structure
         calculator_str (str): a model from the following options: "emt", "mace"
                               - "emt": Effective medium theory is a computationally efficient, analytical model
-                                 that describes the macroscopic properties of composite materials. 
+                                 that describes the macroscopic properties of composite materials.
                               - "mace": this is a machine learning force field for predicting many-body atomic
-                                 interactions that covers the periodic table.     
+                                 interactions that covers the periodic table.
 
     Returns:
         str: plot of the equation of state
@@ -89,9 +91,9 @@ def get_bulk_modulus(atom_dict: AtomsDict, calculator_str: str) -> str:
         atom_dict (AtomsDict): DataClass representing the atomic structure
         calculator_str (str): a model from the following options: "emt", "mace"
                               - "emt": Effective medium theory is a computationally efficient, analytical model
-                                 that describes the macroscopic properties of composite materials. 
+                                 that describes the macroscopic properties of composite materials.
                               - "mace": this is a machine learning force field for predicting many-body atomic
-                                 interactions that covers the periodic table.     
+                                 interactions that covers the periodic table.
 
     Returns:
         str: Bulk Modulus in GPa
@@ -104,7 +106,7 @@ def get_bulk_modulus(atom_dict: AtomsDict, calculator_str: str) -> str:
         return B / kJ * 1.0e24
     except Exception as error:
         # handle the exception
-        return("An exception occurred: {}")
+        return "An exception occurred: {}"
 
 
 @tool
@@ -116,9 +118,9 @@ def get_equilibrium_volume(atom_dict: AtomsDict, calculator_str: str) -> str:
         atom_dict (AtomsDict): DataClass representing the atomic structure
         calculator_str (str): a model from the following options: "emt", "mace"
                               - "emt": Effective medium theory is a computationally efficient, analytical model
-                                 that describes the macroscopic properties of composite materials. 
+                                 that describes the macroscopic properties of composite materials.
                               - "mace": this is a machine learning force field for predicting many-body atomic
-                                 interactions that covers the periodic table.     
+                                 interactions that covers the periodic table.
 
     Returns:
         str: Equilibrium volume in Angstrom^3
@@ -141,7 +143,10 @@ def get_experimental_elastic_property_wikipedia(chemical_symbol: str) -> dict:
     Returns:
         str: Property value (various types): Value of the property for the given element, if available.
     """
-    from atomistics.referencedata import get_elastic_properties_from_wikipedia as get_wikipedia
+    from atomistics.referencedata import (
+        get_elastic_properties_from_wikipedia as get_wikipedia,
+    )
+
     return get_wikipedia(chemical_symbol=chemical_symbol)
 
 
@@ -255,9 +260,12 @@ def get_chemical_information_from_mendeleev(chemical_symbol: str) -> dict:
             vdw_radius: Van der Waals radius in pm
             zeff: Effective nuclear charge
     """
-    from atomistics.referencedata import get_chemical_information_from_mendeleev as get_mendeleev
+    from atomistics.referencedata import (
+        get_chemical_information_from_mendeleev as get_mendeleev,
+    )
+
     return get_mendeleev(chemical_symbol=chemical_symbol)
- 
+
 
 @tool
 def get_chemical_information_from_wolframalpha(chemical_symbol: str) -> dict:
@@ -288,5 +296,8 @@ def get_chemical_information_from_wolframalpha(chemical_symbol: str) -> dict:
             mass: average atomic weight in atomic mass units
             volume: Volume
     """
-    from atomistics.referencedata import get_chemical_information_from_wolframalpha as get_wolframalpha
+    from atomistics.referencedata import (
+        get_chemical_information_from_wolframalpha as get_wolframalpha,
+    )
+
     return get_wolframalpha(chemical_symbol=chemical_symbol)
