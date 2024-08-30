@@ -1,9 +1,14 @@
 from ase.atoms import Atoms
 from ase.build import bulk
-from ase.constraints import UnitCellFilter
 from ase.eos import calculate_eos, plot
 from ase.optimize import LBFGS
-from ase.units import kJ
+from atomistics.calculators import evaluate_with_ase
+from atomistics.workflows import optimize_positions_and_volume
+from atomistics.workflows.evcurve.helper import (
+    analyse_structures_helper,
+    generate_structures_helper,
+)
+import pandas
 from langchain.agents import tool
 
 from langsim.tools.helper import get_calculator
@@ -44,10 +49,13 @@ def get_atom_dict_equilibrated_structure(
         AtomsDict: DataClass representing the equilibrated atomic structure
     """
     try:
-        atoms = Atoms(**atom_dict.dict())
-        atoms.calc = get_calculator(calculator_str=calculator_str)
-        ase_optimizer_obj = LBFGS(UnitCellFilter(atoms))
-        ase_optimizer_obj.run(fmax=0.000001)
+        task_dict = optimize_positions_and_volume(structure=Atoms(**atom_dict.dict()))
+        atoms = evaluate_with_ase(
+            task_dict=task_dict,
+            ase_calculator=get_calculator(calculator_str=calculator_str),
+            ase_optimizer=LBFGS,
+            ase_optimizer_kwargs={"fmax": 0.000001},
+        )["structure_with_optimized_positions_and_volume"]
         return AtomsDict(**{k: v.tolist() for k, v in atoms.todict().items()})
     except Exception as error:
         # handle the exception
@@ -94,11 +102,24 @@ def get_bulk_modulus(atom_dict: AtomsDict, calculator_str: str) -> str:
         str: Bulk Modulus in GPa
     """
     try:
-        atoms = Atoms(**atom_dict.dict())
-        atoms.calc = get_calculator(calculator_str=calculator_str)
-        eos = calculate_eos(atoms)
-        v, e, B = eos.fit()
-        return B / kJ * 1.0e24
+        structure_dict = generate_structures_helper(
+            structure=Atoms(**atom_dict.dict()),
+            vol_range=0.05,
+            num_points=11,
+            strain_lst=None,
+            axes=("x", "y", "z"),
+        )
+        result_dict = evaluate_with_ase(
+            task_dict={"calc_energy": structure_dict},
+            ase_calculator=get_calculator(calculator_str=calculator_str),
+        )
+        fit_dict = analyse_structures_helper(
+            output_dict=result_dict,
+            structure_dict=structure_dict,
+            fit_type="polynomial",
+            fit_order=5,
+        )
+        return fit_dict["bulkmodul_eq"]
     except Exception as error:
         # handle the exception
         return "An exception occurred: {}"
@@ -120,11 +141,24 @@ def get_equilibrium_volume(atom_dict: AtomsDict, calculator_str: str) -> str:
     Returns:
         str: Equilibrium volume in Angstrom^3
     """
-    atoms = Atoms(**atom_dict.dict())
-    atoms.calc = get_calculator(calculator_str=calculator_str)
-    eos = calculate_eos(atoms)
-    v, e, B = eos.fit()
-    return v
+    structure_dict = generate_structures_helper(
+        structure=Atoms(**atom_dict.dict()),
+        vol_range=0.05,
+        num_points=11,
+        strain_lst=None,
+        axes=("x", "y", "z"),
+    )
+    result_dict = evaluate_with_ase(
+        task_dict={"calc_energy": structure_dict},
+        ase_calculator=get_calculator(calculator_str=calculator_str),
+    )
+    fit_dict = analyse_structures_helper(
+        output_dict=result_dict,
+        structure_dict=structure_dict,
+        fit_type="polynomial",
+        fit_order=5,
+    )
+    return fit_dict["volume_eq"]
 
 
 @tool

@@ -27,11 +27,11 @@ class TestInterfaceEMT(TestCase):
 
     def test_bulk_modulus(self):
         b0 = get_bulk_modulus.invoke({"atom_dict": self.structure, "calculator_str": self.calculator_str})
-        self.assertAlmostEqual(b0, 39.518515298270835)
+        self.assertAlmostEqual(b0, 39.73699875059587)
 
     def test_equilibrium_volume(self):
         v0 = get_equilibrium_volume.invoke({"atom_dict": self.structure, "calculator_str": self.calculator_str})
-        self.assertAlmostEqual(v0, 15.931553356465589)
+        self.assertAlmostEqual(v0, 15.931368308723524)
 
 
 class TestInterfaceMace(TestCase):
@@ -51,7 +51,7 @@ class TestInterfaceMace(TestCase):
 
     def test_bulk_modulus(self):
         b0 = get_bulk_modulus.invoke({"atom_dict": self.structure, "calculator_str": self.calculator_str})
-        self.assertTrue(np.isclose(b0, 63.866120321206715, atol=10**-2))
+        self.assertTrue(np.isclose(b0, 63.508867430434144, atol=10**-2))
 
     def test_equilibrium_volume(self):
         v0 = get_equilibrium_volume.invoke({"atom_dict": self.structure, "calculator_str": self.calculator_str})
