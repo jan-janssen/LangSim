@@ -5,11 +5,6 @@ from ase.eos import calculate_eos, plot
 from ase.optimize import LBFGS
 from ase.units import kJ
 from langchain.agents import tool
-from atomistics.referencedata import (
-    get_chemical_information_from_mendeleev as get_mendeleev,
-    get_chemical_information_from_wolframalpha as get_wolframalpha,
-    get_elastic_properties_from_wikipedia as get_wikipedia,
-)
 
 from langsim.tools.helper import get_calculator
 from langsim.tools.datatypes import AtomsDict
