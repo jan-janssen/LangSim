@@ -5,4 +5,5 @@ def load_ipython_extension(ipython):
     autoloaded by IPython at startup time.
     """
     from langsim.magics import CompMatMagics
+
     ipython.register_magics(CompMatMagics)
