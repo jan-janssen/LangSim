@@ -22,16 +22,22 @@ from IPython.display import Markdown
 from langsim.llm import get_executor
 
 
-def get_output(messages):
+def get_output(messages,agent_type,temp):
     env = os.environ
     agent_executor = get_executor(
         api_provider=env.get("LANGSIM_PROVIDER", "OPENAI"),
         api_key=env.get("LANGSIM_API_KEY"),
         api_url=env.get("LANGSIM_API_URL", None),
         api_model=env.get("LANGSIM_MODEL", None),
-        api_temperature=env.get("LANGSIM_TEMP", 0),
+        api_temperature=env.get("LANGSIM_TEMP", temp),
     )
-    return list(agent_executor.stream({"conversation": messages}))[-1]
+
+    if agent_type =="react":
+        input_key = "input"
+    else:
+        input_key = "conversation"
+
+    return list(agent_executor.stream({input_key: messages}))[-1]
 
 
 # Class to manage state and expose the main magics
@@ -50,7 +56,11 @@ class CompMatMagics(Magics):
         help="""Return output as raw text instead of rendering it as Markdown[Default: False].
         """
     )
-    @argument('-T', '--temp', type=float, default=0.6,
+    @argument(
+        '-at', '--agent_type', action="store_true",
+        help="""Agent type: options are default or react."""
+    )    
+    @argument('-T', '--temp', type=float, default=0.0,
         help="""Temperature, float in [0,1]. Higher values push the algorithm
         to generate more aggressive/"creative" output. [default=0.1].""")
     @argument('prompt', nargs='*',
@@ -70,7 +80,7 @@ class CompMatMagics(Magics):
         else:
             prompt = cell
         self.messages.append(("human", prompt))
-        response = get_output(self.messages)
+        response = get_output(self.messages,args.agent_type,args.temp)
         output = response['output']
         self.messages.append(("ai", output))
         if args.raw:
