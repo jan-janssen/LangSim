@@ -61,17 +61,14 @@ class TestInterfaceMace(TestCase):
 class TestExperimentalReference(TestCase):
     def test_wikipedia(self):
         self.assertEqual(
-            get_experimental_elastic_property_wikipedia.invoke({"chemical_symbol": "Al", "property": "youngs_modulus"}),
-            "70 GPa")
-        self.assertEqual(
-            get_experimental_elastic_property_wikipedia.invoke({"chemical_symbol": "Al", "property": "poissons_ratio"}),
-            "0.35 ")
-        self.assertEqual(
-            get_experimental_elastic_property_wikipedia.invoke({"chemical_symbol": "Al", "property": "bulk_modulus"}),
-            "76 GPa")
-        self.assertEqual(
-            get_experimental_elastic_property_wikipedia.invoke({"chemical_symbol": "Al", "property": "shear_modulus"}),
-            "26.0 GPa")
+            get_experimental_elastic_property_wikipedia.invoke({"chemical_symbol": "Al"}),
+            {
+                'bulk_modulus': 76.0,
+                'poissons_ratio': 0.35,
+                'shear_modulus': 26.0,
+                'youngs_modulus': 70.0,
+            },
+        )
 
     def test_mendeleev(self):
         self.assertEqual(get_chemical_information_from_mendeleev.invoke("Al")["atomic_number"], 13)
