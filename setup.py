@@ -8,6 +8,7 @@ setup(
     packages=find_packages(),
     install_requires=[
         "ase==3.23.0",
+        "atomistics=0.1.32",
         "langchain==0.2.5",
         "numexpr==2.10.0",
         "langchain-openai==0.1.8",

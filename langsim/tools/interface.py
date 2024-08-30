@@ -1,17 +1,18 @@
-import os
 from ase.atoms import Atoms
 from ase.build import bulk
 from ase.constraints import UnitCellFilter
 from ase.eos import calculate_eos, plot
 from ase.optimize import LBFGS
 from ase.units import kJ
-import pandas
 from langchain.agents import tool
-from mendeleev.fetch import fetch_table
+from atomistics.referencedata import (
+    get_chemical_information_from_mendeleev as get_mendeleev,
+    get_chemical_information_from_wolframalpha as get_wolframalpha,
+    get_elastic_properties_from_wikipedia as get_wikipedia,
+)
 
 from langsim.tools.helper import get_calculator
 from langsim.tools.datatypes import AtomsDict
-from langsim.tools.wolfram import download as wolframalpha_download
 
 
 @tool
@@ -130,37 +131,18 @@ def get_equilibrium_volume(atom_dict: AtomsDict, calculator_str: str) -> str:
 
 
 @tool
-def get_experimental_elastic_property_wikipedia(chemical_symbol: str, property: str) -> str:
+def get_experimental_elastic_property_wikipedia(chemical_symbol: str) -> dict:
     """
     Looks up elastic properties for a given chemical symbol from the Wikipedia: https://en.wikipedia.org/wiki/Elastic_properties_of_the_elements_(data_page) sourced from webelements.com.
 
     Args:
         chemical_symbol (str): Chemical symbol of the element.
-        property (str): Name of the property to retrieve. Options: youngs_modulus, poissons_ratio, bulk_modulus, shear_modulus
 
     Returns:
         str: Property value (various types): Value of the property for the given element, if available.
     """
-    import pandas as pd
-    
-    tables=pd.read_html("https://en.wikipedia.org/wiki/Elastic_properties_of_the_elements_(data_page)")
-    # Check if the property exists for the element
-    try:
-        property_options = {
-            "youngs_modulus": [0, "GPa"],
-            "poissons_ratio": [1, ""],
-            "bulk_modulus": [2, "GPa"],
-            "shear_modulus": [3, "GPa"],
-        }
-        lookup = property_options.get(property)
-        lookup_id =lookup[0]
-        unit = lookup[1]
-        lookup_table = tables[lookup_id]
-        # Take the column that extracts experimental value from 
-        property_value = lookup_table[lookup_table['symbol'] == chemical_symbol]['WEL[1]'].item()
-        return f"{property_value} {unit}"
-    except:
-        return f"Property '{property}' is not available for the element '{chemical_symbol}'."
+    from atomistics.referencedata import get_elastic_properties_from_wikipedia as get_wikipedia
+    return get_wikipedia(chemical_symbol=chemical_symbol)
 
 
 @tool
@@ -273,17 +255,17 @@ def get_chemical_information_from_mendeleev(chemical_symbol: str) -> dict:
             vdw_radius: Van der Waals radius in pm
             zeff: Effective nuclear charge
     """
-    df = fetch_table('elements')
-    return df[df.symbol == chemical_symbol].squeeze(axis=0).to_dict()
+    from atomistics.referencedata import get_chemical_information_from_mendeleev as get_mendeleev
+    return get_mendeleev(chemical_symbol=chemical_symbol)
  
 
 @tool
-def get_chemical_information_from_wolframalpha(chemical_element):
+def get_chemical_information_from_wolframalpha(chemical_symbol: str) -> dict:
     """
     Get information of a given chemical element
 
     Args:
-        chemical_element: Chemical Element like Au for Gold
+        chemical_symbol: Chemical Element like Au for Gold
 
     Returns:
         dict: Dictionary with the following keys
@@ -306,8 +288,5 @@ def get_chemical_information_from_wolframalpha(chemical_element):
             mass: average atomic weight in atomic mass units
             volume: Volume
     """
-    filename = os.path.join(os.path.dirname(__file__), "..", "data", "wolfram.csv")
-    if not os.path.exists(filename):
-        wolframalpha_download()
-    df = pandas.read_csv(filename)
-    return df[df.element==chemical_element].squeeze(axis=0).to_dict()
+    from atomistics.referencedata import get_chemical_information_from_wolframalpha as get_wolframalpha
+    return get_wolframalpha(chemical_symbol=chemical_symbol)
