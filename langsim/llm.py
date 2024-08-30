@@ -1,19 +1,21 @@
 from langchain.agents import AgentExecutor
 from langchain.agents.output_parsers.openai_tools import OpenAIToolsAgentOutputParser
-from langchain.agents.output_parsers import JSONAgentOutputParser
 from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
 from langchain.tools.render import render_text_description_and_args
 from langchain.agents.format_scratchpad.openai_tools import (
     format_to_openai_tool_messages,
 )
 
-from langsim.tools.interface import (
+from langsim.tools.simulation_atomistics import (
     get_bulk_modulus,
     get_equilibrium_volume,
-    get_experimental_elastic_property_wikipedia,
-    plot_equation_of_state,
     get_atom_dict_bulk_structure,
     get_atom_dict_equilibrated_structure,
+)
+from langsim.tools.experimental_literature import (
+    get_experimental_elastic_property_wikipedia,
+    get_chemical_information_from_mendeleev,
+    get_chemical_information_from_wolframalpha,
 )
 from langsim.prompt import SYSTEM_PROMPT_ALT, SYSTEM_PROMPT
 from langchain import hub
@@ -67,9 +69,10 @@ def get_executor(
         get_equilibrium_volume,
         get_atom_dict_bulk_structure,
         get_atom_dict_equilibrated_structure,
-        plot_equation_of_state,
         get_bulk_modulus,
         get_experimental_elastic_property_wikipedia,
+        get_chemical_information_from_mendeleev,
+        get_chemical_information_from_wolframalpha,
     ]
 
     llm_with_tools = llm.bind_tools(tools)

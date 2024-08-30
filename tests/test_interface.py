@@ -1,12 +1,14 @@
 from unittest import TestCase
 import numpy as np
-from langsim.tools.interface import (
+from langsim.tools.simulation_atomistics import (
     get_atom_dict_bulk_structure,
     get_atom_dict_equilibrated_structure,
     get_bulk_modulus,
     get_equilibrium_volume,
-    get_experimental_elastic_property_wikipedia,
+)
+from langsim.tools.experimental_literature import (
     get_chemical_information_from_mendeleev,
+    get_experimental_elastic_property_wikipedia,
 )
 
 
