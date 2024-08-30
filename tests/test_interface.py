@@ -6,7 +6,7 @@ from langsim.tools.interface import (
     get_bulk_modulus,
     get_equilibrium_volume,
     get_experimental_elastic_property_wikipedia,
-    get_element_property_mendeleev,
+    get_chemical_information_from_mendeleev,
 )
 
 
@@ -74,5 +74,5 @@ class TestExperimentalReference(TestCase):
             "26.0 GPa")
 
     def test_mendeleev(self):
-        self.assertEqual(get_element_property_mendeleev.invoke({"chemical_symbol": "Al", "property": "atomic_number"}), "13")
+        self.assertEqual(get_chemical_information_from_mendeleev.invoke("Al")["atomic_number"], 13)
 
