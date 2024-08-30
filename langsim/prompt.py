@@ -20,4 +20,3 @@ Rules:
 - Ask to the human which model want to use before running a calculation
 - Do not convert the AtomDict class to a python dictionary.
 """
-

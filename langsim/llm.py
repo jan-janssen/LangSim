@@ -19,33 +19,50 @@ from langsim.prompt import SYSTEM_PROMPT_ALT, SYSTEM_PROMPT
 from langchain import hub
 
 
-def get_executor(api_provider, api_key, api_url=None, api_model=None, api_temperature=0, agent_type="default"):
+def get_executor(
+    api_provider,
+    api_key,
+    api_url=None,
+    api_model=None,
+    api_temperature=0,
+    agent_type="default",
+):
     if api_provider.lower() == "openai":
         from langchain_openai import ChatOpenAI
+
         if api_model is None:
             api_model = "gpt-4o"
         llm = ChatOpenAI(
-            model=api_model, temperature=api_temperature, openai_api_key=api_key, base_url=api_url,
+            model=api_model,
+            temperature=api_temperature,
+            openai_api_key=api_key,
+            base_url=api_url,
         )
 
     elif api_provider.lower() == "anthropic":
         from langchain_anthropic import ChatAnthropic
+
         if api_model is None:
             api_model = "claude-3-5-sonnet-20240620"
         llm = ChatAnthropic(
-            model=api_model, temperature=api_temperature, anthropic_api_key=api_key,
+            model=api_model,
+            temperature=api_temperature,
+            anthropic_api_key=api_key,
         )
 
     elif api_provider.lower() == "groq":
         from langchain_groq import ChatGroq
+
         if api_model is None:
             api_model = "Llama-3-Groq-70B-Tool-Use"
         llm = ChatGroq(
-            model=api_model, temperature=api_temperature, groq_api_key=api_key,
+            model=api_model,
+            temperature=api_temperature,
+            groq_api_key=api_key,
         )
     else:
         raise ValueError()
-    
+
     tools = [
         get_equilibrium_volume,
         get_atom_dict_bulk_structure,
@@ -59,12 +76,13 @@ def get_executor(api_provider, api_key, api_url=None, api_model=None, api_temper
 
     if agent_type == "react":
         REACT_PROMPT_FROM_HUB = hub.pull("langchain-ai/react-agent-template")
-        prompt = REACT_PROMPT_FROM_HUB.partial(instructions=SYSTEM_PROMPT_ALT,
-                                               tools=render_text_description_and_args(tools),
-                                               tool_names=", ".join([t.name for t in tools]),
-                                               )
+        prompt = REACT_PROMPT_FROM_HUB.partial(
+            instructions=SYSTEM_PROMPT_ALT,
+            tools=render_text_description_and_args(tools),
+            tool_names=", ".join([t.name for t in tools]),
+        )
         input_key = "input"
-        
+
     elif agent_type == "default":
         prompt = ChatPromptTemplate.from_messages(
             [
@@ -77,7 +95,6 @@ def get_executor(api_provider, api_key, api_url=None, api_model=None, api_temper
 
     else:
         raise ValueError()
-    
 
     agent = (
         {

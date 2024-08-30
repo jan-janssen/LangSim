@@ -30,7 +30,9 @@ def get_atom_dict_bulk_structure(chemical_symbol: str) -> AtomsDict:
 
 
 @tool
-def get_atom_dict_equilibrated_structure(atom_dict: AtomsDict, calculator_str: str) -> AtomsDict:
+def get_atom_dict_equilibrated_structure(
+    atom_dict: AtomsDict, calculator_str: str
+) -> AtomsDict:
     """
     Returns equilibrated atoms dictionary for a given bulk atoms dictionary and a selected model specified by the calculator string.
 
@@ -38,9 +40,9 @@ def get_atom_dict_equilibrated_structure(atom_dict: AtomsDict, calculator_str: s
         atom_dict (AtomsDict): DataClass representing the atomic structure
         calculator_str (str): a model from the following options: "emt", "mace"
                               - "emt": Effective medium theory is a computationally efficient, analytical model
-                                 that describes the macroscopic properties of composite materials. 
+                                 that describes the macroscopic properties of composite materials.
                               - "mace": this is a machine learning force field for predicting many-body atomic
-                                 interactions that covers the periodic table.     
+                                 interactions that covers the periodic table.
 
     Returns:
         AtomsDict: DataClass representing the equilibrated atomic structure
@@ -53,7 +55,7 @@ def get_atom_dict_equilibrated_structure(atom_dict: AtomsDict, calculator_str: s
         return AtomsDict(**{k: v.tolist() for k, v in atoms.todict().items()})
     except Exception as error:
         # handle the exception
-        return("An exception occurred: {}")
+        return "An exception occurred: {}"
 
 
 @tool
@@ -65,9 +67,9 @@ def plot_equation_of_state(atom_dict: AtomsDict, calculator_str: str) -> str:
         atom_dict (AtomsDict): DataClass representing the atomic structure
         calculator_str (str): a model from the following options: "emt", "mace"
                               - "emt": Effective medium theory is a computationally efficient, analytical model
-                                 that describes the macroscopic properties of composite materials. 
+                                 that describes the macroscopic properties of composite materials.
                               - "mace": this is a machine learning force field for predicting many-body atomic
-                                 interactions that covers the periodic table.     
+                                 interactions that covers the periodic table.
 
     Returns:
         str: plot of the equation of state
@@ -88,9 +90,9 @@ def get_bulk_modulus(atom_dict: AtomsDict, calculator_str: str) -> str:
         atom_dict (AtomsDict): DataClass representing the atomic structure
         calculator_str (str): a model from the following options: "emt", "mace"
                               - "emt": Effective medium theory is a computationally efficient, analytical model
-                                 that describes the macroscopic properties of composite materials. 
+                                 that describes the macroscopic properties of composite materials.
                               - "mace": this is a machine learning force field for predicting many-body atomic
-                                 interactions that covers the periodic table.     
+                                 interactions that covers the periodic table.
 
     Returns:
         str: Bulk Modulus in GPa
@@ -103,7 +105,7 @@ def get_bulk_modulus(atom_dict: AtomsDict, calculator_str: str) -> str:
         return B / kJ * 1.0e24
     except Exception as error:
         # handle the exception
-        return("An exception occurred: {}")
+        return "An exception occurred: {}"
 
 
 @tool
@@ -115,9 +117,9 @@ def get_equilibrium_volume(atom_dict: AtomsDict, calculator_str: str) -> str:
         atom_dict (AtomsDict): DataClass representing the atomic structure
         calculator_str (str): a model from the following options: "emt", "mace"
                               - "emt": Effective medium theory is a computationally efficient, analytical model
-                                 that describes the macroscopic properties of composite materials. 
+                                 that describes the macroscopic properties of composite materials.
                               - "mace": this is a machine learning force field for predicting many-body atomic
-                                 interactions that covers the periodic table.     
+                                 interactions that covers the periodic table.
 
     Returns:
         str: Equilibrium volume in Angstrom^3
@@ -130,7 +132,9 @@ def get_equilibrium_volume(atom_dict: AtomsDict, calculator_str: str) -> str:
 
 
 @tool
-def get_experimental_elastic_property_wikipedia(chemical_symbol: str, property: str) -> str:
+def get_experimental_elastic_property_wikipedia(
+    chemical_symbol: str, property: str
+) -> str:
     """
     Looks up elastic properties for a given chemical symbol from the Wikipedia: https://en.wikipedia.org/wiki/Elastic_properties_of_the_elements_(data_page) sourced from webelements.com.
 
@@ -142,8 +146,10 @@ def get_experimental_elastic_property_wikipedia(chemical_symbol: str, property: 
         str: Property value (various types): Value of the property for the given element, if available.
     """
     import pandas as pd
-    
-    tables=pd.read_html("https://en.wikipedia.org/wiki/Elastic_properties_of_the_elements_(data_page)")
+
+    tables = pd.read_html(
+        "https://en.wikipedia.org/wiki/Elastic_properties_of_the_elements_(data_page)"
+    )
     # Check if the property exists for the element
     try:
         property_options = {
@@ -153,11 +159,13 @@ def get_experimental_elastic_property_wikipedia(chemical_symbol: str, property: 
             "shear_modulus": [3, "GPa"],
         }
         lookup = property_options.get(property)
-        lookup_id =lookup[0]
+        lookup_id = lookup[0]
         unit = lookup[1]
         lookup_table = tables[lookup_id]
-        # Take the column that extracts experimental value from 
-        property_value = lookup_table[lookup_table['symbol'] == chemical_symbol]['WEL[1]'].item()
+        # Take the column that extracts experimental value from
+        property_value = lookup_table[lookup_table["symbol"] == chemical_symbol][
+            "WEL[1]"
+        ].item()
         return f"{property_value} {unit}"
     except:
         return f"Property '{property}' is not available for the element '{chemical_symbol}'."
@@ -273,9 +281,9 @@ def get_chemical_information_from_mendeleev(chemical_symbol: str) -> dict:
             vdw_radius: Van der Waals radius in pm
             zeff: Effective nuclear charge
     """
-    df = fetch_table('elements')
+    df = fetch_table("elements")
     return df[df.symbol == chemical_symbol].squeeze(axis=0).to_dict()
- 
+
 
 @tool
 def get_chemical_information_from_wolframalpha(chemical_element):
@@ -310,4 +318,4 @@ def get_chemical_information_from_wolframalpha(chemical_element):
     if not os.path.exists(filename):
         wolframalpha_download()
     df = pandas.read_csv(filename)
-    return df[df.element==chemical_element].squeeze(axis=0).to_dict()
+    return df[df.element == chemical_element].squeeze(axis=0).to_dict()
