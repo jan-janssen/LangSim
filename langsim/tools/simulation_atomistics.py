@@ -123,24 +123,28 @@ def get_equilibrium_volume(atom_dict: AtomsDict, calculator_str: str) -> str:
     Returns:
         str: Equilibrium volume in Angstrom^3
     """
-    structure_dict = generate_structures_helper(
-        structure=Atoms(**atom_dict.dict()),
-        vol_range=0.05,
-        num_points=11,
-        strain_lst=None,
-        axes=("x", "y", "z"),
-    )
-    result_dict = evaluate_with_ase(
-        task_dict={"calc_energy": structure_dict},
-        ase_calculator=get_calculator(calculator_str=calculator_str),
-    )
-    fit_dict = analyse_structures_helper(
-        output_dict=result_dict,
-        structure_dict=structure_dict,
-        fit_type="polynomial",
-        fit_order=5,
-    )
-    return fit_dict["volume_eq"]
+    try:
+        structure_dict = generate_structures_helper(
+            structure=Atoms(**atom_dict.dict()),
+            vol_range=0.05,
+            num_points=11,
+            strain_lst=None,
+            axes=("x", "y", "z"),
+        )
+        result_dict = evaluate_with_ase(
+            task_dict={"calc_energy": structure_dict},
+            ase_calculator=get_calculator(calculator_str=calculator_str),
+        )
+        fit_dict = analyse_structures_helper(
+            output_dict=result_dict,
+            structure_dict=structure_dict,
+            fit_type="polynomial",
+            fit_order=5,
+        )
+        return fit_dict["volume_eq"]
+    except Exception as error:
+        # handle the exception
+        return "An exception occurred: {}"
 
 
 def get_calculator(calculator_str: str = "emt"):
