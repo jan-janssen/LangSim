@@ -14,8 +14,6 @@ from langsim.tools.simulation_atomistics import (
 )
 from langsim.tools.experimental_literature import (
     get_experimental_elastic_property_wikipedia,
-    get_chemical_information_from_mendeleev,
-    get_chemical_information_from_wolframalpha,
 )
 from langsim.prompt import SYSTEM_PROMPT_ALT, SYSTEM_PROMPT
 from langchain import hub
@@ -71,8 +69,6 @@ def get_executor(
         get_atom_dict_equilibrated_structure,
         get_bulk_modulus,
         get_experimental_elastic_property_wikipedia,
-        get_chemical_information_from_mendeleev,
-        get_chemical_information_from_wolframalpha,
     ]
 
     llm_with_tools = llm.bind_tools(tools)
