@@ -33,7 +33,11 @@ def get_atom_dict_equilibrated_structure(atom_dict: AtomsDict, calculator_str: s
 
     Args:
         atom_dict (AtomsDict): DataClass representing the atomic structure
-        calculator_str (str): selected model specified by the calculator string
+        calculator_str (str): a model from the following options: "emt", "mace"
+                              - "emt": Effective medium theory is a computationally efficient, analytical model
+                                 that describes the macroscopic properties of composite materials. 
+                              - "mace": this is a machine learning force field for predicting many-body atomic
+                                 interactions that covers the periodic table.     
 
     Returns:
         AtomsDict: DataClass representing the equilibrated atomic structure
@@ -56,7 +60,11 @@ def plot_equation_of_state(atom_dict: AtomsDict, calculator_str: str) -> str:
 
     Args:
         atom_dict (AtomsDict): DataClass representing the atomic structure
-        calculator_str (str): selected model specified by the calculator string
+        calculator_str (str): a model from the following options: "emt", "mace"
+                              - "emt": Effective medium theory is a computationally efficient, analytical model
+                                 that describes the macroscopic properties of composite materials. 
+                              - "mace": this is a machine learning force field for predicting many-body atomic
+                                 interactions that covers the periodic table.     
 
     Returns:
         str: plot of the equation of state
@@ -75,7 +83,11 @@ def get_bulk_modulus(atom_dict: AtomsDict, calculator_str: str) -> str:
 
     Args:
         atom_dict (AtomsDict): DataClass representing the atomic structure
-        calculator_str (str): selected model specified by the calculator string
+        calculator_str (str): a model from the following options: "emt", "mace"
+                              - "emt": Effective medium theory is a computationally efficient, analytical model
+                                 that describes the macroscopic properties of composite materials. 
+                              - "mace": this is a machine learning force field for predicting many-body atomic
+                                 interactions that covers the periodic table.     
 
     Returns:
         str: Bulk Modulus in GPa
@@ -98,7 +110,11 @@ def get_equilibrium_volume(atom_dict: AtomsDict, calculator_str: str) -> str:
 
     Args:
         atom_dict (AtomsDict): DataClass representing the atomic structure
-        calculator_str (str): selected model specified by the calculator string
+        calculator_str (str): a model from the following options: "emt", "mace"
+                              - "emt": Effective medium theory is a computationally efficient, analytical model
+                                 that describes the macroscopic properties of composite materials. 
+                              - "mace": this is a machine learning force field for predicting many-body atomic
+                                 interactions that covers the periodic table.     
 
     Returns:
         str: Equilibrium volume in Angstrom^3
