@@ -19,7 +19,9 @@ Test LangSim in your browser: [![Binder](https://mybinder.org/badge_logo.svg)](h
 LangSim is based on a series of python packages, namely: 
 * [ase](https://wiki.fysik.dtu.dk/ase/) - Atomic Simulation Environment
 * [atomistics](https://atomistics.readthedocs.io) - Simulation protocols to compute material properties
+* [EMT](https://wiki.fysik.dtu.dk/ase/ase/calculators/emt.html) - Effective Medium Potential
 * [langchain](https://www.langchain.com) -  framework designed to simplify the creation of applications using LLMs
+* [mace](https://mace-docs.readthedocs.io/en/latest/) - MACE - Machine Learning Force Fields
 * [mendeleev](https://mendeleev.readthedocs.io) - API for accessing various properties of elements from the periodic table of elements
 
 ## Contributors
