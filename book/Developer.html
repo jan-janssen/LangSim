@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>LangSim &#8212; LangSim</title>
+    <title>Developer Instructions &#8212; LangSim</title>
   
   
   
@@ -57,10 +57,10 @@
     <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'book/Introduction';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'book/Developer';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Benchmark" href="Benchmark.html" />
+    <link rel="prev" title="References" href="Literature.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -123,8 +123,6 @@
       
       
       
-        
-      
       <div class="bd-sidebar-primary bd-sidebar">
         
 
@@ -143,7 +141,7 @@
     
   
 
-<a class="navbar-brand logo" href="#">
+<a class="navbar-brand logo" href="Introduction.html">
   
   
   
@@ -168,16 +166,16 @@
     <div class="bd-toc-item navbar-nav active">
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
-            <li class="toctree-l1 current active">
-                <a class="reference internal" href="#">
+            <li class="toctree-l1">
+                <a class="reference internal" href="Introduction.html">
                     LangSim
                 </a>
             </li>
         </ul>
-        <ul class="nav bd-sidenav">
+        <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="Benchmark.html">Benchmark</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Literature.html">References</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Developer.html">Developer Instructions</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Developer Instructions</a></li>
 </ul>
 
     </div>
@@ -232,7 +230,7 @@
       
       
       
-      <li><a href="../_sources/book/Introduction.md" target="_blank"
+      <li><a href="../_sources/book/Developer.md" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -316,7 +314,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>LangSim</h1>
+    <h1>Developer Instructions</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -326,8 +324,10 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#winning-submission">Winning Submission</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#contributors">Contributors</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#installation">Installation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#benchmark">Benchmark</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#debugging">Debugging</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#known-limitations">Known Limitations</a></li>
 </ul>
             </nav>
         </div>
@@ -339,62 +339,79 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="langsim">
-<h1>LangSim<a class="headerlink" href="#langsim" title="Link to this heading">#</a></h1>
-<p>The LangSim projects aims to couple Large Language Models with atomistic simulation and provide a Language Simulation
-Engine (LangSim). This project started as part of the <a class="reference external" href="https://www.eventbrite.com/e/llm-hackathon-for-applications-in-materials-and-chemistry-tickets-868303598437">LLM Hackathon for Applications in Materials and Chemistry</a>
-on May 8th 2024 organized by <a class="reference external" href="https://github.com/blaiszik">Benjamin J. Blaiszik</a> from Argonne
-National Laboratory. The LangSim team was able to <a class="reference external" href="https://medium.com/&#64;blaiszik/llms-to-accelerate-discovery-in-materials-science-and-chemistry-refections-on-a-hackathon-b8364ca32242">win the first prize</a>
-sponsored by <a class="reference external" href="https://www.radical-ai.com">RadicalAI</a>.</p>
-<section id="winning-submission">
-<h2>Winning Submission<a class="headerlink" href="#winning-submission" title="Link to this heading">#</a></h2>
-<p>The aim of the hackathon was to present a video which demonstrates the functionality of the prototype and highlights the
-use case for Large Language Models and their application to materials and chemistry:
-<a class="reference external" href="https://www.youtube.com/watch?v=7JFncD9WaIY"><img alt="Demo" src="https://img.youtube.com/vi/7JFncD9WaIY/0.jpg" /></a></p>
-<p>A full list of all submissions is available on <a class="reference external" href="https://github.com/llmhackathon">github.com/llmhackathon</a>.</p>
-<p>Test LangSim in your browser: <a class="reference external" href="https://mybinder.org/v2/gh/jan-janssen/LangSim/HEAD?labpath=notebooks/demonstration.ipynb"><img alt="Binder" src="https://mybinder.org/badge_logo.svg" /></a></p>
-<p><img alt="Demonstration" src="https://raw.githubusercontent.com/jan-janssen/LangSim/main/docs/images/demonstration.gif" /></p>
-<p>LangSim is based on a series of python packages, namely:</p>
-<ul class="simple">
-<li><p><a class="reference external" href="https://wiki.fysik.dtu.dk/ase/">ase</a> - Atomic Simulation Environment</p></li>
-<li><p><a class="reference external" href="https://atomistics.readthedocs.io">atomistics</a> - Simulation protocols to compute material properties</p></li>
-<li><p><a class="reference external" href="https://wiki.fysik.dtu.dk/ase/ase/calculators/emt.html">EMT</a> - Effective Medium Potential</p></li>
-<li><p><a class="reference external" href="https://www.langchain.com">langchain</a> -  framework designed to simplify the creation of applications using LLMs</p></li>
-<li><p><a class="reference external" href="https://mace-docs.readthedocs.io/en/latest/">mace</a> - MACE - Machine Learning Force Fields</p></li>
-<li><p><a class="reference external" href="https://mendeleev.readthedocs.io">mendeleev</a> - API for accessing various properties of elements from the periodic table of elements</p></li>
-</ul>
-</section>
-<section id="contributors">
-<h2>Contributors<a class="headerlink" href="#contributors" title="Link to this heading">#</a></h2>
-<p>Lead by: <a class="reference external" href="https://github.com/jan-janssen">Jan Janssen</a> (Max-Planck Institute for Sustainable Materials)</p>
-<p>List of contributors to the LangSim project during the hackathon:</p>
-<ul class="simple">
-<li><p><a class="reference external" href="https://github.com/chiang-yuan">Yuan Chiang</a> (UC Berkeley, Lawrence Berkeley National Laboratory)</p></li>
-<li><p><a class="reference external" href="https://github.com/giuseppefisicaro">Giuseppe Fisicaro</a> (CNR Institute for Microelectronics and Microsystems)</p></li>
-<li><p><a class="reference external" href="https://github.com/gjuhasz">Greg Juhasz</a> (Tokyo Institute of Technology)</p></li>
-<li><p><a class="reference external" href="https://github.com/saromleang">Sarom Leang</a> (EP Analytics, Inc.)</p></li>
-<li><p><a class="reference external" href="https://github.com/Bernadette-Mohr">Bernadette Mohr</a> (FAIRmat — HU Berlin, University of Amsterdam)</p></li>
-<li><p><a class="reference external" href="https://github.com/utkarshp1161">Utkarsh Pratiush</a> (University of Tennessee, Knoxville)</p></li>
-<li><p><a class="reference external" href="https://github.com/fraricci">Francesco Ricci</a> (Lawrence Berkeley National Laboratory)</p></li>
-<li><p><a class="reference external" href="https://github.com/ltalirz">Leopold Talirz</a> (Schott)</p></li>
-<li><p><a class="reference external" href="https://github.com/pablo-unzueta">Pablo Andres Unzueta</a> (Stanford University)</p></li>
-<li><p><a class="reference external" href="https://github.com/btrungvo">Trung Vo</a> (University of Illinois Chicago)</p></li>
-<li><p><a class="reference external" href="https://github.com/GaVogel">Gabriel Vogel</a> (Delft University of Technology)</p></li>
-<li><p><a class="reference external" href="https://github.com/pagel-s">Sebastian Pagel</a> (University of Glasgow)</p></li>
-</ul>
-<p>Collaboration as part of the <a class="reference external" href="https://scifm.ai">Center for Scientific Foundation Models</a>:</p>
-<ul class="simple">
-<li><p><a class="reference external" href="https://github.com/mbabar09">Mohammad Babar</a> (University of Michigan)</p></li>
-<li><p><a class="reference external" href="https://github.com/wuziqiqiqi">Ziqi Wang</a> (University of Michigan)</p></li>
-<li><p><a class="reference external" href="https://github.com/hancheng2000">Hancheng Zhao</a> (University of Michigan)</p></li>
-</ul>
-<p>Students at the <a class="reference external" href="https://www.mpie.de">Max-Planck Institute for Sustainable Materials</a>:</p>
-<ul class="simple">
-<li><p><a class="reference external" href="https://github.com/limbasiya521">Kishan Limbasiya</a> (Ruhr-University Bochum)</p></li>
-</ul>
-</section>
-<div class="toctree-wrapper compound">
+  <section class="tex2jax_ignore mathjax_ignore" id="developer-instructions">
+<h1>Developer Instructions<a class="headerlink" href="#developer-instructions" title="Link to this heading">#</a></h1>
+<section id="installation">
+<h2>Installation<a class="headerlink" href="#installation" title="Link to this heading">#</a></h2>
+<p>All dependencies are available as <code class="docutils literal notranslate"><span class="pre">conda</span></code> packages via the <code class="docutils literal notranslate"><span class="pre">conda-forge</span></code> community channel, so just clone the repository
+and install the environment file provided with the repository:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">clone</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">jan</span><span class="o">-</span><span class="n">janssen</span><span class="o">/</span><span class="n">LangSim</span>
+<span class="n">cd</span> <span class="n">LangSim</span>
+<span class="n">conda</span> <span class="n">env</span> <span class="n">create</span> <span class="o">-</span><span class="n">f</span> <span class="n">environment</span><span class="o">.</span><span class="n">yml</span> <span class="o">--</span><span class="n">name</span> <span class="n">LangSim</span>
+<span class="n">conda</span> <span class="n">activate</span> <span class="n">LangSim</span>
+</pre></div>
 </div>
+<p>The <a class="reference external" href="https://mace-docs.readthedocs.io/en/latest/">mace</a> - Machine Learning Force Fields can be installed as optional
+dependency on Linux and MacOs using:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">conda</span> <span class="n">install</span> <span class="o">-</span><span class="n">c</span> <span class="n">conda</span><span class="o">-</span><span class="n">forge</span> <span class="n">pymace</span>
+</pre></div>
+</div>
+<p>Finally, <code class="docutils literal notranslate"><span class="pre">langsim</span></code> can be installed into the Python path using:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="o">.</span>
+</pre></div>
+</div>
+<p>The demonstration notebook is included in the <code class="docutils literal notranslate"><span class="pre">notebooks</span></code> folder <code class="docutils literal notranslate"><span class="pre">notebooks/demonstration.ipynb</span></code>.</p>
+<p>Any feedback and suggestions are very welcome, just <a class="reference external" href="https://github.com/jan-janssen/LangSim">open an issue on Github</a>.</p>
+</section>
+<section id="benchmark">
+<h2>Benchmark<a class="headerlink" href="#benchmark" title="Link to this heading">#</a></h2>
+<p>To benchmark different LLM providers we suggest configuring <code class="docutils literal notranslate"><span class="pre">LangSim</span></code> via environment variables:</p>
+<p>For <a class="reference external" href="http://anthropic.com">Anthropic</a>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
+<span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;LANGSIM_PROVIDER&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;anthropic&quot;</span> 
+<span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;LANGSIM_API_KEY&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s1">&#39;ANTHROPIC_API_KEY&#39;</span><span class="p">]</span>
+<span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;LANGSIM_MODEL&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;claude-3-5-sonnet-20240620&quot;</span>
+</pre></div>
+</div>
+<p>For <a class="reference external" href="https://openai.com">OpenAPI</a>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
+<span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;LANGSIM_API_KEY&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s1">&#39;OPENAI_API_KEY&#39;</span><span class="p">]</span>
+<span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;LANGSIM_MODEL&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;gpt-4o&quot;</span>
+</pre></div>
+</div>
+<p>Other providers, especially those who host open-source LLMs seem to struggle with LLM agents based on python functions.
+So far only Anthropic and OpenAPI were successfully tested with <code class="docutils literal notranslate"><span class="pre">LangSim</span></code>.</p>
+</section>
+<section id="debugging">
+<h2>Debugging<a class="headerlink" href="#debugging" title="Link to this heading">#</a></h2>
+<p>For analysing the messages the <a class="reference external" href="https://www.langchain.com">langchain</a> framework communicates to the LLM providers, you
+can enable the debug mode for the <code class="docutils literal notranslate"><span class="pre">langchain</span></code> package:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">langchain.globals</span> <span class="kn">import</span> <span class="n">set_debug</span>
+<span class="n">set_debug</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="known-limitations">
+<h2>Known Limitations<a class="headerlink" href="#known-limitations" title="Link to this heading">#</a></h2>
+<p>The primary limitation at the moment is the restriction of the LLMs to a specific number of token, which restricts the
+number of python functions which can be implemented as simulation agents. A typical error message indicating this
+limitation would be:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="s1">&#39;error&#39;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s1">&#39;message&#39;</span><span class="p">:</span> <span class="s2">&quot;Invalid &#39;tools[5].function.description&#39;: string too long. Expected a string with maximum length 1024, but got a string with length 1064 instead.&quot;</span><span class="p">,</span> 
+        <span class="s1">&#39;type&#39;</span><span class="p">:</span> <span class="s1">&#39;invalid_request_error&#39;</span><span class="p">,</span> 
+        <span class="s1">&#39;param&#39;</span><span class="p">:</span> <span class="s1">&#39;tools[5].function.description&#39;</span><span class="p">,</span> 
+        <span class="s1">&#39;code&#39;</span><span class="p">:</span> <span class="s1">&#39;string_above_max_length&#39;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Another known limitation is that the Docstrings and System prompt have to be optimized for the different LLMs. Even for
+LLMs from the same provider like ChatGPT 4.0 and ChatGPT 4.0o, both require different Docstrings and System prompts. To
+illustrate this point we created two branches <a class="reference external" href="https://github.com/jan-janssen/LangSim/tree/working_with_chatgpt4">working_with_chatgpt4</a>
+and <a class="reference external" href="https://github.com/jan-janssen/LangSim/tree/working_with_chatgpt4o">working_with_chatgpt4o</a> which were optimized
+for ChatGPT 4.0 and ChatGPT 4.0o respectively.</p>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -427,14 +444,14 @@ use case for Large Language Models and their application to materials and chemis
                 <footer class="prev-next-footer d-print-none">
                   
 <div class="prev-next-area">
-    <a class="right-next"
-       href="Benchmark.html"
-       title="next page">
+    <a class="left-prev"
+       href="Literature.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
-        <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Benchmark</p>
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">References</p>
       </div>
-      <i class="fa-solid fa-angle-right"></i>
     </a>
 </div>
                 </footer>
@@ -452,8 +469,10 @@ use case for Large Language Models and their application to materials and chemis
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#winning-submission">Winning Submission</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#contributors">Contributors</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#installation">Installation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#benchmark">Benchmark</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#debugging">Debugging</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#known-limitations">Known Limitations</a></li>
 </ul>
   </nav></div>
 

@@ -60,6 +60,7 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'book/Benchmark';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="References" href="Literature.html" />
     <link rel="prev" title="LangSim" href="Introduction.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -174,6 +175,8 @@
         </ul>
         <ul class="current nav bd-sidenav">
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Benchmark</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Literature.html">References</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Developer.html">Developer Instructions</a></li>
 </ul>
 
     </div>
@@ -442,7 +445,11 @@ correct the unit conversion, but the risk of disregarding a calculation because 
 like a wrong unit conversion leading to a wrong calculation result is too high. For science, it is not sufficient to be
 right 90% of the time or even 99%.</p>
 <p>Based on this experience the LangSim team decided to develop simulation agents which can be called from the LLM to
-produce reliable and scientifically correct predictions.</p>
+produce reliable and scientifically correct predictions. For this purpose the <a class="reference external" href="https://www.langchain.com/">Langchain</a>
+framework was used as interface to LLMs, <a class="reference external" href="https://wiki.fysik.dtu.dk/ase/">ASE</a> and <a class="reference external" href="https://atomistics.readthedocs.io">atomistics</a>
+were used to construct simulation workflows, <a class="reference external" href="https://wiki.fysik.dtu.dk/ase/ase/calculators/emt.html">emt</a> and <a class="reference external" href="https://mace-docs.readthedocs.io/en/latest/">mace</a>
+as simulation engines and <a class="reference external" href="https://mendeleev.readthedocs.io">mendeleev</a> and <a class="reference external" href="https://en.wikipedia.org/wiki/Main_Page">wikipedia</a>
+for experimental references.</p>
 </section>
 </section>
 
@@ -484,6 +491,15 @@ produce reliable and scientifically correct predictions.</p>
         <p class="prev-next-subtitle">previous</p>
         <p class="prev-next-title">LangSim</p>
       </div>
+    </a>
+    <a class="right-next"
+       href="Literature.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">References</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
     </a>
 </div>
                 </footer>

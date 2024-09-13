@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>LangSim &#8212; LangSim</title>
+    <title>References &#8212; LangSim</title>
   
   
   
@@ -57,10 +57,11 @@
     <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'book/Introduction';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'book/Literature';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Benchmark" href="Benchmark.html" />
+    <link rel="next" title="Developer Instructions" href="Developer.html" />
+    <link rel="prev" title="Benchmark" href="Benchmark.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -123,8 +124,6 @@
       
       
       
-        
-      
       <div class="bd-sidebar-primary bd-sidebar">
         
 
@@ -143,7 +142,7 @@
     
   
 
-<a class="navbar-brand logo" href="#">
+<a class="navbar-brand logo" href="Introduction.html">
   
   
   
@@ -168,15 +167,15 @@
     <div class="bd-toc-item navbar-nav active">
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
-            <li class="toctree-l1 current active">
-                <a class="reference internal" href="#">
+            <li class="toctree-l1">
+                <a class="reference internal" href="Introduction.html">
                     LangSim
                 </a>
             </li>
         </ul>
-        <ul class="nav bd-sidenav">
+        <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="Benchmark.html">Benchmark</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Literature.html">References</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">References</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Developer.html">Developer Instructions</a></li>
 </ul>
 
@@ -232,7 +231,7 @@
       
       
       
-      <li><a href="../_sources/book/Introduction.md" target="_blank"
+      <li><a href="../_sources/book/Literature.md" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -303,9 +302,7 @@ document.write(`
   </button>
 `);
 </script>
-<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="fa-solid fa-list"></span>
-</button>
+
 </div></div>
       
     </div>
@@ -316,20 +313,11 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>LangSim</h1>
+    <h1>References</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
             
-            <div>
-                <h2> Contents </h2>
-            </div>
-            <nav aria-label="Page">
-                <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#winning-submission">Winning Submission</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#contributors">Contributors</a></li>
-</ul>
-            </nav>
         </div>
     </div>
 </div>
@@ -339,62 +327,18 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="langsim">
-<h1>LangSim<a class="headerlink" href="#langsim" title="Link to this heading">#</a></h1>
-<p>The LangSim projects aims to couple Large Language Models with atomistic simulation and provide a Language Simulation
-Engine (LangSim). This project started as part of the <a class="reference external" href="https://www.eventbrite.com/e/llm-hackathon-for-applications-in-materials-and-chemistry-tickets-868303598437">LLM Hackathon for Applications in Materials and Chemistry</a>
-on May 8th 2024 organized by <a class="reference external" href="https://github.com/blaiszik">Benjamin J. Blaiszik</a> from Argonne
-National Laboratory. The LangSim team was able to <a class="reference external" href="https://medium.com/&#64;blaiszik/llms-to-accelerate-discovery-in-materials-science-and-chemistry-refections-on-a-hackathon-b8364ca32242">win the first prize</a>
-sponsored by <a class="reference external" href="https://www.radical-ai.com">RadicalAI</a>.</p>
-<section id="winning-submission">
-<h2>Winning Submission<a class="headerlink" href="#winning-submission" title="Link to this heading">#</a></h2>
-<p>The aim of the hackathon was to present a video which demonstrates the functionality of the prototype and highlights the
-use case for Large Language Models and their application to materials and chemistry:
-<a class="reference external" href="https://www.youtube.com/watch?v=7JFncD9WaIY"><img alt="Demo" src="https://img.youtube.com/vi/7JFncD9WaIY/0.jpg" /></a></p>
-<p>A full list of all submissions is available on <a class="reference external" href="https://github.com/llmhackathon">github.com/llmhackathon</a>.</p>
-<p>Test LangSim in your browser: <a class="reference external" href="https://mybinder.org/v2/gh/jan-janssen/LangSim/HEAD?labpath=notebooks/demonstration.ipynb"><img alt="Binder" src="https://mybinder.org/badge_logo.svg" /></a></p>
-<p><img alt="Demonstration" src="https://raw.githubusercontent.com/jan-janssen/LangSim/main/docs/images/demonstration.gif" /></p>
-<p>LangSim is based on a series of python packages, namely:</p>
+  <section class="tex2jax_ignore mathjax_ignore" id="references">
+<h1>References<a class="headerlink" href="#references" title="Link to this heading">#</a></h1>
+<p>Similar concepts have been tested and implemented in a number of scientific papers.</p>
 <ul class="simple">
-<li><p><a class="reference external" href="https://wiki.fysik.dtu.dk/ase/">ase</a> - Atomic Simulation Environment</p></li>
-<li><p><a class="reference external" href="https://atomistics.readthedocs.io">atomistics</a> - Simulation protocols to compute material properties</p></li>
-<li><p><a class="reference external" href="https://wiki.fysik.dtu.dk/ase/ase/calculators/emt.html">EMT</a> - Effective Medium Potential</p></li>
-<li><p><a class="reference external" href="https://www.langchain.com">langchain</a> -  framework designed to simplify the creation of applications using LLMs</p></li>
-<li><p><a class="reference external" href="https://mace-docs.readthedocs.io/en/latest/">mace</a> - MACE - Machine Learning Force Fields</p></li>
-<li><p><a class="reference external" href="https://mendeleev.readthedocs.io">mendeleev</a> - API for accessing various properties of elements from the periodic table of elements</p></li>
+<li><p><a class="reference external" href="https://arxiv.org/abs/2304.05376">ChemCrow: Augmenting large-language models with chemistry tools</a></p></li>
+<li><p><a class="reference external" href="https://arxiv.org/abs/2406.13163">LLMatDesign: Autonomous Materials Discovery with Large Language Models</a></p></li>
+<li><p><a class="reference external" href="https://arxiv.org/abs/2401.17244">LLaMP: Large Language Model Made Powerful for High-fidelity Materials Knowledge Retrieval and Distillation</a></p></li>
+<li><p><a class="reference external" href="https://pubs.rsc.org/en/content/articlehtml/2023/dd/d3dd00113j">14 examples of how LLMs can transform materials science and chemistry: a reflection on a large language model hackathon</a> - example named MAPI-LLM</p></li>
+<li><p><a class="reference external" href="https://arxiv.org/pdf/2407.10022">AtomAgents: Alloy design and discovery through physics-aware multi-modal multi-agent artificial intelligence</a></p></li>
+<li><p><a class="reference external" href="https://arxiv.org/abs/2408.06292">The AI Scientist: Towards Fully Automated Open-Ended Scientific Discovery</a></p></li>
 </ul>
-</section>
-<section id="contributors">
-<h2>Contributors<a class="headerlink" href="#contributors" title="Link to this heading">#</a></h2>
-<p>Lead by: <a class="reference external" href="https://github.com/jan-janssen">Jan Janssen</a> (Max-Planck Institute for Sustainable Materials)</p>
-<p>List of contributors to the LangSim project during the hackathon:</p>
-<ul class="simple">
-<li><p><a class="reference external" href="https://github.com/chiang-yuan">Yuan Chiang</a> (UC Berkeley, Lawrence Berkeley National Laboratory)</p></li>
-<li><p><a class="reference external" href="https://github.com/giuseppefisicaro">Giuseppe Fisicaro</a> (CNR Institute for Microelectronics and Microsystems)</p></li>
-<li><p><a class="reference external" href="https://github.com/gjuhasz">Greg Juhasz</a> (Tokyo Institute of Technology)</p></li>
-<li><p><a class="reference external" href="https://github.com/saromleang">Sarom Leang</a> (EP Analytics, Inc.)</p></li>
-<li><p><a class="reference external" href="https://github.com/Bernadette-Mohr">Bernadette Mohr</a> (FAIRmat — HU Berlin, University of Amsterdam)</p></li>
-<li><p><a class="reference external" href="https://github.com/utkarshp1161">Utkarsh Pratiush</a> (University of Tennessee, Knoxville)</p></li>
-<li><p><a class="reference external" href="https://github.com/fraricci">Francesco Ricci</a> (Lawrence Berkeley National Laboratory)</p></li>
-<li><p><a class="reference external" href="https://github.com/ltalirz">Leopold Talirz</a> (Schott)</p></li>
-<li><p><a class="reference external" href="https://github.com/pablo-unzueta">Pablo Andres Unzueta</a> (Stanford University)</p></li>
-<li><p><a class="reference external" href="https://github.com/btrungvo">Trung Vo</a> (University of Illinois Chicago)</p></li>
-<li><p><a class="reference external" href="https://github.com/GaVogel">Gabriel Vogel</a> (Delft University of Technology)</p></li>
-<li><p><a class="reference external" href="https://github.com/pagel-s">Sebastian Pagel</a> (University of Glasgow)</p></li>
-</ul>
-<p>Collaboration as part of the <a class="reference external" href="https://scifm.ai">Center for Scientific Foundation Models</a>:</p>
-<ul class="simple">
-<li><p><a class="reference external" href="https://github.com/mbabar09">Mohammad Babar</a> (University of Michigan)</p></li>
-<li><p><a class="reference external" href="https://github.com/wuziqiqiqi">Ziqi Wang</a> (University of Michigan)</p></li>
-<li><p><a class="reference external" href="https://github.com/hancheng2000">Hancheng Zhao</a> (University of Michigan)</p></li>
-</ul>
-<p>Students at the <a class="reference external" href="https://www.mpie.de">Max-Planck Institute for Sustainable Materials</a>:</p>
-<ul class="simple">
-<li><p><a class="reference external" href="https://github.com/limbasiya521">Kishan Limbasiya</a> (Ruhr-University Bochum)</p></li>
-</ul>
-</section>
-<div class="toctree-wrapper compound">
-</div>
+<p>Feel free to open a <a class="reference external" href="https://github.com/jan-janssen/LangSim">pull request on Github</a> to add your reference.</p>
 </section>
 
     <script type="text/x-thebe-config">
@@ -427,12 +371,21 @@ use case for Large Language Models and their application to materials and chemis
                 <footer class="prev-next-footer d-print-none">
                   
 <div class="prev-next-area">
-    <a class="right-next"
+    <a class="left-prev"
        href="Benchmark.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Benchmark</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="Developer.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Benchmark</p>
+        <p class="prev-next-title">Developer Instructions</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -442,22 +395,6 @@ use case for Large Language Models and their application to materials and chemis
             </div>
             
             
-              
-                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
-
-
-  <div class="sidebar-secondary-item">
-  <div class="page-toc tocsection onthispage">
-    <i class="fa-solid fa-list"></i> Contents
-  </div>
-  <nav class="bd-toc-nav page-toc">
-    <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#winning-submission">Winning Submission</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#contributors">Contributors</a></li>
-</ul>
-  </nav></div>
-
-</div></div>
               
             
           </div>
