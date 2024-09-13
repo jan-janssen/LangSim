@@ -1,0 +1,1055 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Inverse Alloy Design &#8212; LangSim</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'book/inverse-alloy-design';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="References" href="Literature.html" />
+    <link rel="prev" title="Hackathon Demonstration" href="demonstration.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="Introduction.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">LangSim</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="Introduction.html">
+                    LangSim
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Benchmark.html">Benchmark</a></li>
+<li class="toctree-l1"><a class="reference internal" href="first_agent.html">Crystalstructure Agent</a></li>
+<li class="toctree-l1"><a class="reference internal" href="energy_volume_curve.html">Energy Volume Curve Agent</a></li>
+<li class="toctree-l1"><a class="reference internal" href="demonstration.html">Hackathon Demonstration</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Inverse Alloy Design</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Literature.html">References</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Developer.html">For Developers</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://mybinder.org/v2/gh/jan-janssen/langsim/master?urlpath=lab/tree/book/inverse-alloy-design.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch on Binder"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img alt="Binder logo" src="../_static/images/logo_binder.svg">
+  </span>
+<span class="btn__text-container">Binder</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/book/inverse-alloy-design.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Inverse Alloy Design</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#python-functions">Python Functions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#agent">Agent</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dialog">Dialog</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#summary">Summary</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="inverse-alloy-design">
+<h1>Inverse Alloy Design<a class="headerlink" href="#inverse-alloy-design" title="Link to this heading">#</a></h1>
+<p>Inverse prediction of material properties is a key challenge in materials science. For the example the dependence of the bulk modulus on the concentration of an alloy, is typically evaluated by computing the bulk modulus for a given concentration. But the relevant material property is the bulk modulus, so we would like to predict the concentration which is required to achieve a specific bulk modulus.</p>
+<p>To demonstrate the application of LLMs for inverse alloy design, we extended the calculation of bulk moduli to complex alloys in solid solution. For computational efficiency we use 32-atom special quasi-random structures (SQS) to simulate solid solutions.</p>
+<section id="python-functions">
+<h2>Python Functions<a class="headerlink" href="#python-functions" title="Link to this heading">#</a></h2>
+<p>Three python functions are defined, the <code class="docutils literal notranslate"><span class="pre">get_complex_alloy_bulk_structure()</span></code> function which creates the solid solution structure of the complex alloy by linear interpolation of the nearest neighbor distance, the <code class="docutils literal notranslate"><span class="pre">get_atom_dict_equilibrated_structure()</span></code> function which calculates the equilibrum volume and the <code class="docutils literal notranslate"><span class="pre">get_bulk_modulus()</span></code> function to compute the bulk modulus. All these functions are already included in the <code class="docutils literal notranslate"><span class="pre">LangSim</span></code> package to accelerate inverse alloy design.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">langsim.tools.simulation_atomistics</span> <span class="kn">import</span> <span class="n">get_atom_dict_equilibrated_structure</span><span class="p">,</span> <span class="n">get_bulk_modulus</span>
+<span class="kn">from</span> <span class="nn">langsim.tools.simulation_complex_alloys</span> <span class="kn">import</span> <span class="n">get_complex_alloy_bulk_structure</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">atoms_dict</span> <span class="o">=</span> <span class="n">get_complex_alloy_bulk_structure</span><span class="o">.</span><span class="n">invoke</span><span class="p">({</span>
+    <span class="s2">&quot;element_lst&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;Ag&quot;</span><span class="p">,</span> <span class="s2">&quot;Cu&quot;</span><span class="p">,</span> <span class="s2">&quot;Au&quot;</span><span class="p">],</span>
+    <span class="s2">&quot;concentration_lst&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.33</span><span class="p">,</span> <span class="mf">0.33</span><span class="p">],</span>
+<span class="p">})</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<script type="application/vnd.jupyter.widget-view+json">{"model_id": "e23ca046be824fb4aa5cb36ee75f290f", "version_major": 2, "version_minor": 0}</script><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"></pre>
+</div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"></pre>
+</div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">atoms_equilibrated_dict</span> <span class="o">=</span> <span class="n">get_atom_dict_equilibrated_structure</span><span class="o">.</span><span class="n">invoke</span><span class="p">({</span>
+    <span class="s2">&quot;atom_dict&quot;</span><span class="p">:</span> <span class="n">atoms_dict</span><span class="p">,</span> 
+    <span class="s2">&quot;calculator_str&quot;</span><span class="p">:</span> <span class="s2">&quot;emt&quot;</span><span class="p">,</span>
+<span class="p">})</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>       Step     Time          Energy          fmax
+LBFGS:    0 00:21:19        1.007380        0.896836
+LBFGS:    1 00:21:19        0.903343        0.780359
+LBFGS:    2 00:21:19        0.544874        0.264546
+LBFGS:    3 00:21:19        0.527220        0.258248
+LBFGS:    4 00:21:19        0.509179        0.241072
+LBFGS:    5 00:21:19        0.491373        0.153396
+LBFGS:    6 00:21:19        0.480369        0.112176
+LBFGS:    7 00:21:19        0.475807        0.107402
+LBFGS:    8 00:21:19        0.472776        0.099382
+LBFGS:    9 00:21:19        0.468296        0.091074
+LBFGS:   10 00:21:19        0.464523        0.081476
+LBFGS:   11 00:21:19        0.462265        0.074352
+LBFGS:   12 00:21:19        0.460756        0.069380
+LBFGS:   13 00:21:19        0.458932        0.062557
+LBFGS:   14 00:21:19        0.456936        0.053164
+LBFGS:   15 00:21:19        0.455497        0.049564
+LBFGS:   16 00:21:19        0.454711        0.045882
+LBFGS:   17 00:21:19        0.454131        0.039608
+LBFGS:   18 00:21:20        0.453530        0.031722
+LBFGS:   19 00:21:20        0.453062        0.027557
+LBFGS:   20 00:21:20        0.452794        0.028205
+LBFGS:   21 00:21:20        0.452590        0.030223
+LBFGS:   22 00:21:20        0.452320        0.032576
+LBFGS:   23 00:21:20        0.451992        0.035186
+LBFGS:   24 00:21:20        0.451695        0.037190
+LBFGS:   25 00:21:20        0.451456        0.038254
+LBFGS:   26 00:21:20        0.451201        0.039005
+LBFGS:   27 00:21:20        0.450873        0.040006
+LBFGS:   28 00:21:20        0.450541        0.041303
+LBFGS:   29 00:21:20        0.450292        0.042402
+LBFGS:   30 00:21:20        0.450084        0.043042
+LBFGS:   31 00:21:20        0.449810        0.043279
+LBFGS:   32 00:21:20        0.449411        0.042772
+LBFGS:   33 00:21:20        0.448950        0.041127
+LBFGS:   34 00:21:20        0.448534        0.046974
+LBFGS:   35 00:21:20        0.448140        0.049969
+LBFGS:   36 00:21:20        0.447635        0.039648
+LBFGS:   37 00:21:20        0.446978        0.034771
+LBFGS:   38 00:21:20        0.446364        0.037596
+LBFGS:   39 00:21:20        0.445960        0.038526
+LBFGS:   40 00:21:20        0.445677        0.037374
+LBFGS:   41 00:21:20        0.445383        0.024933
+LBFGS:   42 00:21:20        0.445088        0.021148
+LBFGS:   43 00:21:20        0.444895        0.021190
+LBFGS:   44 00:21:20        0.444795        0.018651
+LBFGS:   45 00:21:21        0.444714        0.015303
+LBFGS:   46 00:21:21        0.444616        0.011254
+LBFGS:   47 00:21:21        0.444533        0.015541
+LBFGS:   48 00:21:21        0.444488        0.014752
+LBFGS:   49 00:21:21        0.444465        0.010743
+LBFGS:   50 00:21:21        0.444443        0.006767
+LBFGS:   51 00:21:21        0.444422        0.004974
+LBFGS:   52 00:21:21        0.444409        0.004430
+LBFGS:   53 00:21:21        0.444404        0.004274
+LBFGS:   54 00:21:21        0.444399        0.004181
+LBFGS:   55 00:21:21        0.444393        0.004022
+LBFGS:   56 00:21:21        0.444386        0.003805
+LBFGS:   57 00:21:21        0.444381        0.003912
+LBFGS:   58 00:21:21        0.444376        0.003875
+LBFGS:   59 00:21:21        0.444371        0.003459
+LBFGS:   60 00:21:21        0.444365        0.003489
+LBFGS:   61 00:21:21        0.444360        0.003123
+LBFGS:   62 00:21:21        0.444357        0.003040
+LBFGS:   63 00:21:21        0.444353        0.002993
+LBFGS:   64 00:21:21        0.444348        0.002835
+LBFGS:   65 00:21:21        0.444343        0.002883
+LBFGS:   66 00:21:21        0.444339        0.002867
+LBFGS:   67 00:21:21        0.444337        0.002907
+LBFGS:   68 00:21:21        0.444334        0.002801
+LBFGS:   69 00:21:21        0.444331        0.002609
+LBFGS:   70 00:21:21        0.444327        0.003175
+LBFGS:   71 00:21:21        0.444325        0.002719
+LBFGS:   72 00:21:22        0.444324        0.001757
+LBFGS:   73 00:21:22        0.444323        0.001392
+LBFGS:   74 00:21:22        0.444322        0.001152
+LBFGS:   75 00:21:22        0.444322        0.000907
+LBFGS:   76 00:21:22        0.444321        0.000924
+LBFGS:   77 00:21:22        0.444321        0.000726
+LBFGS:   78 00:21:22        0.444321        0.000631
+LBFGS:   79 00:21:22        0.444321        0.000614
+LBFGS:   80 00:21:22        0.444321        0.000591
+LBFGS:   81 00:21:22        0.444321        0.000572
+LBFGS:   82 00:21:22        0.444321        0.000559
+LBFGS:   83 00:21:22        0.444321        0.000542
+LBFGS:   84 00:21:22        0.444321        0.000523
+LBFGS:   85 00:21:22        0.444320        0.000508
+LBFGS:   86 00:21:22        0.444320        0.000500
+LBFGS:   87 00:21:22        0.444320        0.000491
+LBFGS:   88 00:21:22        0.444320        0.000542
+LBFGS:   89 00:21:22        0.444320        0.000564
+LBFGS:   90 00:21:22        0.444320        0.000672
+LBFGS:   91 00:21:22        0.444320        0.000644
+LBFGS:   92 00:21:22        0.444320        0.000640
+LBFGS:   93 00:21:22        0.444320        0.000569
+LBFGS:   94 00:21:22        0.444319        0.000639
+LBFGS:   95 00:21:22        0.444319        0.000737
+LBFGS:   96 00:21:22        0.444319        0.000730
+LBFGS:   97 00:21:23        0.444319        0.000647
+LBFGS:   98 00:21:23        0.444319        0.000511
+LBFGS:   99 00:21:23        0.444319        0.000500
+LBFGS:  100 00:21:23        0.444318        0.000429
+LBFGS:  101 00:21:23        0.444318        0.000358
+LBFGS:  102 00:21:23        0.444318        0.000393
+LBFGS:  103 00:21:23        0.444318        0.000426
+LBFGS:  104 00:21:23        0.444318        0.000400
+LBFGS:  105 00:21:23        0.444318        0.000449
+LBFGS:  106 00:21:23        0.444318        0.000392
+LBFGS:  107 00:21:23        0.444318        0.000295
+LBFGS:  108 00:21:23        0.444318        0.000330
+LBFGS:  109 00:21:23        0.444318        0.000318
+LBFGS:  110 00:21:23        0.444318        0.000187
+LBFGS:  111 00:21:23        0.444318        0.000156
+LBFGS:  112 00:21:23        0.444318        0.000146
+LBFGS:  113 00:21:23        0.444318        0.000136
+LBFGS:  114 00:21:23        0.444318        0.000137
+LBFGS:  115 00:21:23        0.444318        0.000125
+LBFGS:  116 00:21:23        0.444318        0.000121
+LBFGS:  117 00:21:23        0.444318        0.000116
+LBFGS:  118 00:21:23        0.444318        0.000114
+LBFGS:  119 00:21:23        0.444318        0.000113
+LBFGS:  120 00:21:23        0.444318        0.000091
+LBFGS:  121 00:21:23        0.444318        0.000092
+LBFGS:  122 00:21:23        0.444318        0.000088
+LBFGS:  123 00:21:23        0.444318        0.000074
+LBFGS:  124 00:21:24        0.444318        0.000078
+LBFGS:  125 00:21:24        0.444318        0.000076
+LBFGS:  126 00:21:24        0.444318        0.000080
+LBFGS:  127 00:21:24        0.444318        0.000091
+LBFGS:  128 00:21:24        0.444318        0.000084
+LBFGS:  129 00:21:24        0.444318        0.000073
+LBFGS:  130 00:21:24        0.444318        0.000061
+LBFGS:  131 00:21:24        0.444318        0.000056
+LBFGS:  132 00:21:24        0.444318        0.000049
+LBFGS:  133 00:21:24        0.444318        0.000044
+LBFGS:  134 00:21:24        0.444318        0.000044
+LBFGS:  135 00:21:24        0.444318        0.000032
+LBFGS:  136 00:21:24        0.444318        0.000030
+LBFGS:  137 00:21:24        0.444318        0.000026
+LBFGS:  138 00:21:24        0.444318        0.000030
+LBFGS:  139 00:21:24        0.444318        0.000027
+LBFGS:  140 00:21:24        0.444318        0.000021
+LBFGS:  141 00:21:24        0.444318        0.000016
+LBFGS:  142 00:21:24        0.444318        0.000011
+LBFGS:  143 00:21:24        0.444318        0.000010
+LBFGS:  144 00:21:24        0.444318        0.000010
+LBFGS:  145 00:21:24        0.444318        0.000009
+LBFGS:  146 00:21:24        0.444318        0.000006
+LBFGS:  147 00:21:24        0.444318        0.000005
+LBFGS:  148 00:21:24        0.444318        0.000005
+LBFGS:  149 00:21:24        0.444318        0.000004
+LBFGS:  150 00:21:24        0.444318        0.000003
+LBFGS:  151 00:21:25        0.444318        0.000002
+LBFGS:  152 00:21:25        0.444318        0.000002
+LBFGS:  153 00:21:25        0.444318        0.000002
+LBFGS:  154 00:21:25        0.444318        0.000002
+LBFGS:  155 00:21:25        0.444318        0.000001
+LBFGS:  156 00:21:25        0.444318        0.000001
+LBFGS:  157 00:21:25        0.444318        0.000001
+LBFGS:  158 00:21:25        0.444318        0.000001
+LBFGS:  159 00:21:25        0.444318        0.000001
+LBFGS:  160 00:21:25        0.444318        0.000001
+LBFGS:  161 00:21:25        0.444318        0.000001
+LBFGS:  162 00:21:25        0.444318        0.000001
+LBFGS:  163 00:21:25        0.444318        0.000001
+LBFGS:  164 00:21:25        0.444318        0.000001
+LBFGS:  165 00:21:25        0.444318        0.000001
+LBFGS:  166 00:21:25        0.444318        0.000001
+LBFGS:  167 00:21:25        0.444318        0.000001
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">get_bulk_modulus</span><span class="o">.</span><span class="n">invoke</span><span class="p">({</span>
+    <span class="s2">&quot;atom_dict&quot;</span><span class="p">:</span> <span class="n">atoms_equilibrated_dict</span><span class="p">,</span> 
+    <span class="s2">&quot;calculator_str&quot;</span><span class="p">:</span> <span class="s2">&quot;emt&quot;</span>
+<span class="p">})</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>130.37777754206886
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="agent">
+<h2>Agent<a class="headerlink" href="#agent" title="Link to this heading">#</a></h2>
+<p>The agent follows the same <a class="reference external" href="https://python.langchain.com/v0.1/docs/modules/agents/how_to/custom_agent/">custom agent</a> langchain tutorial like the previous examples. This highlights that no complex modifications to the prompt are required.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">getpass</span> <span class="kn">import</span> <span class="n">getpass</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">langchain.agents</span> <span class="kn">import</span> <span class="n">AgentExecutor</span>
+<span class="kn">from</span> <span class="nn">langchain.agents.format_scratchpad.openai_tools</span> <span class="kn">import</span> <span class="n">format_to_openai_tool_messages</span>
+<span class="kn">from</span> <span class="nn">langchain.agents.output_parsers.openai_tools</span> <span class="kn">import</span> <span class="n">OpenAIToolsAgentOutputParser</span>
+<span class="kn">from</span> <span class="nn">langchain_core.prompts</span> <span class="kn">import</span> <span class="n">ChatPromptTemplate</span><span class="p">,</span> <span class="n">MessagesPlaceholder</span>
+<span class="kn">from</span> <span class="nn">langchain_openai</span> <span class="kn">import</span> <span class="n">ChatOpenAI</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">OPENAI_API_KEY</span> <span class="o">=</span> <span class="n">getpass</span><span class="p">(</span><span class="n">prompt</span><span class="o">=</span><span class="s1">&#39;Enter your OpenAI Token:&#39;</span><span class="p">)</span>
+<span class="n">llm</span> <span class="o">=</span> <span class="n">ChatOpenAI</span><span class="p">(</span><span class="n">model</span><span class="o">=</span><span class="s2">&quot;gpt-4o&quot;</span><span class="p">,</span> <span class="n">temperature</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">openai_api_key</span><span class="o">=</span><span class="n">OPENAI_API_KEY</span><span class="p">)</span>
+<span class="n">tools</span> <span class="o">=</span> <span class="p">[</span><span class="n">get_complex_alloy_bulk_structure</span><span class="p">,</span> <span class="n">get_atom_dict_equilibrated_structure</span><span class="p">,</span> <span class="n">get_bulk_modulus</span><span class="p">]</span>
+<span class="n">prompt</span> <span class="o">=</span> <span class="n">ChatPromptTemplate</span><span class="o">.</span><span class="n">from_messages</span><span class="p">(</span>
+    <span class="p">[</span>
+        <span class="p">(</span>
+            <span class="s2">&quot;system&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;You are very powerful assistant, but don&#39;t know current events. For each query vailidate that it contains a chemical element and otherwise cancel.&quot;</span><span class="p">,</span>
+        <span class="p">),</span>
+        <span class="p">(</span><span class="s2">&quot;user&quot;</span><span class="p">,</span> <span class="s2">&quot;</span><span class="si">{input}</span><span class="s2">&quot;</span><span class="p">),</span>
+        <span class="n">MessagesPlaceholder</span><span class="p">(</span><span class="n">variable_name</span><span class="o">=</span><span class="s2">&quot;agent_scratchpad&quot;</span><span class="p">),</span>
+    <span class="p">]</span>
+<span class="p">)</span>
+<span class="n">agent</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="p">{</span>
+        <span class="s2">&quot;input&quot;</span><span class="p">:</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="s2">&quot;input&quot;</span><span class="p">],</span>
+        <span class="s2">&quot;agent_scratchpad&quot;</span><span class="p">:</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">format_to_openai_tool_messages</span><span class="p">(</span>
+            <span class="n">x</span><span class="p">[</span><span class="s2">&quot;intermediate_steps&quot;</span><span class="p">]</span>
+        <span class="p">),</span>
+    <span class="p">}</span>
+    <span class="o">|</span> <span class="n">prompt</span>
+    <span class="o">|</span> <span class="n">llm</span><span class="o">.</span><span class="n">bind_tools</span><span class="p">(</span><span class="n">tools</span><span class="p">)</span>
+    <span class="o">|</span> <span class="n">OpenAIToolsAgentOutputParser</span><span class="p">()</span>
+<span class="p">)</span>
+<span class="n">agent_executor</span> <span class="o">=</span> <span class="n">AgentExecutor</span><span class="p">(</span><span class="n">agent</span><span class="o">=</span><span class="n">agent</span><span class="p">,</span> <span class="n">tools</span><span class="o">=</span><span class="n">tools</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+</div>
+</div>
+</section>
+<section id="dialog">
+<h2>Dialog<a class="headerlink" href="#dialog" title="Link to this heading">#</a></h2>
+<p>Finally, the agent is tasked to find the alloy concentration of an Copper Gold alloy which matches the bulk modulus of 145GPa with in an error bound of 2GPa. In addition, it received the hint to use linear interpolation rather than random sampling or other strategies to find the desired concentration.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">lst</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">agent_executor</span><span class="o">.</span><span class="n">stream</span><span class="p">({</span><span class="s2">&quot;input&quot;</span><span class="p">:</span> <span class="s2">&quot;Using linear interpolation find the concentration of an Copper Gold Alloy with a bulk modulus around 145 GPa with an error of plus or minus 2 GPa using the EMT simulation code. Validate your prediction by computing the bulk modulus and do not stop until you calculate the bulk modulus with the defined uncertainty.&quot;</span><span class="p">}))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Bold">&gt; Entering new AgentExecutor chain...</span>
+
+<span class=" -Color -Color-Bold -Color-Bold-Green">Invoking: `get_complex_alloy_bulk_structure` with `{&#39;element_lst&#39;: [&#39;Cu&#39;], &#39;concentration_lst&#39;: [1.0], &#39;number_of_atoms&#39;: 32, &#39;crystal_structure&#39;: &#39;fcc&#39;}`</span>
+<span class=" -Color -Color-Bold -Color-Bold-Green">responded: Sure, let&#39;s start by validating the presence of chemical elements in your query. You mentioned Copper (Cu) and Gold (Au), which are valid chemical elements.</span>
+
+<span class=" -Color -Color-Bold -Color-Bold-Green">Next, we&#39;ll use linear interpolation to estimate the concentration of a Cu-Au alloy with a bulk modulus around 145 GPa using the EMT simulation code. We&#39;ll then validate this prediction by computing the bulk modulus and iterating until we achieve the desired accuracy.</span>
+
+<span class=" -Color -Color-Bold -Color-Bold-Green">### Step 1: Define the initial concentrations and compute their bulk moduli</span>
+
+<span class=" -Color -Color-Bold -Color-Bold-Green">We&#39;ll start with two initial concentrations:</span>
+<span class=" -Color -Color-Bold -Color-Bold-Green">1. Pure Copper (100% Cu, 0% Au)</span>
+<span class=" -Color -Color-Bold -Color-Bold-Green">2. Pure Gold (0% Cu, 100% Au)</span>
+
+<span class=" -Color -Color-Bold -Color-Bold-Green">Let&#39;s compute the bulk moduli for these initial concentrations using the EMT simulation code.</span>
+
+<span class=" -Color -Color-Bold -Color-Bold-Cyan">numbers=[13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13] positions=[[0.0, 0.0, 0.0], [0.0, 1.805, 1.805], [1.805, 0.0, 1.805], [1.805, 1.805, 0.0], [0.0, 0.0, 3.61], [0.0, 1.805, 5.415], [1.805, 0.0, 5.415], [1.805, 1.805, 3.61], [0.0, 3.61, 0.0], [0.0, 5.415, 1.805], [1.805, 3.61, 1.805], [1.805, 5.415, 0.0], [0.0, 3.61, 3.61], [0.0, 5.415, 5.415], [1.805, 3.61, 5.415], [1.805, 5.415, 3.61], [3.61, 0.0, 0.0], [3.61, 1.805, 1.805], [5.415, 0.0, 1.805], [5.415, 1.805, 0.0], [3.61, 0.0, 3.61], [3.61, 1.805, 5.415], [5.415, 0.0, 5.415], [5.415, 1.805, 3.61], [3.61, 3.61, 0.0], [3.61, 5.415, 1.805], [5.415, 3.61, 1.805], [5.415, 5.415, 0.0], [3.61, 3.61, 3.61], [3.61, 5.415, 5.415], [5.415, 3.61, 5.415], [5.415, 5.415, 3.61]] cell=[[7.22, 0.0, 0.0], [0.0, 7.22, 0.0], [0.0, 0.0, 7.22]] pbc=[True, True, True]</span>
+<span class=" -Color -Color-Bold -Color-Bold-Green">Invoking: `get_complex_alloy_bulk_structure` with `{&#39;element_lst&#39;: [&#39;Au&#39;], &#39;concentration_lst&#39;: [1.0], &#39;number_of_atoms&#39;: 32, &#39;crystal_structure&#39;: &#39;fcc&#39;}`</span>
+<span class=" -Color -Color-Bold -Color-Bold-Green">responded: Sure, let&#39;s start by validating the presence of chemical elements in your query. You mentioned Copper (Cu) and Gold (Au), which are valid chemical elements.</span>
+
+<span class=" -Color -Color-Bold -Color-Bold-Green">Next, we&#39;ll use linear interpolation to estimate the concentration of a Cu-Au alloy with a bulk modulus around 145 GPa using the EMT simulation code. We&#39;ll then validate this prediction by computing the bulk modulus and iterating until we achieve the desired accuracy.</span>
+
+<span class=" -Color -Color-Bold -Color-Bold-Green">### Step 1: Define the initial concentrations and compute their bulk moduli</span>
+
+<span class=" -Color -Color-Bold -Color-Bold-Green">We&#39;ll start with two initial concentrations:</span>
+<span class=" -Color -Color-Bold -Color-Bold-Green">1. Pure Copper (100% Cu, 0% Au)</span>
+<span class=" -Color -Color-Bold -Color-Bold-Green">2. Pure Gold (0% Cu, 100% Au)</span>
+
+<span class=" -Color -Color-Bold -Color-Bold-Green">Let&#39;s compute the bulk moduli for these initial concentrations using the EMT simulation code.</span>
+
+<span class=" -Color -Color-Bold -Color-Bold-Cyan">numbers=[13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13] positions=[[0.0, 0.0, 0.0], [0.0, 2.04, 2.04], [2.04, 0.0, 2.04], [2.04, 2.04, 0.0], [0.0, 0.0, 4.08], [0.0, 2.04, 6.12], [2.04, 0.0, 6.12], [2.04, 2.04, 4.08], [0.0, 4.08, 0.0], [0.0, 6.12, 2.04], [2.04, 4.08, 2.04], [2.04, 6.12, 0.0], [0.0, 4.08, 4.08], [0.0, 6.12, 6.12], [2.04, 4.08, 6.12], [2.04, 6.12, 4.08], [4.08, 0.0, 0.0], [4.08, 2.04, 2.04], [6.12, 0.0, 2.04], [6.12, 2.04, 0.0], [4.08, 0.0, 4.08], [4.08, 2.04, 6.12], [6.12, 0.0, 6.12], [6.12, 2.04, 4.08], [4.08, 4.08, 0.0], [4.08, 6.12, 2.04], [6.12, 4.08, 2.04], [6.12, 6.12, 0.0], [4.08, 4.08, 4.08], [4.08, 6.12, 6.12], [6.12, 4.08, 6.12], [6.12, 6.12, 4.08]] cell=[[8.16, 0.0, 0.0], [0.0, 8.16, 0.0], [0.0, 0.0, 8.16]] pbc=[True, True, True]</span>
+<span class=" -Color -Color-Bold -Color-Bold-Green">Invoking: `get_atom_dict_equilibrated_structure` with `{&#39;atom_dict&#39;: {&#39;numbers&#39;: [29, 29, 29, 29, 29, 29, 29, 29, 29, 29, 29, 29, 29, 29, 29, 29, 29, 29, 29, 29, 29, 29, 29, 29, 29, 29, 29, 29, 29, 29, 29, 29], &#39;positions&#39;: [[0.0, 0.0, 0.0], [0.0, 1.805, 1.805], [1.805, 0.0, 1.805], [1.805, 1.805, 0.0], [0.0, 0.0, 3.61], [0.0, 1.805, 5.415], [1.805, 0.0, 5.415], [1.805, 1.805, 3.61], [0.0, 3.61, 0.0], [0.0, 5.415, 1.805], [1.805, 3.61, 1.805], [1.805, 5.415, 0.0], [0.0, 3.61, 3.61], [0.0, 5.415, 5.415], [1.805, 3.61, 5.415], [1.805, 5.415, 3.61], [3.61, 0.0, 0.0], [3.61, 1.805, 1.805], [5.415, 0.0, 1.805], [5.415, 1.805, 0.0], [3.61, 0.0, 3.61], [3.61, 1.805, 5.415], [5.415, 0.0, 5.415], [5.415, 1.805, 3.61], [3.61, 3.61, 0.0], [3.61, 5.415, 1.805], [5.415, 3.61, 1.805], [5.415, 5.415, 0.0], [3.61, 3.61, 3.61], [3.61, 5.415, 5.415], [5.415, 3.61, 5.415], [5.415, 5.415, 3.61]], &#39;cell&#39;: [[7.22, 0.0, 0.0], [0.0, 7.22, 0.0], [0.0, 0.0, 7.22]], &#39;pbc&#39;: [True, True, True]}, &#39;calculator_str&#39;: &#39;emt&#39;}`</span>
+
+
+       Step     Time          Energy          fmax
+LBFGS:    0 00:21:46       -0.181808        0.160183
+LBFGS:    1 00:21:46       -0.182901        0.158188
+LBFGS:    2 00:21:46       -0.225134        0.004528
+LBFGS:    3 00:21:46       -0.225168        0.000123
+LBFGS:    4 00:21:46       -0.225168        0.000000
+<span class=" -Color -Color-Bold -Color-Bold-Yellow">numbers=[29, 29, 29, 29, 29, 29, 29, 29, 29, 29, 29, 29, 29, 29, 29, 29, 29, 29, 29, 29, 29, 29, 29, 29, 29, 29, 29, 29, 29, 29, 29, 29] positions=[[6.761801057876339e-16, 2.4178592947955473e-15, -3.696205154607726e-15], [2.362265601281247e-15, 1.7949128008674702, 1.794912800867473], [1.794912800867468, 6.295993829604061e-15, 1.7949128008674684], [1.7949128008674664, 1.7949128008674673, 2.178736226937247e-15], [-4.052659683212801e-15, -7.250244798076016e-16, 3.589825601734939], [1.9048356294552537e-15, 1.7949128008674733, 5.384738402602442], [1.794912800867467, 8.597570995802812e-15, 5.384738402602447], [1.794912800867472, 1.7949128008674635, 3.5898256017349444], [9.298328874081624e-16, 3.589825601734933, -3.323078787730939e-15], [-3.041708126507229e-15, 5.384738402602446, 1.7949128008674713], [1.7949128008674673, 3.589825601734951, 1.7949128008674664], [1.7949128008674717, 5.384738402602446, 4.766586294737296e-15], [6.043692340833827e-15, 3.5898256017349484, 3.589825601734948], [3.067145173531617e-15, 5.384738402602432, 5.384738402602436], [1.794912800867466, 3.5898256017349444, 5.384738402602436], [1.7949128008674617, 5.384738402602442, 3.58982560173494], [3.5898256017349275, 5.841702500885102e-15, -9.874153064309176e-16], [3.5898256017349386, 1.7949128008674704, 1.7949128008674662], [5.384738402602439, -7.622611728751917e-16, 1.794912800867471], [5.384738402602442, 1.7949128008674675, 2.500162875281997e-15], [3.5898256017349386, 2.502593039137387e-15, 3.5898256017349426], [3.5898256017349413, 1.7949128008674726, 5.384738402602438], [5.3847384026024345, 8.606035168920653e-16, 5.384738402602437], [5.384738402602433, 1.794912800867463, 3.5898256017349404], [3.589825601734946, 3.5898256017349426, -1.7390314304769608e-15], [3.589825601734946, 5.384738402602441, 1.7949128008674675], [5.384738402602442, 3.5898256017349497, 1.7949128008674708], [5.384738402602438, 5.384738402602439, 8.989257719002385e-16], [3.5898256017349524, 3.589825601734952, 3.589825601734947], [3.5898256017349346, 5.384738402602433, 5.38473840260243], [5.384738402602431, 3.5898256017349417, 5.3847384026024345], [5.384738402602436, 5.384738402602435, 3.589825601734939]] cell=[[7.1796512034698905, 9.5626712638785e-17, -6.159891355103644e-17], [9.5626712638785e-17, 7.17965120346989, 1.1161347749589607e-16], [-6.159891355103644e-17, 1.1161347749589607e-16, 7.1796512034698905]] pbc=[True, True, True]</span>
+<span class=" -Color -Color-Bold -Color-Bold-Green">Invoking: `get_atom_dict_equilibrated_structure` with `{&#39;atom_dict&#39;: {&#39;numbers&#39;: [79, 79, 79, 79, 79, 79, 79, 79, 79, 79, 79, 79, 79, 79, 79, 79, 79, 79, 79, 79, 79, 79, 79, 79, 79, 79, 79, 79, 79, 79, 79, 79], &#39;positions&#39;: [[0.0, 0.0, 0.0], [0.0, 2.04, 2.04], [2.04, 0.0, 2.04], [2.04, 2.04, 0.0], [0.0, 0.0, 4.08], [0.0, 2.04, 6.12], [2.04, 0.0, 6.12], [2.04, 2.04, 4.08], [0.0, 4.08, 0.0], [0.0, 6.12, 2.04], [2.04, 4.08, 2.04], [2.04, 6.12, 0.0], [0.0, 4.08, 4.08], [0.0, 6.12, 6.12], [2.04, 4.08, 6.12], [2.04, 6.12, 4.08], [4.08, 0.0, 0.0], [4.08, 2.04, 2.04], [6.12, 0.0, 2.04], [6.12, 2.04, 0.0], [4.08, 0.0, 4.08], [4.08, 2.04, 6.12], [6.12, 0.0, 6.12], [6.12, 2.04, 4.08], [4.08, 4.08, 0.0], [4.08, 6.12, 2.04], [6.12, 4.08, 2.04], [6.12, 6.12, 0.0], [4.08, 4.08, 4.08], [4.08, 6.12, 6.12], [6.12, 4.08, 6.12], [6.12, 6.12, 4.08]], &#39;cell&#39;: [[8.16, 0.0, 0.0], [0.0, 8.16, 0.0], [0.0, 0.0, 8.16]], &#39;pbc&#39;: [True, True, True]}, &#39;calculator_str&#39;: &#39;emt&#39;}`</span>
+
+
+       Step     Time          Energy          fmax
+LBFGS:    0 00:21:46        0.083403        0.308859
+LBFGS:    1 00:21:46        0.079361        0.301843
+LBFGS:    2 00:21:46       -0.004187        0.012561
+LBFGS:    3 00:21:46       -0.004324        0.000480
+LBFGS:    4 00:21:46       -0.004325        0.000001
+<span class=" -Color -Color-Bold -Color-Bold-Yellow">numbers=[79, 79, 79, 79, 79, 79, 79, 79, 79, 79, 79, 79, 79, 79, 79, 79, 79, 79, 79, 79, 79, 79, 79, 79, 79, 79, 79, 79, 79, 79, 79, 79] positions=[[-1.1519732493423534e-14, -4.902671923156848e-15, -3.691244571156717e-15], [-3.3083661695160288e-15, 2.028082836101837, 2.0280828361018366], [2.0280828361018353, -7.266830256967577e-15, 2.028082836101836], [2.028082836101835, 2.0280828361018326, -3.4869213003831076e-15], [-1.1809075014158814e-15, -1.7534273740802401e-15, 4.056165672203671], [-1.2936452033234147e-15, 2.028082836101836, 6.084248508305483], [2.0280828361018344, 1.0859220153152102e-15, 6.084248508305481], [2.028082836101836, 2.0280828361018353, 4.056165672203671], [-4.212746448640245e-15, 4.056165672203668, -2.488512553310913e-15], [-2.595176344938955e-15, 6.084248508305482, 2.028082836101836], [2.0280828361018357, 4.056165672203668, 2.028082836101835], [2.028082836101834, 6.084248508305484, -3.88520256151608e-15], [3.0730356068103296e-15, 4.05616567220367, 4.0561656722036705], [-2.5181968161173974e-16, 6.084248508305483, 6.0842485083054845], [2.028082836101837, 4.056165672203671, 6.084248508305483], [2.028082836101835, 6.08424850830548, 4.0561656722036705], [4.056165672203667, -3.1698249517704123e-15, -1.875758814596068e-15], [4.056165672203672, 2.0280828361018353, 2.0280828361018357], [6.084248508305481, -4.234210017286284e-15, 2.028082836101836], [6.084248508305482, 2.0280828361018353, -3.3188348477751644e-15], [4.056165672203665, -4.1636148734447415e-15, 4.056165672203671], [4.0561656722036705, 2.0280828361018357, 6.084248508305482], [6.084248508305485, -3.553000959590537e-15, 6.084248508305483], [6.084248508305481, 2.0280828361018344, 4.056165672203671], [4.056165672203667, 4.056165672203669, -3.2761394733216216e-15], [4.05616567220367, 6.084248508305483, 2.028082836101835], [6.084248508305481, 4.056165672203667, 2.0280828361018357], [6.084248508305481, 6.0842485083054845, -4.359711787996257e-15], [4.0561656722036705, 4.056165672203667, 4.05616567220367], [4.056165672203672, 6.084248508305484, 6.084248508305485], [6.084248508305482, 4.0561656722036705, 6.084248508305484], [6.084248508305481, 6.0842485083054845, 4.056165672203671]] cell=[[8.112331344407348, 9.540810667674625e-17, 4.2647505813391163e-17], [9.540810667674625e-17, 8.112331344407348, 4.591294021663726e-17], [4.2647505813391163e-17, 4.591294021663726e-17, 8.112331344407348]] pbc=[True, True, True]</span>
+<span class=" -Color -Color-Bold -Color-Bold-Green">Invoking: `get_bulk_modulus` with `{&#39;atom_dict&#39;: {&#39;numbers&#39;: [29, 29, 29, 29, 29, 29, 29, 29, 29, 29, 29, 29, 29, 29, 29, 29, 29, 29, 29, 29, 29, 29, 29, 29, 29, 29, 29, 29, 29, 29, 29, 29], &#39;positions&#39;: [[6.761801057876339e-16, 2.4178592947955473e-15, -3.696205154607726e-15], [2.362265601281247e-15, 1.7949128008674702, 1.794912800867473], [1.794912800867468, 6.295993829604061e-15, 1.7949128008674684], [1.7949128008674664, 1.7949128008674673, 2.178736226937247e-15], [-4.052659683212801e-15, -7.250244798076016e-16, 3.589825601734939], [1.9048356294552537e-15, 1.7949128008674733, 5.384738402602442], [1.794912800867467, 8.597570995802812e-15, 5.384738402602447], [1.794912800867472, 1.7949128008674635, 3.5898256017349444], [9.298328874081624e-16, 3.589825601734933, -3.323078787730939e-15], [-3.041708126507229e-15, 5.384738402602446, 1.7949128008674713], [1.7949128008674673, 3.589825601734951, 1.7949128008674664], [1.7949128008674717, 5.384738402602446, 4.766586294737296e-15], [6.043692340833827e-15, 3.5898256017349484, 3.589825601734948], [3.067145173531617e-15, 5.384738402602432, 5.384738402602436], [1.794912800867466, 3.5898256017349444, 5.384738402602436], [1.7949128008674617, 5.384738402602442, 3.58982560173494], [3.5898256017349275, 5.841702500885102e-15, -9.874153064309176e-16], [3.5898256017349386, 1.7949128008674704, 1.7949128008674662], [5.384738402602439, -7.622611728751917e-16, 1.794912800867471], [5.384738402602442, 1.7949128008674675, 2.500162875281997e-15], [3.5898256017349386, 2.502593039137387e-15, 3.5898256017349426], [3.5898256017349413, 1.7949128008674726, 5.384738402602438], [5.3847384026024345, 8.606035168920653e-16, 5.384738402602437], [5.384738402602433, 1.794912800867463, 3.5898256017349404], [3.589825601734946, 3.5898256017349426, -1.7390314304769608e-15], [3.589825601734946, 5.384738402602441, 1.7949128008674675], [5.384738402602442, 3.5898256017349497, 1.7949128008674708], [5.384738402602438, 5.384738402602439, 8.989257719002385e-16], [3.5898256017349524, 3.589825601734952, 3.589825601734947], [3.5898256017349346, 5.384738402602433, 5.38473840260243], [5.384738402602431, 3.5898256017349417, 5.3847384026024345], [5.384738402602436, 5.384738402602435, 3.589825601734939]], &#39;cell&#39;: [[7.1796512034698905, 9.5626712638785e-17, -6.159891355103644e-17], [9.5626712638785e-17, 7.17965120346989, 1.1161347749589607e-16], [-6.159891355103644e-17, 1.1161347749589607e-16, 7.1796512034698905]], &#39;pbc&#39;: [True, True, True]}, &#39;calculator_str&#39;: &#39;emt&#39;}`</span>
+
+
+<span class=" -Color -Color-Bold -Color-Bold-C200">134.48270768727988</span>
+<span class=" -Color -Color-Bold -Color-Bold-Green">Invoking: `get_bulk_modulus` with `{&#39;atom_dict&#39;: {&#39;numbers&#39;: [79, 79, 79, 79, 79, 79, 79, 79, 79, 79, 79, 79, 79, 79, 79, 79, 79, 79, 79, 79, 79, 79, 79, 79, 79, 79, 79, 79, 79, 79, 79, 79], &#39;positions&#39;: [[-1.1519732493423534e-14, -4.902671923156848e-15, -3.691244571156717e-15], [-3.3083661695160288e-15, 2.028082836101837, 2.0280828361018366], [2.0280828361018353, -7.266830256967577e-15, 2.028082836101836], [2.028082836101835, 2.0280828361018326, -3.4869213003831076e-15], [-1.1809075014158814e-15, -1.7534273740802401e-15, 4.056165672203671], [-1.2936452033234147e-15, 2.028082836101836, 6.084248508305483], [2.0280828361018344, 1.0859220153152102e-15, 6.084248508305481], [2.028082836101836, 2.0280828361018353, 4.056165672203671], [-4.212746448640245e-15, 4.056165672203668, -2.488512553310913e-15], [-2.595176344938955e-15, 6.084248508305482, 2.028082836101836], [2.0280828361018357, 4.056165672203668, 2.028082836101835], [2.028082836101834, 6.084248508305484, -3.88520256151608e-15], [3.0730356068103296e-15, 4.05616567220367, 4.0561656722036705], [-2.5181968161173974e-16, 6.084248508305483, 6.0842485083054845], [2.028082836101837, 4.056165672203671, 6.084248508305483], [2.028082836101835, 6.08424850830548, 4.0561656722036705], [4.056165672203667, -3.1698249517704123e-15, -1.875758814596068e-15], [4.056165672203672, 2.0280828361018353, 2.0280828361018357], [6.084248508305481, -4.234210017286284e-15, 2.028082836101836], [6.084248508305482, 2.0280828361018353, -3.3188348477751644e-15], [4.056165672203665, -4.1636148734447415e-15, 4.056165672203671], [4.0561656722036705, 2.0280828361018357, 6.084248508305482], [6.084248508305485, -3.553000959590537e-15, 6.084248508305483], [6.084248508305481, 2.0280828361018344, 4.056165672203671], [4.056165672203667, 4.056165672203669, -3.2761394733216216e-15], [4.05616567220367, 6.084248508305483, 2.028082836101835], [6.084248508305481, 4.056165672203667, 2.0280828361018357], [6.084248508305481, 6.0842485083054845, -4.359711787996257e-15], [4.0561656722036705, 4.056165672203667, 4.05616567220367], [4.056165672203672, 6.084248508305484, 6.084248508305485], [6.084248508305482, 4.0561656722036705, 6.084248508305484], [6.084248508305481, 6.0842485083054845, 4.056165672203671]], &#39;cell&#39;: [[8.112331344407348, 9.540810667674625e-17, 4.2647505813391163e-17], [9.540810667674625e-17, 8.112331344407348, 4.591294021663726e-17], [4.2647505813391163e-17, 4.591294021663726e-17, 8.112331344407348]], &#39;pbc&#39;: [True, True, True]}, &#39;calculator_str&#39;: &#39;emt&#39;}`</span>
+
+
+<span class=" -Color -Color-Bold -Color-Bold-C200">173.83830457333295</span>
+<span class=" -Color -Color-Bold -Color-Bold-Green">Invoking: `get_complex_alloy_bulk_structure` with `{&#39;element_lst&#39;: [&#39;Cu&#39;, &#39;Au&#39;], &#39;concentration_lst&#39;: [0.738, 0.262], &#39;number_of_atoms&#39;: 32, &#39;crystal_structure&#39;: &#39;fcc&#39;}`</span>
+<span class=" -Color -Color-Bold -Color-Bold-Green">responded: The bulk moduli for the pure elements are as follows:</span>
+<span class=" -Color -Color-Bold -Color-Bold-Green">- Pure Copper (100% Cu, 0% Au): 134.48 GPa</span>
+<span class=" -Color -Color-Bold -Color-Bold-Green">- Pure Gold (0% Cu, 100% Au): 173.84 GPa</span>
+
+<span class=" -Color -Color-Bold -Color-Bold-Green">### Step 2: Linear Interpolation</span>
+
+<span class=" -Color -Color-Bold -Color-Bold-Green">Using linear interpolation, we can estimate the concentration of Cu and Au that would give us a bulk modulus around 145 GPa.</span>
+
+<span class=" -Color -Color-Bold -Color-Bold-Green">The linear interpolation formula is:</span>
+<span class=" -Color -Color-Bold -Color-Bold-Green">\[ B = B_{\text{Cu}} \cdot x + B_{\text{Au}} \cdot (1 - x) \]</span>
+<span class=" -Color -Color-Bold -Color-Bold-Green">where:</span>
+<span class=" -Color -Color-Bold -Color-Bold-Green">- \( B \) is the target bulk modulus (145 GPa)</span>
+<span class=" -Color -Color-Bold -Color-Bold-Green">- \( B_{\text{Cu}} \) is the bulk modulus of pure Copper (134.48 GPa)</span>
+<span class=" -Color -Color-Bold -Color-Bold-Green">- \( B_{\text{Au}} \) is the bulk modulus of pure Gold (173.84 GPa)</span>
+<span class=" -Color -Color-Bold -Color-Bold-Green">- \( x \) is the concentration of Copper</span>
+
+<span class=" -Color -Color-Bold -Color-Bold-Green">Rearranging the formula to solve for \( x \):</span>
+<span class=" -Color -Color-Bold -Color-Bold-Green">\[ x = \frac{B - B_{\text{Au}}}{B_{\text{Cu}} - B_{\text{Au}}} \]</span>
+
+<span class=" -Color -Color-Bold -Color-Bold-Green">Substituting the values:</span>
+<span class=" -Color -Color-Bold -Color-Bold-Green">\[ x = \frac{145 - 173.84}{134.48 - 173.84} \approx 0.738 \]</span>
+
+<span class=" -Color -Color-Bold -Color-Bold-Green">So, the estimated concentration is approximately 73.8% Copper and 26.2% Gold.</span>
+
+<span class=" -Color -Color-Bold -Color-Bold-Green">### Step 3: Validate the Prediction</span>
+
+<span class=" -Color -Color-Bold -Color-Bold-Green">Let&#39;s create a Cu-Au alloy with 73.8% Cu and 26.2% Au and compute its bulk modulus to validate our prediction.</span>
+
+<span class=" -Color -Color-Bold -Color-Bold-Cyan">numbers=[29, 29, 29, 29, 29, 79, 29, 29, 29, 29, 29, 29, 29, 29, 29, 29, 29, 79, 79, 29, 79, 29, 29, 29, 29, 79, 29, 79, 79, 79, 29, 29] positions=[[0.0, 0.0, 0.0], [0.0, 1.86375, 1.86375], [1.86375, 0.0, 1.86375], [1.86375, 1.86375, 0.0], [0.0, 0.0, 3.7275], [0.0, 1.86375, 5.5912500000000005], [1.86375, 0.0, 5.5912500000000005], [1.86375, 1.86375, 3.7275], [0.0, 3.7275, 0.0], [0.0, 5.5912500000000005, 1.86375], [1.86375, 3.7275, 1.86375], [1.86375, 5.5912500000000005, 0.0], [0.0, 3.7275, 3.7275], [0.0, 5.5912500000000005, 5.5912500000000005], [1.86375, 3.7275, 5.5912500000000005], [1.86375, 5.5912500000000005, 3.7275], [3.7275, 0.0, 0.0], [3.7275, 1.86375, 1.86375], [5.5912500000000005, 0.0, 1.86375], [5.5912500000000005, 1.86375, 0.0], [3.7275, 0.0, 3.7275], [3.7275, 1.86375, 5.5912500000000005], [5.5912500000000005, 0.0, 5.5912500000000005], [5.5912500000000005, 1.86375, 3.7275], [3.7275, 3.7275, 0.0], [3.7275, 5.5912500000000005, 1.86375], [5.5912500000000005, 3.7275, 1.86375], [5.5912500000000005, 5.5912500000000005, 0.0], [3.7275, 3.7275, 3.7275], [3.7275, 5.5912500000000005, 5.5912500000000005], [5.5912500000000005, 3.7275, 5.5912500000000005], [5.5912500000000005, 5.5912500000000005, 3.7275]] cell=[[7.455, 0.0, 0.0], [0.0, 7.455, 0.0], [0.0, 0.0, 7.455]] pbc=[True, True, True]</span>
+<span class=" -Color -Color-Bold -Color-Bold-Green">Invoking: `get_atom_dict_equilibrated_structure` with `{&#39;atom_dict&#39;: {&#39;numbers&#39;: [29, 29, 29, 29, 29, 79, 29, 29, 29, 29, 29, 29, 29, 29, 29, 29, 29, 79, 79, 29, 79, 29, 29, 29, 29, 79, 29, 79, 79, 79, 29, 29], &#39;positions&#39;: [[0.0, 0.0, 0.0], [0.0, 1.86375, 1.86375], [1.86375, 0.0, 1.86375], [1.86375, 1.86375, 0.0], [0.0, 0.0, 3.7275], [0.0, 1.86375, 5.5912500000000005], [1.86375, 0.0, 5.5912500000000005], [1.86375, 1.86375, 3.7275], [0.0, 3.7275, 0.0], [0.0, 5.5912500000000005, 1.86375], [1.86375, 3.7275, 1.86375], [1.86375, 5.5912500000000005, 0.0], [0.0, 3.7275, 3.7275], [0.0, 5.5912500000000005, 5.5912500000000005], [1.86375, 3.7275, 5.5912500000000005], [1.86375, 5.5912500000000005, 3.7275], [3.7275, 0.0, 0.0], [3.7275, 1.86375, 1.86375], [5.5912500000000005, 0.0, 1.86375], [5.5912500000000005, 1.86375, 0.0], [3.7275, 0.0, 3.7275], [3.7275, 1.86375, 5.5912500000000005], [5.5912500000000005, 0.0, 5.5912500000000005], [5.5912500000000005, 1.86375, 3.7275], [3.7275, 3.7275, 0.0], [3.7275, 5.5912500000000005, 1.86375], [5.5912500000000005, 3.7275, 1.86375], [5.5912500000000005, 5.5912500000000005, 0.0], [3.7275, 3.7275, 3.7275], [3.7275, 5.5912500000000005, 5.5912500000000005], [5.5912500000000005, 3.7275, 5.5912500000000005], [5.5912500000000005, 5.5912500000000005, 3.7275]], &#39;cell&#39;: [[7.455, 0.0, 0.0], [0.0, 7.455, 0.0], [0.0, 0.0, 7.455]], &#39;pbc&#39;: [True, True, True]}, &#39;calculator_str&#39;: &#39;emt&#39;}`</span>
+
+
+       Step     Time          Energy          fmax
+LBFGS:    0 00:22:32        0.850844        1.736425
+LBFGS:    1 00:22:32        0.635428        1.213269
+LBFGS:    2 00:22:32        0.227974        0.370944
+LBFGS:    3 00:22:32        0.185397        0.317658
+LBFGS:    4 00:22:32        0.164019        0.284805
+LBFGS:    5 00:22:32        0.148797        0.176572
+LBFGS:    6 00:22:32        0.140858        0.116491
+LBFGS:    7 00:22:32        0.138416        0.089204
+LBFGS:    8 00:22:32        0.136854        0.086968
+LBFGS:    9 00:22:32        0.134539        0.082794
+LBFGS:   10 00:22:33        0.132702        0.078528
+LBFGS:   11 00:22:33        0.131632        0.075375
+LBFGS:   12 00:22:33        0.130942        0.072777
+LBFGS:   13 00:22:33        0.130170        0.068744
+LBFGS:   14 00:22:33        0.129368        0.062870
+LBFGS:   15 00:22:33        0.128751        0.056881
+LBFGS:   16 00:22:33        0.128324        0.052238
+LBFGS:   17 00:22:33        0.127919        0.047877
+LBFGS:   18 00:22:33        0.127476        0.042926
+LBFGS:   19 00:22:33        0.127083        0.038244
+LBFGS:   20 00:22:33        0.126763        0.036082
+LBFGS:   21 00:22:33        0.126430        0.032395
+LBFGS:   22 00:22:34        0.126021        0.032316
+LBFGS:   23 00:22:34        0.125623        0.034318
+LBFGS:   24 00:22:34        0.125339        0.034476
+LBFGS:   25 00:22:34        0.125133        0.036248
+LBFGS:   26 00:22:34        0.124908        0.037445
+LBFGS:   27 00:22:34        0.124638        0.038273
+LBFGS:   28 00:22:34        0.124388        0.038470
+LBFGS:   29 00:22:34        0.124180        0.038053
+LBFGS:   30 00:22:34        0.123942        0.037095
+LBFGS:   31 00:22:34        0.123580        0.035246
+LBFGS:   32 00:22:34        0.123080        0.044708
+LBFGS:   33 00:22:34        0.122550        0.047592
+LBFGS:   34 00:22:34        0.122084        0.047047
+LBFGS:   35 00:22:34        0.121637        0.044571
+LBFGS:   36 00:22:34        0.121144        0.036345
+LBFGS:   37 00:22:34        0.120680        0.038705
+LBFGS:   38 00:22:34        0.120372        0.040605
+LBFGS:   39 00:22:35        0.120189        0.030889
+LBFGS:   40 00:22:35        0.120032        0.026606
+LBFGS:   41 00:22:35        0.119881        0.020319
+LBFGS:   42 00:22:35        0.119780        0.014394
+LBFGS:   43 00:22:35        0.119724        0.013753
+LBFGS:   44 00:22:35        0.119681        0.011448
+LBFGS:   45 00:22:35        0.119633        0.008851
+LBFGS:   46 00:22:35        0.119592        0.012077
+LBFGS:   47 00:22:35        0.119568        0.009679
+LBFGS:   48 00:22:35        0.119552        0.008307
+LBFGS:   49 00:22:35        0.119534        0.008039
+LBFGS:   50 00:22:35        0.119513        0.007670
+LBFGS:   51 00:22:35        0.119494        0.009649
+LBFGS:   52 00:22:36        0.119478        0.008279
+LBFGS:   53 00:22:36        0.119461        0.007303
+LBFGS:   54 00:22:36        0.119436        0.009732
+LBFGS:   55 00:22:36        0.119404        0.010922
+LBFGS:   56 00:22:36        0.119377        0.009074
+LBFGS:   57 00:22:36        0.119359        0.008053
+LBFGS:   58 00:22:36        0.119345        0.008081
+LBFGS:   59 00:22:36        0.119329        0.006755
+LBFGS:   60 00:22:36        0.119316        0.005922
+LBFGS:   61 00:22:36        0.119308        0.004193
+LBFGS:   62 00:22:36        0.119303        0.004142
+LBFGS:   63 00:22:36        0.119298        0.004002
+LBFGS:   64 00:22:36        0.119293        0.003031
+LBFGS:   65 00:22:37        0.119290        0.002407
+LBFGS:   66 00:22:37        0.119288        0.002046
+LBFGS:   67 00:22:37        0.119287        0.001554
+LBFGS:   68 00:22:37        0.119286        0.001448
+LBFGS:   69 00:22:37        0.119285        0.001153
+LBFGS:   70 00:22:37        0.119284        0.001072
+LBFGS:   71 00:22:37        0.119284        0.000840
+LBFGS:   72 00:22:37        0.119284        0.000698
+LBFGS:   73 00:22:37        0.119284        0.000686
+LBFGS:   74 00:22:37        0.119284        0.000678
+LBFGS:   75 00:22:37        0.119284        0.000670
+LBFGS:   76 00:22:37        0.119283        0.000659
+LBFGS:   77 00:22:37        0.119283        0.000646
+LBFGS:   78 00:22:37        0.119283        0.000636
+LBFGS:   79 00:22:38        0.119283        0.000628
+LBFGS:   80 00:22:38        0.119283        0.000618
+LBFGS:   81 00:22:38        0.119283        0.000601
+LBFGS:   82 00:22:38        0.119283        0.000577
+LBFGS:   83 00:22:38        0.119283        0.000654
+LBFGS:   84 00:22:38        0.119283        0.000651
+LBFGS:   85 00:22:38        0.119283        0.000795
+LBFGS:   86 00:22:38        0.119282        0.000859
+LBFGS:   87 00:22:38        0.119282        0.000803
+LBFGS:   88 00:22:38        0.119282        0.000839
+LBFGS:   89 00:22:38        0.119282        0.000741
+LBFGS:   90 00:22:38        0.119282        0.000765
+LBFGS:   91 00:22:38        0.119281        0.000746
+LBFGS:   92 00:22:39        0.119281        0.000629
+LBFGS:   93 00:22:39        0.119281        0.000664
+LBFGS:   94 00:22:39        0.119281        0.000592
+LBFGS:   95 00:22:39        0.119281        0.000592
+LBFGS:   96 00:22:39        0.119281        0.000479
+LBFGS:   97 00:22:39        0.119281        0.000406
+LBFGS:   98 00:22:39        0.119281        0.000373
+LBFGS:   99 00:22:39        0.119281        0.000346
+LBFGS:  100 00:22:39        0.119281        0.000307
+LBFGS:  101 00:22:39        0.119281        0.000187
+LBFGS:  102 00:22:39        0.119281        0.000177
+LBFGS:  103 00:22:39        0.119281        0.000134
+LBFGS:  104 00:22:39        0.119281        0.000116
+LBFGS:  105 00:22:39        0.119281        0.000113
+LBFGS:  106 00:22:39        0.119281        0.000110
+LBFGS:  107 00:22:40        0.119281        0.000107
+LBFGS:  108 00:22:40        0.119281        0.000102
+LBFGS:  109 00:22:40        0.119281        0.000094
+LBFGS:  110 00:22:40        0.119281        0.000086
+LBFGS:  111 00:22:40        0.119281        0.000095
+LBFGS:  112 00:22:40        0.119281        0.000083
+LBFGS:  113 00:22:40        0.119281        0.000085
+LBFGS:  114 00:22:40        0.119281        0.000084
+LBFGS:  115 00:22:40        0.119281        0.000086
+LBFGS:  116 00:22:40        0.119281        0.000080
+LBFGS:  117 00:22:40        0.119281        0.000088
+LBFGS:  118 00:22:40        0.119281        0.000088
+LBFGS:  119 00:22:41        0.119281        0.000082
+LBFGS:  120 00:22:41        0.119281        0.000075
+LBFGS:  121 00:22:41        0.119281        0.000064
+LBFGS:  122 00:22:41        0.119281        0.000049
+LBFGS:  123 00:22:41        0.119281        0.000039
+LBFGS:  124 00:22:41        0.119281        0.000028
+LBFGS:  125 00:22:41        0.119281        0.000022
+LBFGS:  126 00:22:41        0.119281        0.000022
+LBFGS:  127 00:22:41        0.119281        0.000017
+LBFGS:  128 00:22:41        0.119281        0.000012
+LBFGS:  129 00:22:41        0.119281        0.000011
+LBFGS:  130 00:22:41        0.119281        0.000009
+LBFGS:  131 00:22:41        0.119281        0.000007
+LBFGS:  132 00:22:41        0.119281        0.000006
+LBFGS:  133 00:22:41        0.119281        0.000005
+LBFGS:  134 00:22:41        0.119281        0.000003
+LBFGS:  135 00:22:41        0.119281        0.000003
+LBFGS:  136 00:22:42        0.119281        0.000002
+LBFGS:  137 00:22:42        0.119281        0.000002
+LBFGS:  138 00:22:42        0.119281        0.000002
+LBFGS:  139 00:22:42        0.119281        0.000001
+LBFGS:  140 00:22:42        0.119281        0.000001
+LBFGS:  141 00:22:42        0.119281        0.000001
+LBFGS:  142 00:22:42        0.119281        0.000001
+LBFGS:  143 00:22:42        0.119281        0.000001
+LBFGS:  144 00:22:42        0.119281        0.000001
+<span class=" -Color -Color-Bold -Color-Bold-Yellow">numbers=[29, 29, 29, 29, 29, 79, 29, 29, 29, 29, 29, 29, 29, 29, 29, 29, 29, 79, 79, 29, 79, 29, 29, 29, 29, 79, 29, 79, 79, 79, 29, 29] positions=[[0.04933470712955112, 0.02109176537232389, -0.01967024283085893], [0.041579504812358066, 1.9088577659280117, 1.8688730294125662], [1.752947421274659, 0.007526428339998962, 1.8517532011139288], [1.8132130906465895, 1.8661478216831633, -0.01784244928916533], [0.04748547786621053, -0.020045283932604206, 3.7756177495554053], [-0.0006018901567626618, 1.8736867197334097, 5.617193997590088], [1.804574043998281, 0.010851782866484224, 5.657710719719834], [1.7731654464037412, 1.8819326479586218, 3.7386336366455337], [0.039552993504144825, 3.6959770763006046, 0.017776397613823235], [0.04840115439863405, 5.564642489727186, 1.9188661967585896], [1.7680763572557747, 3.7292103823796086, 1.8588427639189269], [1.7325353269624666, 5.59308251357397, 0.003056155635368118], [0.004654847952851257, 3.7518900373660466, 3.7400575489959946], [0.03889253080556578, 5.593750323434761, 5.584486681639527], [1.7954545994565017, 3.727956573480123, 5.648208793522534], [1.7741310581586869, 5.588772412001776, 3.7575664234787243], [3.6490240478830405, 0.027440786984275888, -0.028921384342673242], [3.6395180264749665, 1.893810604343441, 1.789926731024888], [5.642858747915597, 0.025339570446485105, 1.882335192327549], [5.5450198935243105, 1.8954144238432549, -0.016542359350911574], [3.6397242052516603, 0.05590157416851766, 3.7976325332676186], [3.6785357223885677, 1.8696881631736721, 5.6923719821366765], [5.556746717587128, 0.008536828960749188, 5.631374089317995], [5.582675167104445, 1.8835809079374604, 3.754222023149186], [3.645993437854674, 3.7031592029268756, -0.03855435278344386], [3.6092608939315145, 5.578267082713666, 1.8280449092602735], [5.594269383403506, 3.7098061022730966, 1.8856940882802502], [5.637965822810118, 5.548952975307969, -0.017723601383752525], [3.67413598874531, 3.686370766547991, 3.794166674224155], [3.625736297202185, 5.602353088582559, 5.68504075133503], [5.559995421283887, 3.7173900980063936, 5.622212588063477], [5.58551811349664, 5.583524538752662, 3.7782335646476275]] cell=[[7.365300830054032, -0.005528509379133711, 0.0027880865511100764], [-0.0056227719031778966, 7.466154059861727, 0.004759868442992488], [0.00285315496106562, 0.004780130449931503, 7.495839047727933]] pbc=[True, True, True]</span>
+<span class=" -Color -Color-Bold -Color-Bold-Green">Invoking: `get_bulk_modulus` with `{&#39;atom_dict&#39;: {&#39;numbers&#39;: [29, 29, 29, 29, 29, 79, 29, 29, 29, 29, 29, 29, 29, 29, 29, 29, 29, 79, 79, 29, 79, 29, 29, 29, 29, 79, 29, 79, 79, 79, 29, 29], &#39;positions&#39;: [[0.04933470712955112, 0.02109176537232389, -0.01967024283085893], [0.041579504812358066, 1.9088577659280117, 1.8688730294125662], [1.752947421274659, 0.007526428339998962, 1.8517532011139288], [1.8132130906465895, 1.8661478216831633, -0.01784244928916533], [0.04748547786621053, -0.020045283932604206, 3.7756177495554053], [-0.0006018901567626618, 1.8736867197334097, 5.617193997590088], [1.804574043998281, 0.010851782866484224, 5.657710719719834], [1.7731654464037412, 1.8819326479586218, 3.7386336366455337], [0.039552993504144825, 3.6959770763006046, 0.017776397613823235], [0.04840115439863405, 5.564642489727186, 1.9188661967585896], [1.7680763572557747, 3.7292103823796086, 1.8588427639189269], [1.7325353269624666, 5.59308251357397, 0.003056155635368118], [0.004654847952851257, 3.7518900373660466, 3.7400575489959946], [0.03889253080556578, 5.593750323434761, 5.584486681639527], [1.7954545994565017, 3.727956573480123, 5.648208793522534], [1.7741310581586869, 5.588772412001776, 3.7575664234787243], [3.6490240478830405, 0.027440786984275888, -0.028921384342673242], [3.6395180264749665, 1.893810604343441, 1.789926731024888], [5.642858747915597, 0.025339570446485105, 1.882335192327549], [5.5450198935243105, 1.8954144238432549, -0.016542359350911574], [3.6397242052516603, 0.05590157416851766, 3.7976325332676186], [3.6785357223885677, 1.8696881631736721, 5.6923719821366765], [5.556746717587128, 0.008536828960749188, 5.631374089317995], [5.582675167104445, 1.8835809079374604, 3.754222023149186], [3.645993437854674, 3.7031592029268756, -0.03855435278344386], [3.6092608939315145, 5.578267082713666, 1.8280449092602735], [5.594269383403506, 3.7098061022730966, 1.8856940882802502], [5.637965822810118, 5.548952975307969, -0.017723601383752525], [3.67413598874531, 3.686370766547991, 3.794166674224155], [3.625736297202185, 5.602353088582559, 5.68504075133503], [5.559995421283887, 3.7173900980063936, 5.622212588063477], [5.58551811349664, 5.583524538752662, 3.7782335646476275]], &#39;cell&#39;: [[7.365300830054032, -0.005528509379133711, 0.0027880865511100764], [-0.0056227719031778966, 7.466154059861727, 0.004759868442992488], [0.00285315496106562, 0.004780130449931503, 7.495839047727933]], &#39;pbc&#39;: [True, True, True]}, &#39;calculator_str&#39;: &#39;emt&#39;}`</span>
+
+
+<span class=" -Color -Color-Bold -Color-Bold-C200">145.58000452590966</span><span class=" -Color -Color-Bold -Color-Bold-Green">The computed bulk modulus for the Cu-Au alloy with 73.8% Copper and 26.2% Gold is approximately 145.58 GPa, which is within the desired range of 145 GPa ± 2 GPa.</span>
+
+<span class=" -Color -Color-Bold -Color-Bold-Green">### Summary</span>
+<span class=" -Color -Color-Bold -Color-Bold-Green">- **Target Bulk Modulus:** 145 GPa</span>
+<span class=" -Color -Color-Bold -Color-Bold-Green">- **Computed Bulk Modulus:** 145.58 GPa</span>
+<span class=" -Color -Color-Bold -Color-Bold-Green">- **Concentration:** 73.8% Copper (Cu) and 26.2% Gold (Au)</span>
+
+<span class=" -Color -Color-Bold -Color-Bold-Green">The prediction has been validated successfully, and the computed bulk modulus falls within the specified uncertainty range.</span>
+
+<span class=" -Color -Color-Bold">&gt; Finished chain.</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="summary">
+<h2>Summary<a class="headerlink" href="#summary" title="Link to this heading">#</a></h2>
+<p>This example highlights the application of generative models for materials science. While the three previous examples could also be addressed by computing the material properties for all unaries, store them in a database and provide them to the user when requested, this is no longer possible for the space of binary or even ternary alloys. Just like a student the LLM is capable to apply an abstract concept of linear interpolation to the prediction of the concentration related to a bulk modulus of 140GPa.</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./book"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="demonstration.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Hackathon Demonstration</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="Literature.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">References</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#python-functions">Python Functions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#agent">Agent</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dialog">Dialog</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#summary">Summary</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Jan Janssen
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
