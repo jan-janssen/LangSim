@@ -1,0 +1,23 @@
+name: Jupyterbook
+
+on:
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - uses: conda-incubator/setup-miniconda@v3
+      with:
+        auto-update-conda: true
+        python-version: "3.11"
+        auto-activate-base: false
+    - name: Install Jupyterbook
+      shell: bash -l {0}
+      run: |
+        conda install -y -c conda-forge jupyter-book 
+        jupyter-book build . --path-output public
+    - run: mv public/_build/html public_html
+    - run: touch public_html/.nojekyll
