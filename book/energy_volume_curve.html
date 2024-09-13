@@ -363,7 +363,7 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#multiple-functions">Multiple Functions</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#agents">Agents</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#user-interactions">User Interactions</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lessons-learned">Lessons learned</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#summary">Summary</a></li>
 </ul>
             </nav>
         </div>
@@ -583,8 +583,8 @@ LBFGS:    3 18:48:24       -0.000135        0.000029
 </div>
 </div>
 </section>
-<section id="lessons-learned">
-<h2>Lessons learned<a class="headerlink" href="#lessons-learned" title="Link to this heading">#</a></h2>
+<section id="summary">
+<h2>Summary<a class="headerlink" href="#summary" title="Link to this heading">#</a></h2>
 <p>The important point in this example is that at no point the order in which the functions should be executed. Instead the LLM automatically determines that <code class="docutils literal notranslate"><span class="pre">plot_equation_of_state()</span></code> needs an <code class="docutils literal notranslate"><span class="pre">AtomsDict()</span></code> object as input and that <code class="docutils literal notranslate"><span class="pre">get_equilibirum_lattice()</span></code> returns such a <code class="docutils literal notranslate"><span class="pre">AtomsDict()</span></code> object, so it makes sense to call <code class="docutils literal notranslate"><span class="pre">get_equilibirum_lattice()</span></code> first and <code class="docutils literal notranslate"><span class="pre">plot_equation_of_state()</span></code> second. The same principles apply to a LLM agents with a larger number of python functions.</p>
 <p>The limiting point at the moment is that the LLMs are web services, so all Python objects have to be converted to JSON to be communicated to the LLMs. This restricts the choice of Python objects and requires the development of specialized data classes to construct those interfaces between different Python functions.</p>
 </section>
@@ -657,7 +657,7 @@ LBFGS:    3 18:48:24       -0.000135        0.000029
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#multiple-functions">Multiple Functions</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#agents">Agents</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#user-interactions">User Interactions</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lessons-learned">Lessons learned</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#summary">Summary</a></li>
 </ul>
   </nav></div>
 
