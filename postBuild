@@ -1,5 +1,0 @@
-# Install langsim package
-pip install .
-
-# Clean up
-rm -rf build langsim.egg-info
