@@ -1,4 +1,4 @@
-# Developer Instructions
+# For Developers
 ## Installation
 All dependencies are available as `conda` packages via the `conda-forge` community channel, so just clone the repository
 and install the environment file provided with the repository: 
