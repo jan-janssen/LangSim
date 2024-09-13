@@ -12,6 +12,16 @@ use case for Large Language Models and their application to materials and chemis
 
 A full list of all submissions is available on [github.com/llmhackathon](https://github.com/llmhackathon).
 
+Test LangSim in your browser: [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/jan-janssen/LangSim/HEAD?labpath=notebooks/demonstration.ipynb)
+
+![Demonstration](https://raw.githubusercontent.com/jan-janssen/LangSim/main/docs/images/demonstration.gif)
+
+LangSim is based on a series of python packages, namely: 
+* [ase](https://wiki.fysik.dtu.dk/ase/) - Atomic Simulation Environment
+* [atomistics](https://atomistics.readthedocs.io) - Simulation protocols to compute material properties
+* [langchain](https://www.langchain.com) -  framework designed to simplify the creation of applications using LLMs
+* [mendeleev](https://mendeleev.readthedocs.io) - API for accessing various properties of elements from the periodic table of elements
+
 ## Contributors
 Lead by: [Jan Janssen](https://github.com/jan-janssen) (Max-Planck Institute for Sustainable Materials)
 
