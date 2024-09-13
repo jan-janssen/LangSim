@@ -13,3 +13,4 @@ dependencies:
   - mendeleev =0.17.0
   - lxml =4.9.4
   - ipython =8.25.0
+  - sqsgenerator =0.3
