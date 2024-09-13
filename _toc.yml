@@ -2,3 +2,4 @@ format: jb-book
 root: book/Introduction.md
 chapters:
 - file: book/Benchmark.md
+- file: book/Literature.md
