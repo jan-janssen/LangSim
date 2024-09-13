@@ -5,7 +5,7 @@ on May 8th 2024 organized by [Benjamin J. Blaiszik](https://github.com/blaiszik)
 National Laboratory. The LangSim team was able to [win the first prize](https://medium.com/@blaiszik/llms-to-accelerate-discovery-in-materials-science-and-chemistry-refections-on-a-hackathon-b8364ca32242)
 sponsored by [RadicalAI](https://www.radical-ai.com). 
 
-## Winning submission
+## Winning Submission
 The aim of the hackathon was to present a video which demonstrates the functionality of the prototype and highlights the
 use case for Large Language Models and their application to materials and chemistry: 
 [![Demo](https://img.youtube.com/vi/7JFncD9WaIY/0.jpg)](https://www.youtube.com/watch?v=7JFncD9WaIY)
@@ -47,4 +47,4 @@ Collaboration as part of the [Center for Scientific Foundation Models](https://s
 * [Hancheng Zhao](https://github.com/hancheng2000) (University of Michigan)
 
 Students at the [Max-Planck Institute for Sustainable Materials](https://www.mpie.de):
-* [Kishan Limbasiya](https://github.com/limbasiya521)
+* [Kishan Limbasiya](https://github.com/limbasiya521) (Ruhr-University Bochum)
