@@ -43,3 +43,9 @@ limitation would be:
     }
 }
 ```
+
+Another known limitation is that the Docstrings and System prompt have to be optimized for the different LLMs. Even for
+LLMs from the same provider like ChatGPT 4.0 and ChatGPT 4.0o, both require different Docstrings and System prompts. To 
+illustrate this point we created two branches [working_with_chatgpt4](https://github.com/jan-janssen/LangSim/tree/working_with_chatgpt4)
+and [working_with_chatgpt4o](https://github.com/jan-janssen/LangSim/tree/working_with_chatgpt4o) which were optimized 
+for ChatGPT 4.0 and ChatGPT 4.0o respectively. 
