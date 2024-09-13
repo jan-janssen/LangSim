@@ -25,7 +25,7 @@ LangSim is based on a series of python packages, namely:
 * [mendeleev](https://mendeleev.readthedocs.io) - API for accessing various properties of elements from the periodic table of elements
 
 ## Contributors
-Lead by: [Jan Janssen](https://github.com/jan-janssen) (Max-Planck Institute for Sustainable Materials)
+Led by: [Jan Janssen](https://github.com/jan-janssen) (Max-Planck Institute for Sustainable Materials)
 
 List of contributors to the LangSim project during the hackathon: 
 * [Yuan Chiang](https://github.com/chiang-yuan) (UC Berkeley, Lawrence Berkeley National Laboratory)
