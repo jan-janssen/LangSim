@@ -19,7 +19,28 @@ pip install .
 ```
 The demonstration notebook is included in the `notebooks` folder `notebooks/demonstration.ipynb`.
 
-Any feedback and suggestions are very welcome, just [open an issue on Github](https://github.com/jan-janssen/LangSim). 
+Any feedback and suggestions are very welcome, just [open an issue on Github](https://github.com/jan-janssen/LangSim).
+
+## Benchmark
+To benchmark different LLM providers we suggest configuring `LangSim` via environment variables:
+
+For [Anthropic](http://anthropic.com):
+```python
+import os
+os.environ["LANGSIM_PROVIDER"] = "anthropic" 
+os.environ["LANGSIM_API_KEY"] = os.environ['ANTHROPIC_API_KEY']
+os.environ["LANGSIM_MODEL"] = "claude-3-5-sonnet-20240620"
+```
+
+For [OpenAPI](https://openai.com):
+```python
+import os
+os.environ["LANGSIM_API_KEY"] = os.environ['OPENAI_API_KEY']
+os.environ["LANGSIM_MODEL"] = "gpt-4o"
+```
+
+Other providers, especially those who host open-source LLMs seem to struggle with LLM agents based on python functions.
+So far only Anthropic and OpenAPI were successfully tested with `LangSim`. 
 
 ## Debugging
 For analysing the messages the [langchain](https://www.langchain.com) framework communicates to the LLM providers, you 
