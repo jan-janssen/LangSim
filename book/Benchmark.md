@@ -101,4 +101,8 @@ like a wrong unit conversion leading to a wrong calculation result is too high. 
 right 90% of the time or even 99%. 
 
 Based on this experience the LangSim team decided to develop simulation agents which can be called from the LLM to 
-produce reliable and scientifically correct predictions. 
+produce reliable and scientifically correct predictions. For this purpose the [Langchain](https://www.langchain.com/) 
+framework was used as interface to LLMs, [ASE](https://wiki.fysik.dtu.dk/ase/) and [atomistics](https://atomistics.readthedocs.io)
+were used to construct simulation workflows, [emt](https://wiki.fysik.dtu.dk/ase/ase/calculators/emt.html) and [mace](https://mace-docs.readthedocs.io/en/latest/)
+as simulation engines and [mendeleev](https://mendeleev.readthedocs.io) and [wikipedia](https://en.wikipedia.org/wiki/Main_Page) 
+for experimental references. 
