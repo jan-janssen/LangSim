@@ -4,5 +4,6 @@ chapters:
 - file: book/Benchmark.md
 - file: book/first_agent.ipynb
 - file: book/energy_volume_curve.ipynb
+- file: book/demonstration.ipynb
 - file: book/Literature.md
 - file: book/Developer.md
