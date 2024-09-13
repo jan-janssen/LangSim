@@ -3,3 +3,4 @@ root: book/Introduction.md
 chapters:
 - file: book/Benchmark.md
 - file: book/Literature.md
+- file: book/Developer.md
