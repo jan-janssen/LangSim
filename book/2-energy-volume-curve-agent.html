@@ -57,11 +57,11 @@
     <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'book/energy_volume_curve';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'book/2-energy-volume-curve-agent';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Hackathon Demonstration" href="demonstration.html" />
-    <link rel="prev" title="Crystalstructure Agent" href="first_agent.html" />
+    <link rel="next" title="Hackathon Demonstration" href="3-hackathon-demonstration.html" />
+    <link rel="prev" title="Crystalstructure Agent" href="1-crystalstructure-agent.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -175,10 +175,10 @@
         </ul>
         <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="Benchmark.html">Benchmark</a></li>
-<li class="toctree-l1"><a class="reference internal" href="first_agent.html">Crystalstructure Agent</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1-crystalstructure-agent.html">Crystalstructure Agent</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Energy Volume Curve Agent</a></li>
-<li class="toctree-l1"><a class="reference internal" href="demonstration.html">Hackathon Demonstration</a></li>
-<li class="toctree-l1"><a class="reference internal" href="inverse-alloy-design.html">Inverse Alloy Design</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3-hackathon-demonstration.html">Hackathon Demonstration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4-inverse-alloy-design.html">Inverse Alloy Design</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Literature.html">References</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Developer.html">For Developers</a></li>
 </ul>
@@ -235,7 +235,7 @@
       
       
       
-      <li><a href="https://mybinder.org/v2/gh/jan-janssen/langsim/master?urlpath=lab/tree/book/energy_volume_curve.ipynb" target="_blank"
+      <li><a href="https://mybinder.org/v2/gh/jan-janssen/langsim/master?urlpath=lab/tree/book/2-energy-volume-curve-agent.ipynb" target="_blank"
    class="btn btn-sm dropdown-item"
    title="Launch on Binder"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -266,7 +266,7 @@
       
       
       
-      <li><a href="../_sources/book/energy_volume_curve.ipynb" target="_blank"
+      <li><a href="../_sources/book/2-energy-volume-curve-agent.ipynb" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -377,8 +377,8 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="energy-volume-curve-agent">
 <h1>Energy Volume Curve Agent<a class="headerlink" href="#energy-volume-curve-agent" title="Link to this heading">#</a></h1>
-<p>Based on the previous tutorial, the next step is extending the simple crystal structure agent to address the benchmark challenge of calculating an energy volume curve using the EMT simulation code. Again, this demonstration is based on the Langchain tutorial for <a class="reference external" href="https://python.langchain.com/docs/modules/agents/how_to/custom_agent/">custom agents</a>.</p>
-<p>As a first step we import a number of python modules, these consist of the <a class="reference external" href="https://wiki.fysik.dtu.dk/ase/">ASE</a>, some standard python libraries like <code class="docutils literal notranslate"><span class="pre">numpy</span></code> and <code class="docutils literal notranslate"><span class="pre">matplotlib</span></code> as well as a number of tools from <a class="reference external" href="https://www.langchain.com">langchain</a>:</p>
+<p>Based on the previous tutorial, the next step is to extend the simple crystal structure agent to address the benchmark challenge of calculating an energy-versus-volume curve using the EMT simulation code. Again, this demonstration is based on the Langchain tutorial for <a class="reference external" href="https://python.langchain.com/docs/modules/agents/how_to/custom_agent/">custom agents</a>.</p>
+<p>As a first step, we import a number of python modules, these consist of the <a class="reference external" href="https://wiki.fysik.dtu.dk/ase/">ASE</a>, some standard python libraries as well as a number of tools from <a class="reference external" href="https://www.langchain.com">langchain</a>:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">ase.atoms</span> <span class="kn">import</span> <span class="n">Atoms</span>
@@ -386,7 +386,6 @@ document.write(`
 <span class="kn">from</span> <span class="nn">ase.calculators.emt</span> <span class="kn">import</span> <span class="n">EMT</span>
 <span class="kn">from</span> <span class="nn">ase.constraints</span> <span class="kn">import</span> <span class="n">UnitCellFilter</span>
 <span class="kn">from</span> <span class="nn">ase.eos</span> <span class="kn">import</span> <span class="n">calculate_eos</span><span class="p">,</span> <span class="n">plot</span>
-<span class="kn">from</span> <span class="nn">ase.data</span> <span class="kn">import</span> <span class="n">reference_states</span><span class="p">,</span> <span class="n">atomic_numbers</span>
 <span class="kn">from</span> <span class="nn">ase.optimize</span> <span class="kn">import</span> <span class="n">LBFGS</span>
 </pre></div>
 </div>
@@ -395,8 +394,6 @@ document.write(`
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">getpass</span> <span class="kn">import</span> <span class="n">getpass</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">List</span>
 </pre></div>
 </div>
@@ -416,7 +413,7 @@ document.write(`
 </div>
 <section id="multiple-functions">
 <h2>Multiple Functions<a class="headerlink" href="#multiple-functions" title="Link to this heading">#</a></h2>
-<p>To connect multiple python functions it is essential to convert all inputs and outputs to JSON compatible data types as the communication to the LLM in the background happens in terms of web requests using the JSON format. This especially applies to python functions which return python objects. In the case of <a class="reference external" href="https://wiki.fysik.dtu.dk/ase/">ASE</a> a typical python object is the <code class="docutils literal notranslate"><span class="pre">ase.atoms.Atoms()</span></code> object. To convert the <code class="docutils literal notranslate"><span class="pre">Atoms()</span></code> object to JSON format, we use a <a class="reference external" href="https://pydantic.dev">pydantic</a> data class as suggested by <a class="reference external" href="https://www.langchain.com">langchain</a>:</p>
+<p>To connect multiple python functions, it is essential to convert all inputs and outputs to <code class="docutils literal notranslate"><span class="pre">JSON</span></code> compatible data types as the communication to the LLM in the background happens in terms of web requests using the <code class="docutils literal notranslate"><span class="pre">JSON</span></code> format. This especially applies to python functions which return python objects. In the case of <a class="reference external" href="https://wiki.fysik.dtu.dk/ase/">ASE</a> a typical python object is the <code class="docutils literal notranslate"><span class="pre">ase.atoms.Atoms()</span></code> object. To convert the <code class="docutils literal notranslate"><span class="pre">Atoms()</span></code> object to JSON format, we use a <a class="reference external" href="https://pydantic.dev">pydantic</a> data class as suggested by <a class="reference external" href="https://www.langchain.com">langchain</a>:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">AtomsDict</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
@@ -447,7 +444,7 @@ document.write(`
 </div>
 </div>
 </div>
-<p>In terms of functions, two functions are defined: A <code class="docutils literal notranslate"><span class="pre">get_equilibirum_lattice()</span></code> function which for a given chemical element returns the optimized equilibrium structure as <code class="docutils literal notranslate"><span class="pre">AtomsDict</span></code>. The second function is an <code class="docutils literal notranslate"><span class="pre">plot_equation_of_state()</span></code> function, which takes the already optimized structure as <code class="docutils literal notranslate"><span class="pre">AtomsDict</span></code> as input and then uses the <a class="reference external" href="https://wiki.fysik.dtu.dk/ase/">ASE</a> internal functionality to plot the energy volume curve.</p>
+<p>In terms of functions, two functions are defined: A <code class="docutils literal notranslate"><span class="pre">get_equilibirum_lattice()</span></code> function which for a given chemical element returns the optimized equilibrium structure as <code class="docutils literal notranslate"><span class="pre">AtomsDict</span></code>. The second function is a <code class="docutils literal notranslate"><span class="pre">plot_equation_of_state()</span></code> function, which takes the already optimized structure as <code class="docutils literal notranslate"><span class="pre">AtomsDict</span></code> as input and then uses the <a class="reference external" href="https://wiki.fysik.dtu.dk/ase/">ASE</a> internal functionality to plot the energy volume curve.</p>
 <p>The important point here is that <code class="docutils literal notranslate"><span class="pre">get_equilibirum_lattice()</span></code> would typically just return an <code class="docutils literal notranslate"><span class="pre">ase.atoms.Atoms()</span></code> object, but for compatibility with the LLM it has to be converted to an <code class="docutils literal notranslate"><span class="pre">AtomsDict</span></code> which can be converted to JSON. Finally, in the <code class="docutils literal notranslate"><span class="pre">plot_equation_of_state()</span></code> function the <code class="docutils literal notranslate"><span class="pre">AtomsDict</span></code> is again converted to an <code class="docutils literal notranslate"><span class="pre">ase.atoms.Atoms()</span></code> object to continue the calculation. This is currently a bit tedious.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -477,7 +474,7 @@ document.write(`
 </div>
 </div>
 </div>
-<p>Finally, the functions converted to LLM tools using the <code class="docutils literal notranslate"><span class="pre">tool</span></code> decorator can again be tested using the <code class="docutils literal notranslate"><span class="pre">invoke()</span></code> function. It takes a python dictionary as input to address the different arguments individually. With this test the correct implementation of the python functions is validated:</p>
+<p>Finally, the functions converted to LLM tools using the <code class="docutils literal notranslate"><span class="pre">tool</span></code> decorator can again be tested using the <code class="docutils literal notranslate"><span class="pre">invoke()</span></code> function. It takes a python dictionary as input to address the different arguments individually. With this test, the correct implementation of the python functions is validated:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">el</span> <span class="o">=</span> <span class="s2">&quot;Al&quot;</span>
@@ -508,7 +505,7 @@ LBFGS:    4 18:48:16       -0.004883        0.000000
 </section>
 <section id="agents">
 <h2>Agents<a class="headerlink" href="#agents" title="Link to this heading">#</a></h2>
-<p>Following the same Langchain tutorial for <a class="reference external" href="https://python.langchain.com/docs/modules/agents/how_to/custom_agent/">custom agents</a> as before an LLM agent is constructed which combines the system prompt, the python functions <code class="docutils literal notranslate"><span class="pre">get_equilibirum_lattice()</span></code> and <code class="docutils literal notranslate"><span class="pre">plot_equation_of_state()</span></code> as tools and the <code class="docutils literal notranslate"><span class="pre">OpenAIToolsAgentOutputParser()</span></code>:</p>
+<p>Following the same Langchain tutorial for <a class="reference external" href="https://python.langchain.com/docs/modules/agents/how_to/custom_agent/">custom agents</a> as before a LLM agent is constructed which combines the system prompt, the python functions <code class="docutils literal notranslate"><span class="pre">get_equilibirum_lattice()</span></code> and <code class="docutils literal notranslate"><span class="pre">plot_equation_of_state()</span></code> as tools and the <code class="docutils literal notranslate"><span class="pre">OpenAIToolsAgentOutputParser()</span></code>:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">OPENAI_API_KEY</span> <span class="o">=</span> <span class="n">getpass</span><span class="p">(</span><span class="n">prompt</span><span class="o">=</span><span class="s1">&#39;Enter your OpenAI Token:&#39;</span><span class="p">)</span>
@@ -585,8 +582,8 @@ LBFGS:    3 18:48:24       -0.000135        0.000029
 </section>
 <section id="summary">
 <h2>Summary<a class="headerlink" href="#summary" title="Link to this heading">#</a></h2>
-<p>The important point in this example is that at no point the order in which the functions should be executed. Instead the LLM automatically determines that <code class="docutils literal notranslate"><span class="pre">plot_equation_of_state()</span></code> needs an <code class="docutils literal notranslate"><span class="pre">AtomsDict()</span></code> object as input and that <code class="docutils literal notranslate"><span class="pre">get_equilibirum_lattice()</span></code> returns such a <code class="docutils literal notranslate"><span class="pre">AtomsDict()</span></code> object, so it makes sense to call <code class="docutils literal notranslate"><span class="pre">get_equilibirum_lattice()</span></code> first and <code class="docutils literal notranslate"><span class="pre">plot_equation_of_state()</span></code> second. The same principles apply to a LLM agents with a larger number of python functions.</p>
-<p>The limiting point at the moment is that the LLMs are web services, so all Python objects have to be converted to JSON to be communicated to the LLMs. This restricts the choice of Python objects and requires the development of specialized data classes to construct those interfaces between different Python functions.</p>
+<p>The important point in this example is, that the order of execution of the Python functions is not defined by the user. Instead the LLM automatically determines that <code class="docutils literal notranslate"><span class="pre">plot_equation_of_state()</span></code> needs an <code class="docutils literal notranslate"><span class="pre">AtomsDict()</span></code> object as input and that <code class="docutils literal notranslate"><span class="pre">get_equilibirum_lattice()</span></code> returns such a <code class="docutils literal notranslate"><span class="pre">AtomsDict()</span></code> object as an output, so it makes sense to call <code class="docutils literal notranslate"><span class="pre">get_equilibirum_lattice()</span></code> first and <code class="docutils literal notranslate"><span class="pre">plot_equation_of_state()</span></code> second. The same principles apply to LLM agents with a larger number of python functions.</p>
+<p>The limiting point at the moment is that the LLMs are web services, so all Python objects have to be converted to <code class="docutils literal notranslate"><span class="pre">JSON</span></code> to be communicated to the LLMs. This restricts the choice of Python objects and requires the development of specialized data classes to construct those interfaces between different Python functions.</p>
 </section>
 </section>
 
@@ -621,7 +618,7 @@ LBFGS:    3 18:48:24       -0.000135        0.000029
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="first_agent.html"
+       href="1-crystalstructure-agent.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
@@ -630,7 +627,7 @@ LBFGS:    3 18:48:24       -0.000135        0.000029
       </div>
     </a>
     <a class="right-next"
-       href="demonstration.html"
+       href="3-hackathon-demonstration.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>

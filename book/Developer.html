@@ -174,10 +174,10 @@
         </ul>
         <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="Benchmark.html">Benchmark</a></li>
-<li class="toctree-l1"><a class="reference internal" href="first_agent.html">Crystalstructure Agent</a></li>
-<li class="toctree-l1"><a class="reference internal" href="energy_volume_curve.html">Energy Volume Curve Agent</a></li>
-<li class="toctree-l1"><a class="reference internal" href="demonstration.html">Hackathon Demonstration</a></li>
-<li class="toctree-l1"><a class="reference internal" href="inverse-alloy-design.html">Inverse Alloy Design</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1-crystalstructure-agent.html">Crystalstructure Agent</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2-energy-volume-curve-agent.html">Energy Volume Curve Agent</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3-hackathon-demonstration.html">Hackathon Demonstration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4-inverse-alloy-design.html">Inverse Alloy Design</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Literature.html">References</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">For Developers</a></li>
 </ul>
@@ -355,9 +355,12 @@ and install the environment file provided with the repository:</p>
 <span class="n">conda</span> <span class="n">activate</span> <span class="n">LangSim</span>
 </pre></div>
 </div>
-<p>The <a class="reference external" href="https://mace-docs.readthedocs.io/en/latest/">mace</a> - Machine Learning Force Fields can be installed as optional
-dependency on Linux and MacOs using:</p>
+<p>The <a class="reference external" href="https://mace-docs.readthedocs.io/en/latest/">mace</a> - Machine Learning Force Fields - can be installed as optional dependency on Linux and MacOs using:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">conda</span> <span class="n">install</span> <span class="o">-</span><span class="n">c</span> <span class="n">conda</span><span class="o">-</span><span class="n">forge</span> <span class="n">pymace</span>
+</pre></div>
+</div>
+<p>The same applies to the <code class="docutils literal notranslate"><span class="pre">sqsgenerator</span></code> and <code class="docutils literal notranslate"><span class="pre">structuretoolkit</span></code>, which are required for the inverse alloy design example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">conda</span> <span class="n">install</span> <span class="o">-</span><span class="n">c</span> <span class="n">conda</span><span class="o">-</span><span class="n">forge</span> <span class="n">sqsgenerator</span> <span class="n">structuretoolkit</span>
 </pre></div>
 </div>
 <p>Finally, <code class="docutils literal notranslate"><span class="pre">langsim</span></code> can be installed into the Python path using:</p>
@@ -365,7 +368,7 @@ dependency on Linux and MacOs using:</p>
 </pre></div>
 </div>
 <p>The demonstration notebook is included in the <code class="docutils literal notranslate"><span class="pre">notebooks</span></code> folder <code class="docutils literal notranslate"><span class="pre">notebooks/demonstration.ipynb</span></code>.</p>
-<p>Any feedback and suggestions are very welcome, just <a class="reference external" href="https://github.com/jan-janssen/LangSim">open an issue on Github</a>.</p>
+<p>Any feedback and suggestions are very appreciated, just <a class="reference external" href="https://github.com/jan-janssen/LangSim">open an issue on Github</a>.</p>
 </section>
 <section id="benchmark">
 <h2>Benchmark<a class="headerlink" href="#benchmark" title="Link to this heading">#</a></h2>
@@ -388,8 +391,8 @@ So far only Anthropic and OpenAPI were successfully tested with <code class="doc
 </section>
 <section id="debugging">
 <h2>Debugging<a class="headerlink" href="#debugging" title="Link to this heading">#</a></h2>
-<p>For analysing the messages the <a class="reference external" href="https://www.langchain.com">langchain</a> framework communicates to the LLM providers, you
-can enable the debug mode for the <code class="docutils literal notranslate"><span class="pre">langchain</span></code> package:</p>
+<p>For analyzing the messages the <a class="reference external" href="https://www.langchain.com">langchain</a> framework communicates to the LLM providers, you
+can enable the debug mode for the <code class="docutils literal notranslate"><span class="pre">langchain</span></code> package, using the following commands:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">langchain.globals</span> <span class="kn">import</span> <span class="n">set_debug</span>
 <span class="n">set_debug</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
@@ -410,10 +413,10 @@ limitation would be:</p>
 <span class="p">}</span>
 </pre></div>
 </div>
-<p>Another known limitation is that the Docstrings and System prompt have to be optimized for the different LLMs. Even for
-LLMs from the same provider like ChatGPT 4.0 and ChatGPT 4.0o, both require different Docstrings and System prompts. To
-illustrate this point we created two branches <a class="reference external" href="https://github.com/jan-janssen/LangSim/tree/working_with_chatgpt4">working_with_chatgpt4</a>
-and <a class="reference external" href="https://github.com/jan-janssen/LangSim/tree/working_with_chatgpt4o">working_with_chatgpt4o</a> which were optimized
+<p>Another known limitation is that the docstrings and system prompts have to be optimized for the different LLMs. Even for
+LLMs from the same provider like ChatGPT 4.0 and ChatGPT 4.0o, both require different docstrings and system prompts. To
+illustrate this point, we created two branches <a class="reference external" href="https://github.com/jan-janssen/LangSim/tree/working_with_chatgpt4">working_with_chatgpt4</a>
+and <a class="reference external" href="https://github.com/jan-janssen/LangSim/tree/working_with_chatgpt4o">working_with_chatgpt4o</a>, which were optimized
 for ChatGPT 4.0 and ChatGPT 4.0o respectively.</p>
 </section>
 </section>

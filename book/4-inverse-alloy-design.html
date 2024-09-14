@@ -57,11 +57,11 @@
     <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'book/inverse-alloy-design';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'book/4-inverse-alloy-design';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="References" href="Literature.html" />
-    <link rel="prev" title="Hackathon Demonstration" href="demonstration.html" />
+    <link rel="prev" title="Hackathon Demonstration" href="3-hackathon-demonstration.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -175,9 +175,9 @@
         </ul>
         <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="Benchmark.html">Benchmark</a></li>
-<li class="toctree-l1"><a class="reference internal" href="first_agent.html">Crystalstructure Agent</a></li>
-<li class="toctree-l1"><a class="reference internal" href="energy_volume_curve.html">Energy Volume Curve Agent</a></li>
-<li class="toctree-l1"><a class="reference internal" href="demonstration.html">Hackathon Demonstration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1-crystalstructure-agent.html">Crystalstructure Agent</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2-energy-volume-curve-agent.html">Energy Volume Curve Agent</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3-hackathon-demonstration.html">Hackathon Demonstration</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Inverse Alloy Design</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Literature.html">References</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Developer.html">For Developers</a></li>
@@ -235,7 +235,7 @@
       
       
       
-      <li><a href="https://mybinder.org/v2/gh/jan-janssen/langsim/master?urlpath=lab/tree/book/inverse-alloy-design.ipynb" target="_blank"
+      <li><a href="https://mybinder.org/v2/gh/jan-janssen/langsim/master?urlpath=lab/tree/book/4-inverse-alloy-design.ipynb" target="_blank"
    class="btn btn-sm dropdown-item"
    title="Launch on Binder"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -266,7 +266,7 @@
       
       
       
-      <li><a href="../_sources/book/inverse-alloy-design.ipynb" target="_blank"
+      <li><a href="../_sources/book/4-inverse-alloy-design.ipynb" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -377,7 +377,7 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="inverse-alloy-design">
 <h1>Inverse Alloy Design<a class="headerlink" href="#inverse-alloy-design" title="Link to this heading">#</a></h1>
-<p>Inverse prediction of material properties is a key challenge in materials science. For the example the dependence of the bulk modulus on the concentration of an alloy, is typically evaluated by computing the bulk modulus for a given concentration. But the relevant material property is the bulk modulus, so we would like to predict the concentration which is required to achieve a specific bulk modulus.</p>
+<p>Inverse prediction of material properties is a key challenge in materials science. For example, the dependence of the bulk modulus on the concentration of an alloy is typically evaluated by computing the bulk modulus for a given concentration. But the relevant material property is the bulk modulus, so we would like to predict the concentration which is required to achieve a specific bulk modulus.</p>
 <p>To demonstrate the application of LLMs for inverse alloy design, we extended the calculation of bulk moduli to complex alloys in solid solution. For computational efficiency we use 32-atom special quasi-random structures (SQS) to simulate solid solutions.</p>
 <section id="python-functions">
 <h2>Python Functions<a class="headerlink" href="#python-functions" title="Link to this heading">#</a></h2>
@@ -660,7 +660,7 @@ LBFGS:  167 00:21:25        0.444318        0.000001
 </section>
 <section id="dialog">
 <h2>Dialog<a class="headerlink" href="#dialog" title="Link to this heading">#</a></h2>
-<p>Finally, the agent is tasked to find the alloy concentration of an Copper Gold alloy which matches the bulk modulus of 145GPa with in an error bound of 2GPa. In addition, it received the hint to use linear interpolation rather than random sampling or other strategies to find the desired concentration.</p>
+<p>Finally, the agent is tasked to find the alloy concentration of an Copper Gold alloy which matches the bulk modulus of 145GPa within an error bound of 2GPa. In addition, it received the hint to use linear interpolation rather than random sampling or other strategies to find the desired concentration.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">lst</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">agent_executor</span><span class="o">.</span><span class="n">stream</span><span class="p">({</span><span class="s2">&quot;input&quot;</span><span class="p">:</span> <span class="s2">&quot;Using linear interpolation find the concentration of an Copper Gold Alloy with a bulk modulus around 145 GPa with an error of plus or minus 2 GPa using the EMT simulation code. Validate your prediction by computing the bulk modulus and do not stop until you calculate the bulk modulus with the defined uncertainty.&quot;</span><span class="p">}))</span>
@@ -961,7 +961,7 @@ LBFGS:  144 00:22:42        0.119281        0.000001
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="demonstration.html"
+       href="3-hackathon-demonstration.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">

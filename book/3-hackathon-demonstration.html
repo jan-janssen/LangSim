@@ -57,11 +57,11 @@
     <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'book/demonstration';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'book/3-hackathon-demonstration';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Inverse Alloy Design" href="inverse-alloy-design.html" />
-    <link rel="prev" title="Energy Volume Curve Agent" href="energy_volume_curve.html" />
+    <link rel="next" title="Inverse Alloy Design" href="4-inverse-alloy-design.html" />
+    <link rel="prev" title="Energy Volume Curve Agent" href="2-energy-volume-curve-agent.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -175,10 +175,10 @@
         </ul>
         <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="Benchmark.html">Benchmark</a></li>
-<li class="toctree-l1"><a class="reference internal" href="first_agent.html">Crystalstructure Agent</a></li>
-<li class="toctree-l1"><a class="reference internal" href="energy_volume_curve.html">Energy Volume Curve Agent</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1-crystalstructure-agent.html">Crystalstructure Agent</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2-energy-volume-curve-agent.html">Energy Volume Curve Agent</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Hackathon Demonstration</a></li>
-<li class="toctree-l1"><a class="reference internal" href="inverse-alloy-design.html">Inverse Alloy Design</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4-inverse-alloy-design.html">Inverse Alloy Design</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Literature.html">References</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Developer.html">For Developers</a></li>
 </ul>
@@ -235,7 +235,7 @@
       
       
       
-      <li><a href="https://mybinder.org/v2/gh/jan-janssen/langsim/master?urlpath=lab/tree/book/demonstration.ipynb" target="_blank"
+      <li><a href="https://mybinder.org/v2/gh/jan-janssen/langsim/master?urlpath=lab/tree/book/3-hackathon-demonstration.ipynb" target="_blank"
    class="btn btn-sm dropdown-item"
    title="Launch on Binder"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -266,7 +266,7 @@
       
       
       
-      <li><a href="../_sources/book/demonstration.ipynb" target="_blank"
+      <li><a href="../_sources/book/3-hackathon-demonstration.ipynb" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -375,7 +375,7 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="hackathon-demonstration">
 <h1>Hackathon Demonstration<a class="headerlink" href="#hackathon-demonstration" title="Link to this heading">#</a></h1>
-<p>Beyond the two previous examples, which closely followed the Langchain <a class="reference external" href="https://python.langchain.com/v0.1/docs/modules/agents/how_to/custom_agent/">custom agent</a> tutorial, the goal for the final presentation was to highlight the use of <code class="docutils literal notranslate"><span class="pre">LangSim</span></code> in production. For this purpose the functionality was transferred from the Jupyter notebook to a python module. As a first step the <code class="docutils literal notranslate"><span class="pre">LangSim</span></code> module is loaded using the <code class="docutils literal notranslate"><span class="pre">reload_ext</span></code> jupyter magic:</p>
+<p>Beyond the two previous examples, which closely followed the Langchain <a class="reference external" href="https://python.langchain.com/v0.1/docs/modules/agents/how_to/custom_agent/">custom agent</a> tutorial, the goal for the final presentation was to highlight the use of <code class="docutils literal notranslate"><span class="pre">LangSim</span></code> in production. For this purpose, the functionality was transferred from the Jupyter notebook to a Python module. As a first step the <code class="docutils literal notranslate"><span class="pre">LangSim</span></code> module is loaded using the <code class="docutils literal notranslate"><span class="pre">%reload_ext</span></code> jupyter magic command:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">reload_ext</span> langsim
@@ -396,7 +396,7 @@ document.write(`
 </div>
 <section id="dialog">
 <h2>Dialog<a class="headerlink" href="#dialog" title="Link to this heading">#</a></h2>
-<p>From this point on the user can chat with the <code class="docutils literal notranslate"><span class="pre">LangSim</span></code> interface using the <code class="docutils literal notranslate"><span class="pre">chat</span></code> jupyter magic. As a first challenge the user communicates their interest to find a material with a bulk modulus in the range of 200 GPa. Following with a clarification of this statement by asking the LLM to calculate the bulk modulus for the noble metals. In contrast to the previous example the LLM is tasked with repeating the same calculation multiple times and then identify the chemical element which most closly matches the targeted bulk modulus of 200GPa. All the required logic is not implemented explicitly, rather the LLM only has access to an <code class="docutils literal notranslate"><span class="pre">get_equilibrium_lattice()</span></code> function to calculate the equilibrium structure and an <code class="docutils literal notranslate"><span class="pre">get_bulk_modulus()</span></code> function which calculates the bulk modulus for a given equilibrium structure.</p>
+<p>From this point on the user can chat with the <code class="docutils literal notranslate"><span class="pre">LangSim</span></code> interface using the <code class="docutils literal notranslate"><span class="pre">chat</span></code> jupyter magic. As a first challenge the user communicates their interest to find a material with a bulk modulus in the range of 200 GPa; following with a clarification of this statement by asking the LLM to calculate the bulk modulus for the noble metals. In contrast to the previous example, the LLM is tasked with repeating the same calculation multiple times and then identify the chemical element, which most closely matches the targeted bulk modulus of 200GPa. None of the required logic is implemented explicitly, rather the LLM only has access to a <code class="docutils literal notranslate"><span class="pre">get_equilibrium_lattice()</span></code> function to calculate the equilibrium crystal structure and a <code class="docutils literal notranslate"><span class="pre">get_bulk_modulus()</span></code> function, which calculates the bulk modulus for a given equilibrium crystal structure.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">chat</span>
@@ -415,7 +415,7 @@ Can you compute the bulk modulus for the noble metals for me?
 <p>Sure, I can help with that. The noble metals include gold (Au), silver (Ag), and platinum (Pt). Which model would you like to use for the calculations: EMT or MACE?</p>
 </div>
 </div>
-<p>The LLM is instructed by the system prompt to clarify which simulation method it should use to calculate a given material property. A the time of the demonstration, two simulation methods were implemented, <a class="reference external" href="https://wiki.fysik.dtu.dk/ase/ase/calculators/emt.html">EMT</a> and <a class="reference external" href="https://mace-docs.readthedocs.io">MACE</a>. As the user in this demonstration is not aware of the technical details of these simulation methods, he asks for clarification. This highlights how LLMs can use the context of the previous conversation to answer a given question:</p>
+<p>The LLM is instructed by the system prompt to clarify which simulation method it should use to calculate a given material property. At the time of the demonstration, two simulation methods were implemented, <a class="reference external" href="https://wiki.fysik.dtu.dk/ase/ase/calculators/emt.html">EMT</a> and <a class="reference external" href="https://mace-docs.readthedocs.io">MACE</a>. As the user in this demonstration is not aware of the technical details of these simulation methods, he asks for clarification. This highlights how LLMs can use the context of the previous conversation to answer a given question:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">chat</span> 
@@ -462,7 +462,7 @@ What are those methods?
 <p>Please choose one of these models for the calculations.</p>
 </div>
 </div>
-<p>Based on the explanation the user chooses the <a class="reference external" href="https://wiki.fysik.dtu.dk/ase/ase/calculators/emt.html">EMT</a>, primarily because it is computationally more efficient to calculate a large number of calculation in a short amount of time. The LLM then executes two calculation for each of the three noble metals silver, gold and platinum. These calculations are the calculation of the equilibrium structure <code class="docutils literal notranslate"><span class="pre">get_equilibrium_lattice()</span></code> which in addition to the chemical symbol now also takes the name of the chosen calculator as an input and the calculation of the bulk modulus <code class="docutils literal notranslate"><span class="pre">get_bulk_modulus()</span></code> which takes the optimized structure as <code class="docutils literal notranslate"><span class="pre">AtomsDict()</span></code> object as an input in addition to the chosen calculator as string.</p>
+<p>Based on the explanation of the LLM, the user chooses the <a class="reference external" href="https://wiki.fysik.dtu.dk/ase/ase/calculators/emt.html">EMT</a> method, primarily because it is computationally more efficient to calculate a large number of calculations in a short amount of time. The LLM then executes two calculations for each of the three noble metals silver (Ag), gold (Au) and platinum (Pt). These calculations are the calculation of the equilibrium structure <code class="docutils literal notranslate"><span class="pre">get_equilibrium_lattice()</span></code> which in addition to the chemical symbol now also takes the name of the chosen calculator as an input and the calculation of the bulk modulus <code class="docutils literal notranslate"><span class="pre">get_bulk_modulus()</span></code> which takes the optimized structure as <code class="docutils literal notranslate"><span class="pre">AtomsDict()</span></code> object as an input in addition to the chosen calculator as string.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">chat</span>
@@ -546,7 +546,7 @@ LBFGS:    3 19:41:36       -0.000150        0.000000
 </div>
 </div>
 <p>The results are summarized in a short list. This demonstration highlights that <code class="docutils literal notranslate"><span class="pre">LangSim</span></code> can be used without prior technical experience in calculating material properties. From students to teachers and professors, it is a handy tool for everybody who wants to have quick access to material properties computed with one of the standard methods like <a class="reference external" href="https://wiki.fysik.dtu.dk/ase/ase/calculators/emt.html">EMT</a>. Obviously, the <a class="reference external" href="https://mace-docs.readthedocs.io">MACE</a> method is more accurate than the <a class="reference external" href="https://wiki.fysik.dtu.dk/ase/ase/calculators/emt.html">EMT</a> method, but also computationally more expensive.</p>
-<p>Still to further highlight the real-life application of a tool like <code class="docutils literal notranslate"><span class="pre">LangSim</span></code> the next step after the completion of those calculation is the comparison to an experimental reference. For this purpose the <code class="docutils literal notranslate"><span class="pre">get_experimental_elastic_property_wikipedia()</span></code> function is implemented which downloads the experimental values for the elastic properties from the wikipedia site for <a class="reference external" href="https://en.wikipedia.org/wiki/Elastic_properties_of_the_elements_(data_page)">elastic properties</a>.</p>
+<p>Still, to further highlight the real-life application of a tool like <code class="docutils literal notranslate"><span class="pre">LangSim</span></code> the next step after the completion of these calculations is the comparison to an experimental reference. For this purpose, the <code class="docutils literal notranslate"><span class="pre">get_experimental_elastic_property_wikipedia()</span></code> function is implemented which downloads the experimental values for the elastic properties from the wikipedia site for <a class="reference external" href="https://en.wikipedia.org/wiki/Elastic_properties_of_the_elements_(data_page)">elastic properties</a>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">chat</span>
@@ -611,7 +611,7 @@ How does this compare to experiment?
 <p>The calculated values are quite close to the experimental values, with the exception of Platinum (Pt), which shows a larger discrepancy.</p>
 </div>
 </div>
-<p>Finally, as last step the user tasks the LLM to compare the theoretical predictions and the experimental results to give an indication of the trust worthiness of these calculation. Given the optimization for computational efficiency the result for Platinum with an error of over 20% is insufficient for any real life application. Still this can be addressed by switching to the <a class="reference external" href="https://mace-docs.readthedocs.io">MACE</a> model.</p>
+<p>Finally, as the last step the user tasks the LLM to compare the theoretical predictions and the experimental results to give an indication of the trustworthiness of these calculations. Given the optimization for computational efficiency, the result for Platinum with an error of over 20% is insufficient for any real life application. Still, this can be addressed by switching to the <a class="reference external" href="https://mace-docs.readthedocs.io">MACE</a> model.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">chat</span>
@@ -692,8 +692,8 @@ Can you show me the deviation in percent?
 </section>
 <section id="summary">
 <h2>Summary<a class="headerlink" href="#summary" title="Link to this heading">#</a></h2>
-<p>The jury was convinced that this demonstration of the capabilities of <code class="docutils literal notranslate"><span class="pre">LangSim</span></code> highlight a future direction in the application of LLMs for materials and chemistry. So the <code class="docutils literal notranslate"><span class="pre">LangSim</span></code> team won the <a class="reference external" href="https://medium.com/&#64;blaiszik/llms-to-accelerate-discovery-in-materials-science-and-chemistry-refections-on-a-hackathon-b8364ca32242">first price</a> sponsored by <a class="reference external" href="https://www.radical-ai.com">RadicalAI</a>.</p>
-<p>In comparison to the previous examples, the highlight of this presentation besides hiding the technical complexity by developing a python module was the capability of the LLM to repeat the workflow consisting of two calculation, the <code class="docutils literal notranslate"><span class="pre">get_equilibrium_lattice()</span></code> function and the <code class="docutils literal notranslate"><span class="pre">get_bulk_modulus()</span></code> function, over three elements without the need to define any additional functionality.</p>
+<p>The jury was convinced that this demonstration of the capabilities of <code class="docutils literal notranslate"><span class="pre">LangSim</span></code> highlights a future direction in the application of LLMs for materials and chemistry. So the <code class="docutils literal notranslate"><span class="pre">LangSim</span></code> team won the <a class="reference external" href="https://medium.com/&#64;blaiszik/llms-to-accelerate-discovery-in-materials-science-and-chemistry-refections-on-a-hackathon-b8364ca32242">first prize</a> sponsored by <a class="reference external" href="https://www.radical-ai.com">RadicalAI</a>.</p>
+<p>In comparison to the previous examples, the highlight of this presentation, besides hiding the technical complexity by developing a python module, was the capability of the LLM to repeat the workflow consisting of two calculations, the <code class="docutils literal notranslate"><span class="pre">get_equilibrium_lattice()</span></code> function and the <code class="docutils literal notranslate"><span class="pre">get_bulk_modulus()</span></code> function, over three elements without the need to define any additional functionality.</p>
 </section>
 </section>
 
@@ -728,7 +728,7 @@ Can you show me the deviation in percent?
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="energy_volume_curve.html"
+       href="2-energy-volume-curve-agent.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
@@ -737,7 +737,7 @@ Can you show me the deviation in percent?
       </div>
     </a>
     <a class="right-next"
-       href="inverse-alloy-design.html"
+       href="4-inverse-alloy-design.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>

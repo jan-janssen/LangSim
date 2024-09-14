@@ -1,7 +1,7 @@
 # LangSim 
 The LangSim projects aims to couple Large Language Models with atomistic simulation and provide a Language Simulation 
 Engine (LangSim). This project started as part of the [LLM Hackathon for Applications in Materials and Chemistry](https://www.eventbrite.com/e/llm-hackathon-for-applications-in-materials-and-chemistry-tickets-868303598437)
-on May 8th 2024 organized by [Benjamin J. Blaiszik](https://github.com/blaiszik) from Argonne 
+on May 8, 2024 organized by [Benjamin J. Blaiszik](https://github.com/blaiszik) from Argonne 
 National Laboratory. The LangSim team was able to [win the first prize](https://medium.com/@blaiszik/llms-to-accelerate-discovery-in-materials-science-and-chemistry-refections-on-a-hackathon-b8364ca32242)
 sponsored by [RadicalAI](https://www.radical-ai.com). 
 

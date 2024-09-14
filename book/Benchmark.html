@@ -60,7 +60,7 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'book/Benchmark';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Crystalstructure Agent" href="first_agent.html" />
+    <link rel="next" title="Crystalstructure Agent" href="1-crystalstructure-agent.html" />
     <link rel="prev" title="LangSim" href="Introduction.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -175,10 +175,10 @@
         </ul>
         <ul class="current nav bd-sidenav">
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Benchmark</a></li>
-<li class="toctree-l1"><a class="reference internal" href="first_agent.html">Crystalstructure Agent</a></li>
-<li class="toctree-l1"><a class="reference internal" href="energy_volume_curve.html">Energy Volume Curve Agent</a></li>
-<li class="toctree-l1"><a class="reference internal" href="demonstration.html">Hackathon Demonstration</a></li>
-<li class="toctree-l1"><a class="reference internal" href="inverse-alloy-design.html">Inverse Alloy Design</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1-crystalstructure-agent.html">Crystalstructure Agent</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2-energy-volume-curve-agent.html">Energy Volume Curve Agent</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3-hackathon-demonstration.html">Hackathon Demonstration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4-inverse-alloy-design.html">Inverse Alloy Design</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Literature.html">References</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Developer.html">For Developers</a></li>
 </ul>
@@ -354,7 +354,7 @@ current generation of LLMs struggle to create the input for popular software too
 </div>
 <section id="chatgpt-3-5">
 <h2>ChatGPT 3.5<a class="headerlink" href="#chatgpt-3-5" title="Link to this heading">#</a></h2>
-<p>On the 2nd of May 2024 replied with the following Python code:</p>
+<p>On the May 2, 2024 replied with the following Python code:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">ase</span> <span class="kn">import</span> <span class="n">Atoms</span>
 <span class="kn">from</span> <span class="nn">ase.calculators.emt</span> <span class="kn">import</span> <span class="n">EMT</span>
 <span class="kn">from</span> <span class="nn">ase.optimize</span> <span class="kn">import</span> <span class="n">BFGS</span>
@@ -401,7 +401,7 @@ which the ASE provides to simplify energy volume curve calculation.</p></li>
 </section>
 <section id="chat-gpt-4-0">
 <h2>Chat GPT 4.0<a class="headerlink" href="#chat-gpt-4-0" title="Link to this heading">#</a></h2>
-<p>On the 2nd of May 2024 replied with the following Python code:</p>
+<p>On the May 2, 2024 replied with the following Python code:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">ase.build</span> <span class="kn">import</span> <span class="n">bulk</span>
 <span class="kn">from</span> <span class="nn">ase.calculators.emt</span> <span class="kn">import</span> <span class="n">EMT</span>
 <span class="kn">from</span> <span class="nn">ase.eos</span> <span class="kn">import</span> <span class="n">calculate_eos</span>
@@ -427,7 +427,7 @@ Gigapascal (GPa). The correct unit conversion is:</p>
 <span class="nb">print</span><span class="p">(</span><span class="n">B</span> <span class="o">/</span> <span class="n">kJ</span> <span class="o">*</span> <span class="mf">1.0e24</span><span class="p">,</span> <span class="s1">&#39;GPa&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>This information is even provided in the Documentation of the <code class="docutils literal notranslate"><span class="pre">calculate_eos()</span></code> function:</p>
+<p>This information is even provided in the documentation of the <code class="docutils literal notranslate"><span class="pre">calculate_eos()</span></code> function:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Signature</span><span class="p">:</span> <span class="n">eos</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">warn</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="n">Docstring</span><span class="p">:</span>
 <span class="n">Calculate</span> <span class="n">volume</span><span class="p">,</span> <span class="n">energy</span><span class="p">,</span> <span class="ow">and</span> <span class="n">bulk</span> <span class="n">modulus</span><span class="o">.</span>
@@ -448,8 +448,8 @@ correct the unit conversion, but the risk of disregarding a calculation because 
 <p>While the performance improves with increasing training size from ChatGPT 3.5 to 4.0, the risk of small hallucinations
 like a wrong unit conversion leading to a wrong calculation result is too high. For science, it is not sufficient to be
 right 90% of the time or even 99%.</p>
-<p>Based on this experience the LangSim team decided to develop simulation agents which can be called from the LLM to
-produce reliable and scientifically correct predictions. For this purpose the <a class="reference external" href="https://www.langchain.com/">Langchain</a>
+<p>Based on this experience, the LangSim team decided to develop simulation agents which can be called from the LLM to
+produce reliable and scientifically correct predictions. For this purpose, the <a class="reference external" href="https://www.langchain.com/">Langchain</a>
 framework was used as interface to LLMs, <a class="reference external" href="https://wiki.fysik.dtu.dk/ase/">ASE</a> and <a class="reference external" href="https://atomistics.readthedocs.io">atomistics</a>
 were used to construct simulation workflows, <a class="reference external" href="https://wiki.fysik.dtu.dk/ase/ase/calculators/emt.html">emt</a> and <a class="reference external" href="https://mace-docs.readthedocs.io/en/latest/">mace</a>
 as simulation engines and <a class="reference external" href="https://mendeleev.readthedocs.io">mendeleev</a> and <a class="reference external" href="https://en.wikipedia.org/wiki/Main_Page">wikipedia</a>
@@ -497,7 +497,7 @@ for experimental references.</p>
       </div>
     </a>
     <a class="right-next"
-       href="first_agent.html"
+       href="1-crystalstructure-agent.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>

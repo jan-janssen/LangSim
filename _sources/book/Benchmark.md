@@ -9,7 +9,7 @@ Calculate the bulk modulus for aluminium with ASE using the EMT simulation code.
 ```
 
 ## ChatGPT 3.5
-On the 2nd of May 2024 replied with the following Python code: 
+On the May 2, 2024 replied with the following Python code: 
 ```python
 from ase import Atoms
 from ase.calculators.emt import EMT
@@ -53,7 +53,7 @@ This is wrong in a number of ways:
   which the ASE provides to simplify energy volume curve calculation. 
 
 ## Chat GPT 4.0
-On the 2nd of May 2024 replied with the following Python code: 
+On the May 2, 2024 replied with the following Python code: 
 ```python
 from ase.build import bulk
 from ase.calculators.emt import EMT
@@ -79,7 +79,7 @@ Gigapascal (GPa). The correct unit conversion is:
 from ase.units import kJ
 print(B / kJ * 1.0e24, 'GPa')
 ```
-This information is even provided in the Documentation of the `calculate_eos()` function:
+This information is even provided in the documentation of the `calculate_eos()` function:
 ```
 Signature: eos.fit(warn=True)
 Docstring:
@@ -100,8 +100,8 @@ While the performance improves with increasing training size from ChatGPT 3.5 to
 like a wrong unit conversion leading to a wrong calculation result is too high. For science, it is not sufficient to be
 right 90% of the time or even 99%. 
 
-Based on this experience the LangSim team decided to develop simulation agents which can be called from the LLM to 
-produce reliable and scientifically correct predictions. For this purpose the [Langchain](https://www.langchain.com/) 
+Based on this experience, the LangSim team decided to develop simulation agents which can be called from the LLM to 
+produce reliable and scientifically correct predictions. For this purpose, the [Langchain](https://www.langchain.com/) 
 framework was used as interface to LLMs, [ASE](https://wiki.fysik.dtu.dk/ase/) and [atomistics](https://atomistics.readthedocs.io)
 were used to construct simulation workflows, [emt](https://wiki.fysik.dtu.dk/ase/ase/calculators/emt.html) and [mace](https://mace-docs.readthedocs.io/en/latest/)
 as simulation engines and [mendeleev](https://mendeleev.readthedocs.io) and [wikipedia](https://en.wikipedia.org/wiki/Main_Page) 

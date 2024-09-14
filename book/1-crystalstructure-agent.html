@@ -57,10 +57,10 @@
     <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'book/first_agent';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'book/1-crystalstructure-agent';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Energy Volume Curve Agent" href="energy_volume_curve.html" />
+    <link rel="next" title="Energy Volume Curve Agent" href="2-energy-volume-curve-agent.html" />
     <link rel="prev" title="Benchmark" href="Benchmark.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -176,9 +176,9 @@
         <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="Benchmark.html">Benchmark</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Crystalstructure Agent</a></li>
-<li class="toctree-l1"><a class="reference internal" href="energy_volume_curve.html">Energy Volume Curve Agent</a></li>
-<li class="toctree-l1"><a class="reference internal" href="demonstration.html">Hackathon Demonstration</a></li>
-<li class="toctree-l1"><a class="reference internal" href="inverse-alloy-design.html">Inverse Alloy Design</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2-energy-volume-curve-agent.html">Energy Volume Curve Agent</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3-hackathon-demonstration.html">Hackathon Demonstration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4-inverse-alloy-design.html">Inverse Alloy Design</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Literature.html">References</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Developer.html">For Developers</a></li>
 </ul>
@@ -235,7 +235,7 @@
       
       
       
-      <li><a href="https://mybinder.org/v2/gh/jan-janssen/langsim/master?urlpath=lab/tree/book/first_agent.ipynb" target="_blank"
+      <li><a href="https://mybinder.org/v2/gh/jan-janssen/langsim/master?urlpath=lab/tree/book/1-crystalstructure-agent.ipynb" target="_blank"
    class="btn btn-sm dropdown-item"
    title="Launch on Binder"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -266,7 +266,7 @@
       
       
       
-      <li><a href="../_sources/book/first_agent.ipynb" target="_blank"
+      <li><a href="../_sources/book/1-crystalstructure-agent.ipynb" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -378,11 +378,11 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="crystalstructure-agent">
 <h1>Crystalstructure Agent<a class="headerlink" href="#crystalstructure-agent" title="Link to this heading">#</a></h1>
-<p>Develop an LLM agent which can predict the crystal structure of a chemical element, by accessing the reference database of the <a class="reference external" href="https://wiki.fysik.dtu.dk/ase/">Atomic Simulation Environment</a>. While the corresponding python function is simple and only requires a few lines of code, this example already limits the hallucinations of the LLM, by using the <a class="reference external" href="https://www.langchain.com">langchain</a> framework to interface a python function with the LLM.</p>
-<p>In particular we follow the <a class="reference external" href="https://python.langchain.com/docs/modules/agents/how_to/custom_agent/">Custom Agent</a> tutorial from the Langchain documentation.</p>
+<p>As a first demonstration the langchain team decided to develop a LLM agent, which can predict the crystal structure of a chemical element, by accessing the reference database of the <a class="reference external" href="https://wiki.fysik.dtu.dk/ase/">Atomic Simulation Environment</a>. While the corresponding python function is simple and only requires a few lines of code, this example already limits the hallucinations of the LLM, by using the <a class="reference external" href="https://www.langchain.com">langchain</a> framework to interface the LLM with the python function.</p>
+<p>In particular, we follow the <a class="reference external" href="https://python.langchain.com/docs/modules/agents/how_to/custom_agent/">Custom Agent</a> tutorial from the Langchain documentation.</p>
 <section id="python-function">
 <h2>Python Function<a class="headerlink" href="#python-function" title="Link to this heading">#</a></h2>
-<p>For this first example we use <a class="reference external" href="https://www.langchain.com">OpenAI</a> as LLM provider but the example can also be adjusted to work with other LLM providers. We store the OpenAI API key in the <code class="docutils literal notranslate"><span class="pre">OPENAI_API_KEY</span></code> variable:</p>
+<p>For this first example, we use <a class="reference external" href="https://openai.com">OpenAI</a> as LLM provider but the example can also be adjusted to work with other LLM providers, for more details check the <a class="reference external" href="https://python.langchain.com/v0.2/docs/integrations/platforms/">langchain documentation</a>. We store the OpenAI API key in the <code class="docutils literal notranslate"><span class="pre">OPENAI_API_KEY</span></code> variable:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">getpass</span> <span class="kn">import</span> <span class="n">getpass</span>
@@ -399,7 +399,7 @@ document.write(`
 <div class="cell_output docutils container">
 </div>
 </div>
-<p>As a next step we import the corresponding functionality from <code class="docutils literal notranslate"><span class="pre">ASE</span></code> and the <code class="docutils literal notranslate"><span class="pre">tool</span></code> decorator from <code class="docutils literal notranslate"><span class="pre">langchain</span></code>:</p>
+<p>As a next step, we import the corresponding functionality from <code class="docutils literal notranslate"><span class="pre">ASE</span></code> and the <code class="docutils literal notranslate"><span class="pre">tool</span></code> decorator from <code class="docutils literal notranslate"><span class="pre">langchain</span></code>:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">ase.data</span> <span class="kn">import</span> <span class="n">reference_states</span><span class="p">,</span> <span class="n">atomic_numbers</span>
@@ -408,7 +408,7 @@ document.write(`
 </div>
 </div>
 </div>
-<p>For the python function it is important to include <code class="docutils literal notranslate"><span class="pre">type</span></code> hints and documentation based on a Docstring for the LLM to understand the functionality of the function. Finally, all data types used as input or output of the function need to have a <code class="docutils literal notranslate"><span class="pre">JSON</span></code> representation so they can be communicated to the LLM. For example numpy arrays have to be converted to standard python lists.</p>
+<p>For the python function, it is important to include <code class="docutils literal notranslate"><span class="pre">type</span></code> hints and documentation based on a Docstring for the LLM to understand the functionality of the function. Finally, all data types used as input or output of the function need to have a <code class="docutils literal notranslate"><span class="pre">JSON</span></code> representation so they can be communicated to the LLM. For example, numpy arrays have to be converted to standard python lists.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nd">@tool</span>
@@ -451,7 +451,7 @@ document.write(`
 </section>
 <section id="define-agent">
 <h2>Define Agent<a class="headerlink" href="#define-agent" title="Link to this heading">#</a></h2>
-<p>After the definition of the Python function, the next step is the definition of the agent which the LLM uses to interact with the Python function. In this example the <code class="docutils literal notranslate"><span class="pre">ChatOpenAI</span></code> interface of the <code class="docutils literal notranslate"><span class="pre">langchain_openai</span></code> package is used. Depending on your configuration it might be necessary to install this using:</p>
+<p>After the definition of the Python function, the next step is the definition of the agent which the LLM uses to interact with the Python function. In this example the <code class="docutils literal notranslate"><span class="pre">ChatOpenAI</span></code> interface of the <code class="docutils literal notranslate"><span class="pre">langchain_openai</span></code> package is used. Depending on your configuration, it might be necessary to install the <code class="docutils literal notranslate"><span class="pre">langchain_openai</span></code> package using the following command:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">conda</span> <span class="n">install</span> <span class="o">-</span><span class="n">c</span> <span class="n">conda</span><span class="o">-</span><span class="n">forge</span> <span class="n">langchain</span><span class="o">-</span><span class="n">openai</span>
 </pre></div>
 </div>
@@ -536,11 +536,11 @@ document.write(`
 </div>
 </div>
 </div>
-<p>With the <code class="docutils literal notranslate"><span class="pre">verbose=True</span></code> parameter the internal steps of the LLM agent are printed in green. As a first step the Agent calls the <code class="docutils literal notranslate"><span class="pre">get_crystal_structure()</span></code> already with the converted input parameter, rather than using gold as input it uses the chemical symbol <code class="docutils literal notranslate"><span class="pre">Au</span></code>. The function returns <code class="docutils literal notranslate"><span class="pre">fcc</span></code> and the LLM converts this answer in a sentence a human can understand:</p>
+<p>With the <code class="docutils literal notranslate"><span class="pre">verbose=True</span></code> parameter the internal steps of the LLM agent are printed in green. As a first step the agent calls the <code class="docutils literal notranslate"><span class="pre">get_crystal_structure()</span></code> already with the converted input parameter, rather than using gold as input it uses the chemical symbol <code class="docutils literal notranslate"><span class="pre">Au</span></code>. The function returns <code class="docutils literal notranslate"><span class="pre">fcc</span></code> and the LLM converts this answer in a sentence a human can understand:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">The</span> <span class="n">crystal</span> <span class="n">structure</span> <span class="n">of</span> <span class="n">gold</span> <span class="ow">is</span> <span class="n">face</span><span class="o">-</span><span class="n">centered</span> <span class="n">cubic</span> <span class="p">(</span><span class="n">fcc</span><span class="p">)</span><span class="o">.</span>
 </pre></div>
 </div>
-<p>This example highlights how easy it is these days to make a python function accessible via an LLM for all kinds of users to interact with this python funtion.</p>
+<p>This example highlights how easy it is these days to make a python function accessible via a LLM for all kinds of users to interact with this python funtion.</p>
 </section>
 <section id="prompt-engineering">
 <h2>Prompt Engineering<a class="headerlink" href="#prompt-engineering" title="Link to this heading">#</a></h2>
@@ -618,11 +618,11 @@ document.write(`
 </div>
 </div>
 </div>
-<p>With the modified system prompt the agent correctly replies that it was not able to determine the crystal structure of a car, because it fails to determine the chemical element a car consists of.</p>
+<p>With the modified system prompt, the agent correctly replies that it was not able to determine the crystal structure of a car, because it fails to determine the chemical element a car consists of.</p>
 </section>
 <section id="summary">
 <h2>Summary<a class="headerlink" href="#summary" title="Link to this heading">#</a></h2>
-<p>By following the <a class="reference external" href="https://python.langchain.com/docs/modules/agents/how_to/custom_agent/">Custom Agent</a> tutorial from the Langchain documentation we were able to create a first simulation agent, which calls specialized python frameworks like <a class="reference external" href="https://wiki.fysik.dtu.dk/ase/">ASE</a> to address material-science specific questions. Still it is important to carefully engineer the prompt of the agent, otherwise even these LLMs with access to specialized agents tend to hallucinat.</p>
+<p>By following the <a class="reference external" href="https://python.langchain.com/docs/modules/agents/how_to/custom_agent/">Custom Agent</a> tutorial from the Langchain documentation, we were able to create a first simulation agent, which calls specialized python frameworks like <a class="reference external" href="https://wiki.fysik.dtu.dk/ase/">ASE</a> to address material-science specific questions. Still, it is important to carefully engineer the prompt of the agent, otherwise even these LLMs with access to specialized agents tend to hallucinate.</p>
 </section>
 </section>
 
@@ -666,7 +666,7 @@ document.write(`
       </div>
     </a>
     <a class="right-next"
-       href="energy_volume_curve.html"
+       href="2-energy-volume-curve-agent.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
