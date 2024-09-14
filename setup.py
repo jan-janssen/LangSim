@@ -19,7 +19,10 @@ setup(
     ],
     extras_require={
         "mace": ["mace==0.3.5"],
-        "alloy": ["sqsgenerator==0.3"],
+        "alloy": [
+            "sqsgenerator==0.3",
+            "structuretoolkit==0.0.28",
+        ],
         "ipython": [
             "ipython==6.2.0",
             "langchain-experimental==0.0.61",
