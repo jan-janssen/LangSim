@@ -2,9 +2,9 @@ format: jb-book
 root: book/Introduction.md
 chapters:
 - file: book/Benchmark.md
-- file: book/first_agent.ipynb
-- file: book/energy_volume_curve.ipynb
-- file: book/demonstration.ipynb
-- file: book/inverse-alloy-design.ipynb
+- file: book/1-crystalstructure-agent.ipynb
+- file: book/2-energy-volume-curve-agent.ipynb
+- file: book/3-hackathon-demonstration.ipynb
+- file: book/4-inverse-alloy-design.ipynb
 - file: book/Literature.md
 - file: book/Developer.md
