@@ -3,7 +3,7 @@ channels:
 dependencies:
   - ase =3.23.0
   - atomistics =0.1.32
-  - langchain =0.2.5
+  - langchain =0.2.16
   - numexpr =2.10.0
   - langchain-anthropic =0.1.23
   - langchain-openai =0.1.23
