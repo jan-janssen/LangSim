@@ -8,6 +8,7 @@ sponsored by [RadicalAI](https://www.radical-ai.com).
 ## Winning Submission
 The aim of the hackathon was to present a video which demonstrates the functionality of the prototype and highlights the
 use case for Large Language Models and their application to materials and chemistry: 
+
 [![Demo](https://img.youtube.com/vi/7JFncD9WaIY/0.jpg)](https://www.youtube.com/watch?v=7JFncD9WaIY)
 
 A full list of all submissions is available on [github.com/llmhackathon](https://github.com/llmhackathon).
