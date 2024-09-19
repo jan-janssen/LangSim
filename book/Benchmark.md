@@ -95,6 +95,68 @@ eV/Angstrom^3 - to get the value in GPa, do this::
 So the result provided by Chat GPT 4.0 is 90% correct and a scientist without prior knowledge of ASE would be able to 
 correct the unit conversion, but the risk of disregarding a calculation because of a wrong unit conversion is too high.
 
+## ChatGPT o1-preview
+On the September 19, 2024 replied with the following Python code: 
+```
+import numpy as np
+from ase import Atoms
+from ase.build import bulk
+from ase.calculators.emt import EMT
+from ase.eos import EquationOfState
+import matplotlib.pyplot as plt
+
+# Step 1: Set up the aluminum bulk structure
+# Create an FCC aluminum unit cell with a lattice constant of 4.05 Å
+atoms = bulk('Al', 'fcc', a=4.05)
+
+# Step 2: Assign the EMT calculator
+atoms.calc = EMT()
+
+# Prepare arrays to store volumes and energies
+volumes = []
+energies = []
+
+# Step 3: Compute energies at different volumes
+# Define scaling factors around the equilibrium lattice constant
+scaling_factors = np.linspace(0.94, 1.06, 13)  # 13 points from 0.94 to 1.06
+
+for sf in scaling_factors:
+    # Scale the unit cell
+    scaled_atoms = atoms.copy()
+    scaled_atoms.set_cell(atoms.cell * sf, scale_atoms=True)
+    
+    # Calculate the potential energy and volume
+    energy = scaled_atoms.get_potential_energy()
+    volume = scaled_atoms.get_volume()
+    
+    # Store the results
+    energies.append(energy)
+    volumes.append(volume)
+
+# Step 4: Fit the energies and volumes to an equation of state
+eos = EquationOfState(volumes, energies)
+v0, e0, B = eos.fit()
+
+# Step 5: Extract and print the bulk modulus
+# Convert bulk modulus from eV/Å³ to GPa (1 eV/Å³ = 160.21766208 GPa)
+bulk_modulus_gpa = B * 160.21766208
+
+print(f"Equilibrium volume (V0): {v0:.2f} Å³")
+print(f"Equilibrium energy (E0): {e0:.2f} eV")
+print(f"Bulk modulus (B): {bulk_modulus_gpa:.2f} GPa")
+
+# Optional: Plot the equation of state
+eos.plot('aluminum_eos.png')
+plt.show()
+```
+As you can see the suggested solution from `o1-preview` is again closer to the solution from ChatGPT 3.5 rather than 4.0.
+While the unit conversion is now fixed, there is no calculator object set, so when you execute the code above you get
+the following error message:
+```
+RuntimeError: Atoms object has no calculator.
+```
+So for this specific application ChatGPT 4.0 provides the best solution. 
+
 ## Summary
 While the performance improves with increasing training size from ChatGPT 3.5 to 4.0, the risk of small hallucinations
 like a wrong unit conversion leading to a wrong calculation result is too high. For science, it is not sufficient to be
