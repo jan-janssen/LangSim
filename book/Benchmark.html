@@ -331,6 +331,7 @@ document.write(`
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#chatgpt-3-5">ChatGPT 3.5</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#chat-gpt-4-0">Chat GPT 4.0</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#chatgpt-o1-preview">ChatGPT o1-preview</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#summary">Summary</a></li>
 </ul>
             </nav>
@@ -443,6 +444,69 @@ Gigapascal (GPa). The correct unit conversion is:</p>
 <p>So the result provided by Chat GPT 4.0 is 90% correct and a scientist without prior knowledge of ASE would be able to
 correct the unit conversion, but the risk of disregarding a calculation because of a wrong unit conversion is too high.</p>
 </section>
+<section id="chatgpt-o1-preview">
+<h2>ChatGPT o1-preview<a class="headerlink" href="#chatgpt-o1-preview" title="Link to this heading">#</a></h2>
+<p>On the September 19, 2024 replied with the following Python code:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">ase</span> <span class="kn">import</span> <span class="n">Atoms</span>
+<span class="kn">from</span> <span class="nn">ase.build</span> <span class="kn">import</span> <span class="n">bulk</span>
+<span class="kn">from</span> <span class="nn">ase.calculators.emt</span> <span class="kn">import</span> <span class="n">EMT</span>
+<span class="kn">from</span> <span class="nn">ase.eos</span> <span class="kn">import</span> <span class="n">EquationOfState</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="c1"># Step 1: Set up the aluminum bulk structure</span>
+<span class="c1"># Create an FCC aluminum unit cell with a lattice constant of 4.05 Å</span>
+<span class="n">atoms</span> <span class="o">=</span> <span class="n">bulk</span><span class="p">(</span><span class="s1">&#39;Al&#39;</span><span class="p">,</span> <span class="s1">&#39;fcc&#39;</span><span class="p">,</span> <span class="n">a</span><span class="o">=</span><span class="mf">4.05</span><span class="p">)</span>
+
+<span class="c1"># Step 2: Assign the EMT calculator</span>
+<span class="n">atoms</span><span class="o">.</span><span class="n">calc</span> <span class="o">=</span> <span class="n">EMT</span><span class="p">()</span>
+
+<span class="c1"># Prepare arrays to store volumes and energies</span>
+<span class="n">volumes</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">energies</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="c1"># Step 3: Compute energies at different volumes</span>
+<span class="c1"># Define scaling factors around the equilibrium lattice constant</span>
+<span class="n">scaling_factors</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">0.94</span><span class="p">,</span> <span class="mf">1.06</span><span class="p">,</span> <span class="mi">13</span><span class="p">)</span>  <span class="c1"># 13 points from 0.94 to 1.06</span>
+
+<span class="k">for</span> <span class="n">sf</span> <span class="ow">in</span> <span class="n">scaling_factors</span><span class="p">:</span>
+    <span class="c1"># Scale the unit cell</span>
+    <span class="n">scaled_atoms</span> <span class="o">=</span> <span class="n">atoms</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+    <span class="n">scaled_atoms</span><span class="o">.</span><span class="n">set_cell</span><span class="p">(</span><span class="n">atoms</span><span class="o">.</span><span class="n">cell</span> <span class="o">*</span> <span class="n">sf</span><span class="p">,</span> <span class="n">scale_atoms</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    
+    <span class="c1"># Calculate the potential energy and volume</span>
+    <span class="n">energy</span> <span class="o">=</span> <span class="n">scaled_atoms</span><span class="o">.</span><span class="n">get_potential_energy</span><span class="p">()</span>
+    <span class="n">volume</span> <span class="o">=</span> <span class="n">scaled_atoms</span><span class="o">.</span><span class="n">get_volume</span><span class="p">()</span>
+    
+    <span class="c1"># Store the results</span>
+    <span class="n">energies</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">energy</span><span class="p">)</span>
+    <span class="n">volumes</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">volume</span><span class="p">)</span>
+
+<span class="c1"># Step 4: Fit the energies and volumes to an equation of state</span>
+<span class="n">eos</span> <span class="o">=</span> <span class="n">EquationOfState</span><span class="p">(</span><span class="n">volumes</span><span class="p">,</span> <span class="n">energies</span><span class="p">)</span>
+<span class="n">v0</span><span class="p">,</span> <span class="n">e0</span><span class="p">,</span> <span class="n">B</span> <span class="o">=</span> <span class="n">eos</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+
+<span class="c1"># Step 5: Extract and print the bulk modulus</span>
+<span class="c1"># Convert bulk modulus from eV/Å³ to GPa (1 eV/Å³ = 160.21766208 GPa)</span>
+<span class="n">bulk_modulus_gpa</span> <span class="o">=</span> <span class="n">B</span> <span class="o">*</span> <span class="mf">160.21766208</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Equilibrium volume (V0): </span><span class="si">{</span><span class="n">v0</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> Å³&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Equilibrium energy (E0): </span><span class="si">{</span><span class="n">e0</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> eV&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Bulk modulus (B): </span><span class="si">{</span><span class="n">bulk_modulus_gpa</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> GPa&quot;</span><span class="p">)</span>
+
+<span class="c1"># Optional: Plot the equation of state</span>
+<span class="n">eos</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="s1">&#39;aluminum_eos.png&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>As you can see the suggested solution from <code class="docutils literal notranslate"><span class="pre">o1-preview</span></code> is again closer to the solution from ChatGPT 3.5 rather than 4.0.
+While the unit conversion is now fixed, there is no calculator object set, so when you execute the code above you get
+the following error message:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="ne">RuntimeError</span><span class="p">:</span> <span class="n">Atoms</span> <span class="nb">object</span> <span class="n">has</span> <span class="n">no</span> <span class="n">calculator</span><span class="o">.</span>
+</pre></div>
+</div>
+<p>So for this specific application ChatGPT 4.0 provides the best solution.</p>
+</section>
 <section id="summary">
 <h2>Summary<a class="headerlink" href="#summary" title="Link to this heading">#</a></h2>
 <p>While the performance improves with increasing training size from ChatGPT 3.5 to 4.0, the risk of small hallucinations
@@ -523,6 +587,7 @@ for experimental references.</p>
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#chatgpt-3-5">ChatGPT 3.5</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#chat-gpt-4-0">Chat GPT 4.0</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#chatgpt-o1-preview">ChatGPT o1-preview</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#summary">Summary</a></li>
 </ul>
   </nav></div>
