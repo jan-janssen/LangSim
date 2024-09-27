@@ -379,7 +379,7 @@ document.write(`
   <section class="tex2jax_ignore mathjax_ignore" id="crystalstructure-agent">
 <h1>Crystalstructure Agent<a class="headerlink" href="#crystalstructure-agent" title="Link to this heading">#</a></h1>
 <p>As a first demonstration the langchain team decided to develop a LLM agent, which can predict the crystal structure of a chemical element, by accessing the reference database of the <a class="reference external" href="https://wiki.fysik.dtu.dk/ase/">Atomic Simulation Environment</a>. While the corresponding python function is simple and only requires a few lines of code, this example already limits the hallucinations of the LLM, by using the <a class="reference external" href="https://www.langchain.com">langchain</a> framework to interface the LLM with the python function.</p>
-<p>In particular, we follow the <a class="reference external" href="https://python.langchain.com/docs/modules/agents/how_to/custom_agent/">Custom Agent</a> tutorial from the Langchain documentation.</p>
+<p>In particular, we follow the <a class="reference external" href="https://python.langchain.com/docs/how_to/custom_tools/">Custom Agent</a> tutorial from the Langchain documentation.</p>
 <section id="python-function">
 <h2>Python Function<a class="headerlink" href="#python-function" title="Link to this heading">#</a></h2>
 <p>For this first example, we use <a class="reference external" href="https://groq.com">Groq</a> as LLM provider but the example can also be adjusted to work with other LLM providers, for more details check the <a class="reference external" href="https://python.langchain.com/v0.2/docs/integrations/platforms/">langchain documentation</a>. We store the Groq API key in the <code class="docutils literal notranslate"><span class="pre">GROQ_API_KEY</span></code> variable:</p>
@@ -403,7 +403,7 @@ document.write(`
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">ase.data</span> <span class="kn">import</span> <span class="n">reference_states</span><span class="p">,</span> <span class="n">atomic_numbers</span>
-<span class="kn">from</span> <span class="nn">langchain.agents</span> <span class="kn">import</span> <span class="n">tool</span>
+<span class="kn">from</span> <span class="nn">langchain_core.tools</span> <span class="kn">import</span> <span class="n">tool</span>
 </pre></div>
 </div>
 </div>
@@ -487,7 +487,7 @@ document.write(`
 </div>
 </div>
 </div>
-<p>Finally, the different parts are plugged together, by creating an agent which combines the prompt with the python function referenced here as one tool in a list of potentially many tools and an executor to communicate with the agent. The technical details are discussed in the corresponding <a class="reference external" href="https://python.langchain.com/docs/modules/agents/how_to/custom_agent/">langchain Custom Agent tutorial</a>.</p>
+<p>Finally, the different parts are plugged together, by creating an agent which combines the prompt with the python function referenced here as one tool in a list of potentially many tools and an executor to communicate with the agent. The technical details are discussed in the corresponding <a class="reference external" href="https://python.langchain.com/docs/how_to/custom_tools/">langchain Custom Agent tutorial</a>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">langchain.agents</span> <span class="kn">import</span> <span class="n">AgentExecutor</span>
@@ -626,7 +626,7 @@ document.write(`
 </section>
 <section id="summary">
 <h2>Summary<a class="headerlink" href="#summary" title="Link to this heading">#</a></h2>
-<p>By following the <a class="reference external" href="https://python.langchain.com/docs/modules/agents/how_to/custom_agent/">Custom Agent</a> tutorial from the Langchain documentation, we were able to create a first simulation agent, which calls specialized python frameworks like <a class="reference external" href="https://wiki.fysik.dtu.dk/ase/">ASE</a> to address material-science specific questions. Still, it is important to carefully engineer the prompt of the agent, otherwise even these LLMs with access to specialized agents tend to hallucinate.</p>
+<p>By following the <a class="reference external" href="https://python.langchain.com/docs/how_to/custom_tools/">Custom Agent</a> tutorial from the Langchain documentation, we were able to create a first simulation agent, which calls specialized python frameworks like <a class="reference external" href="https://wiki.fysik.dtu.dk/ase/">ASE</a> to address material-science specific questions. Still, it is important to carefully engineer the prompt of the agent, otherwise even these LLMs with access to specialized agents tend to hallucinate.</p>
 </section>
 </section>
 

@@ -377,7 +377,7 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="energy-volume-curve-agent">
 <h1>Energy Volume Curve Agent<a class="headerlink" href="#energy-volume-curve-agent" title="Link to this heading">#</a></h1>
-<p>Based on the previous tutorial, the next step is to extend the simple crystal structure agent to address the benchmark challenge of calculating an energy-versus-volume curve using the EMT simulation code. Again, this demonstration is based on the Langchain tutorial for <a class="reference external" href="https://python.langchain.com/docs/modules/agents/how_to/custom_agent/">custom agents</a>.</p>
+<p>Based on the previous tutorial, the next step is to extend the simple crystal structure agent to address the benchmark challenge of calculating an energy-versus-volume curve using the EMT simulation code. Again, this demonstration is based on the Langchain tutorial for <a class="reference external" href="https://python.langchain.com/docs/how_to/custom_tools/">custom agents</a>.</p>
 <p>As a first step, we import a number of python modules, these consist of the <a class="reference external" href="https://wiki.fysik.dtu.dk/ase/">ASE</a>, some standard python libraries as well as a number of tools from <a class="reference external" href="https://www.langchain.com">langchain</a>:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -401,7 +401,8 @@ document.write(`
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">langchain.agents</span> <span class="kn">import</span> <span class="n">AgentExecutor</span><span class="p">,</span> <span class="n">tool</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">langchain_core.tools</span> <span class="kn">import</span> <span class="n">tool</span>
+<span class="kn">from</span> <span class="nn">langchain.agents</span> <span class="kn">import</span> <span class="n">AgentExecutor</span>
 <span class="kn">from</span> <span class="nn">langchain.agents.format_scratchpad.openai_tools</span> <span class="kn">import</span> <span class="n">format_to_openai_tool_messages</span>
 <span class="kn">from</span> <span class="nn">langchain.agents.output_parsers.openai_tools</span> <span class="kn">import</span> <span class="n">OpenAIToolsAgentOutputParser</span>
 <span class="kn">from</span> <span class="nn">langchain_core.pydantic_v1</span> <span class="kn">import</span> <span class="n">BaseModel</span>
@@ -505,7 +506,7 @@ LBFGS:    4 07:48:58       -0.004883        0.000000
 </section>
 <section id="agents">
 <h2>Agents<a class="headerlink" href="#agents" title="Link to this heading">#</a></h2>
-<p>Following the same Langchain tutorial for <a class="reference external" href="https://python.langchain.com/docs/modules/agents/how_to/custom_agent/">custom agents</a> as before a LLM agent is constructed which combines the system prompt, the python functions <code class="docutils literal notranslate"><span class="pre">get_equilibirum_lattice()</span></code> and <code class="docutils literal notranslate"><span class="pre">plot_equation_of_state()</span></code> as tools and the <code class="docutils literal notranslate"><span class="pre">OpenAIToolsAgentOutputParser()</span></code>:</p>
+<p>Following the same Langchain tutorial for <a class="reference external" href="https://python.langchain.com/docs/how_to/custom_tools/">custom agents</a> as before a LLM agent is constructed which combines the system prompt, the python functions <code class="docutils literal notranslate"><span class="pre">get_equilibirum_lattice()</span></code> and <code class="docutils literal notranslate"><span class="pre">plot_equation_of_state()</span></code> as tools and the <code class="docutils literal notranslate"><span class="pre">OpenAIToolsAgentOutputParser()</span></code>:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ANTHROPIC_API_KEY</span> <span class="o">=</span> <span class="n">getpass</span><span class="p">(</span><span class="n">prompt</span><span class="o">=</span><span class="s1">&#39;Enter your Anthropic Token:&#39;</span><span class="p">)</span>
