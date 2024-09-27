@@ -9,7 +9,7 @@ from atomistics.workflows.evcurve.helper import (
     analyse_structures_helper,
     generate_structures_helper,
 )
-from langchain.agents import tool
+from langchain_core.tools import tool
 from langchain_core.pydantic_v1 import BaseModel
 
 
