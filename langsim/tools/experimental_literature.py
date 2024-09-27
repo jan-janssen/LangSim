@@ -1,4 +1,4 @@
-from langchain.agents import tool
+from langchain_core.tools import tool
 
 
 @tool
