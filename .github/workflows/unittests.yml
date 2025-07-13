@@ -12,9 +12,6 @@ jobs:
       matrix:
         include:
           - operating-system: ubuntu-latest
-            python-version: '3.13'
-
-          - operating-system: ubuntu-latest
             python-version: '3.12'
 
           - operating-system: ubuntu-latest
