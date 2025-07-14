@@ -16,33 +16,30 @@
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
-  <!-- 
-    this give us a css class that will be invisible only if js is disabled 
-  -->
-  <noscript>
-    <style>
-      .pst-js-only { display: none !important; }
-
-    </style>
-  </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../../_static/styles/theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
-<link href="../../_static/styles/pydata-sphinx-theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+  <link href="../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
 
-    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=fa44fd50" />
-    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=a3416100" />
+  
+  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=eba8b062" />
     <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
   
-  <!-- So that users can add custom icons -->
-  <script src="../../_static/scripts/fontawesome.js?digest=26a4bc78f4c0ddb94549"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549" />
-<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549" />
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
     <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
     <script src="../../_static/doctools.js?v=9a2dae69"></script>
@@ -65,7 +62,6 @@
     <link rel="search" title="Search" href="../../search.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
-  <meta name="docsearch:version" content="" />
   </head>
   
   
@@ -81,8 +77,19 @@
     <i class="fa-solid fa-arrow-up"></i>Back to top</button>
 
   
-  <dialog id="pst-search-dialog">
-    
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
 <form class="bd-search d-flex align-items-center"
       action="../../search.html"
       method="get">
@@ -90,6 +97,7 @@
   <input type="search"
          class="form-control"
          name="q"
+         id="search-input"
          placeholder="Search this book..."
          aria-label="Search this book..."
          autocomplete="off"
@@ -97,8 +105,8 @@
          autocapitalize="off"
          spellcheck="false"/>
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
-</form>
-  </dialog>
+</form></div>
+  </div>
 
   <div class="pst-async-banner-revealer d-none">
   <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
@@ -116,8 +124,7 @@
       
         
       
-      <dialog id="pst-primary-sidebar-modal"></dialog>
-      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+      <div class="bd-sidebar-primary bd-sidebar">
         
 
   
@@ -147,11 +154,15 @@
 </a></div>
         <div class="sidebar-primary-item">
 
-<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
- <i class="fa-solid fa-magnifying-glass"></i>
- <span class="search-button__default-text">Search</span>
- <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
-</button></div>
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
         <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         
@@ -308,16 +319,24 @@
 
 
 
-<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
-  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
-  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
-  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
-</button>
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
 
 
-<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass fa-lg"></i>
-</button>
+  </button>
+`);
+</script>
 
 </div></div>
       
@@ -345,37 +364,37 @@
                   
   <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">ase.atoms</span> <span class="kn">import</span> <span class="n">Atoms</span>
-<span class="kn">from</span> <span class="nn">ase.build</span> <span class="kn">import</span> <span class="n">bulk</span>
-<span class="kn">from</span> <span class="nn">ase.calculators.emt</span> <span class="kn">import</span> <span class="n">EMT</span>
-<span class="kn">from</span> <span class="nn">ase.constraints</span> <span class="kn">import</span> <span class="n">UnitCellFilter</span>
-<span class="kn">from</span> <span class="nn">ase.eos</span> <span class="kn">import</span> <span class="n">calculate_eos</span><span class="p">,</span> <span class="n">plot</span>
-<span class="kn">from</span> <span class="nn">ase.data</span> <span class="kn">import</span> <span class="n">reference_states</span><span class="p">,</span> <span class="n">atomic_numbers</span>
-<span class="kn">from</span> <span class="nn">ase.optimize</span> <span class="kn">import</span> <span class="n">LBFGS</span>
-<span class="kn">from</span> <span class="nn">ase.units</span> <span class="kn">import</span> <span class="n">kJ</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">ase.atoms</span><span class="w"> </span><span class="kn">import</span> <span class="n">Atoms</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">ase.build</span><span class="w"> </span><span class="kn">import</span> <span class="n">bulk</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">ase.calculators.emt</span><span class="w"> </span><span class="kn">import</span> <span class="n">EMT</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">ase.constraints</span><span class="w"> </span><span class="kn">import</span> <span class="n">UnitCellFilter</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">ase.eos</span><span class="w"> </span><span class="kn">import</span> <span class="n">calculate_eos</span><span class="p">,</span> <span class="n">plot</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">ase.data</span><span class="w"> </span><span class="kn">import</span> <span class="n">reference_states</span><span class="p">,</span> <span class="n">atomic_numbers</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">ase.optimize</span><span class="w"> </span><span class="kn">import</span> <span class="n">LBFGS</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">ase.units</span><span class="w"> </span><span class="kn">import</span> <span class="n">kJ</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">mace.calculators</span> <span class="kn">import</span> <span class="n">mace_mp</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">mace.calculators</span><span class="w"> </span><span class="kn">import</span> <span class="n">mace_mp</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">langchain.agents</span> <span class="kn">import</span> <span class="n">AgentExecutor</span>
-<span class="kn">from</span> <span class="nn">langchain_core.tools</span> <span class="kn">import</span> <span class="n">tool</span>
-<span class="kn">from</span> <span class="nn">langchain_core.pydantic_v1</span> <span class="kn">import</span> <span class="n">BaseModel</span>
-<span class="kn">from</span> <span class="nn">langchain_openai</span> <span class="kn">import</span> <span class="n">ChatOpenAI</span>
-<span class="kn">from</span> <span class="nn">langchain_groq</span> <span class="kn">import</span> <span class="n">ChatGroq</span>
-<span class="kn">from</span> <span class="nn">langchain_core.prompts</span> <span class="kn">import</span> <span class="n">ChatPromptTemplate</span><span class="p">,</span> <span class="n">MessagesPlaceholder</span>
-<span class="kn">from</span> <span class="nn">langchain.agents.format_scratchpad.openai_tools</span> <span class="kn">import</span> <span class="p">(</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">langchain.agents</span><span class="w"> </span><span class="kn">import</span> <span class="n">AgentExecutor</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">langchain_core.tools</span><span class="w"> </span><span class="kn">import</span> <span class="n">tool</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">langchain_core.pydantic_v1</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseModel</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">langchain_openai</span><span class="w"> </span><span class="kn">import</span> <span class="n">ChatOpenAI</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">langchain_groq</span><span class="w"> </span><span class="kn">import</span> <span class="n">ChatGroq</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">langchain_core.prompts</span><span class="w"> </span><span class="kn">import</span> <span class="n">ChatPromptTemplate</span><span class="p">,</span> <span class="n">MessagesPlaceholder</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">langchain.agents.format_scratchpad.openai_tools</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
     <span class="n">format_to_openai_tool_messages</span><span class="p">,</span>
 <span class="p">)</span>
-<span class="kn">from</span> <span class="nn">langchain.agents.output_parsers.openai_tools</span> <span class="kn">import</span> <span class="n">OpenAIToolsAgentOutputParser</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">langchain.agents.output_parsers.openai_tools</span><span class="w"> </span><span class="kn">import</span> <span class="n">OpenAIToolsAgentOutputParser</span>
 </pre></div>
 </div>
 </div>
@@ -383,23 +402,23 @@
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">matplotlib</span> widget
-<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">List</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">List</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">ipywidgets</span> <span class="k">as</span> <span class="nn">widgets</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">ipywidgets</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">widgets</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">AtomsDict</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">AtomsDict</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
     <span class="n">numbers</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span>
     <span class="n">positions</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">float</span><span class="p">]]</span>
     <span class="n">cell</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">float</span><span class="p">]]</span>
@@ -410,7 +429,7 @@
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">get_calculator</span><span class="p">(</span><span class="n">calculator_str</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;emt&quot;</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">get_calculator</span><span class="p">(</span><span class="n">calculator_str</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;emt&quot;</span><span class="p">):</span>
     <span class="k">if</span> <span class="n">calculator_str</span> <span class="o">==</span> <span class="s2">&quot;emt&quot;</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">EMT</span><span class="p">()</span>
     <span class="k">elif</span> <span class="n">calculator_str</span> <span class="o">==</span> <span class="s2">&quot;mace&quot;</span><span class="p">:</span>
@@ -427,7 +446,7 @@
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nd">@tool</span> 
-<span class="k">def</span> <span class="nf">get_equilibirum_lattice</span><span class="p">(</span><span class="n">chemical_symbol</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">calculator_str</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">AtomsDict</span><span class="p">:</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">get_equilibirum_lattice</span><span class="p">(</span><span class="n">chemical_symbol</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">calculator_str</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">AtomsDict</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Returns equilibrium atoms dictionary for a given chemical symbol and a selected model specified by the calculator string.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">atoms</span> <span class="o">=</span> <span class="n">bulk</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">chemical_symbol</span><span class="p">)</span>
@@ -442,7 +461,7 @@
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nd">@tool</span>
-<span class="k">def</span> <span class="nf">plot_equation_of_state</span><span class="p">(</span><span class="n">atom_dict</span><span class="p">:</span> <span class="n">AtomsDict</span><span class="p">,</span> <span class="n">calculator_str</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">plot_equation_of_state</span><span class="p">(</span><span class="n">atom_dict</span><span class="p">:</span> <span class="n">AtomsDict</span><span class="p">,</span> <span class="n">calculator_str</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Returns plot of equation of state of chemical symbol for a given atoms dictionary and a selected model specified by the calculator string&quot;&quot;&quot;</span>
     <span class="n">atoms</span> <span class="o">=</span> <span class="n">Atoms</span><span class="p">(</span><span class="o">**</span><span class="n">atom_dict</span><span class="o">.</span><span class="n">dict</span><span class="p">())</span>
     <span class="n">atoms</span><span class="o">.</span><span class="n">calc</span> <span class="o">=</span> <span class="n">get_calculator</span><span class="p">(</span><span class="n">calculator_str</span><span class="o">=</span><span class="n">calculator_str</span><span class="p">)</span>
@@ -456,7 +475,7 @@
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nd">@tool</span>
-<span class="k">def</span> <span class="nf">get_bulk_modulus</span><span class="p">(</span><span class="n">atom_dict</span><span class="p">:</span> <span class="n">AtomsDict</span><span class="p">,</span> <span class="n">calculator_str</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">get_bulk_modulus</span><span class="p">(</span><span class="n">atom_dict</span><span class="p">:</span> <span class="n">AtomsDict</span><span class="p">,</span> <span class="n">calculator_str</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Returns the bulk modulus of chemcial symbol for a given atoms dictionary and a selected model specified by the calculator string in GPa.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">atoms</span> <span class="o">=</span> <span class="n">atoms</span> <span class="o">=</span> <span class="n">Atoms</span><span class="p">(</span><span class="o">**</span><span class="n">atom_dict</span><span class="o">.</span><span class="n">dict</span><span class="p">())</span>
@@ -471,7 +490,7 @@
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nd">@tool</span>
-<span class="k">def</span> <span class="nf">get_equilibrium_volume</span><span class="p">(</span><span class="n">atom_dict</span><span class="p">:</span> <span class="n">AtomsDict</span><span class="p">,</span> <span class="n">calculator_str</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">get_equilibrium_volume</span><span class="p">(</span><span class="n">atom_dict</span><span class="p">:</span> <span class="n">AtomsDict</span><span class="p">,</span> <span class="n">calculator_str</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Returns the equilibrium volume of chemcial symbol for a given atoms dictionary and a selected model specified by the calculator string in Angstrom^3.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">atoms</span> <span class="o">=</span> <span class="n">atoms</span> <span class="o">=</span> <span class="n">Atoms</span><span class="p">(</span><span class="o">**</span><span class="n">atom_dict</span><span class="o">.</span><span class="n">dict</span><span class="p">())</span>
@@ -532,7 +551,7 @@
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">get_extension</span><span class="p">(</span><span class="n">OPENAI_API_KEY</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="s2">&quot;gpt-3.5-turbo&quot;</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">get_extension</span><span class="p">(</span><span class="n">OPENAI_API_KEY</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="s2">&quot;gpt-3.5-turbo&quot;</span><span class="p">):</span>
     <span class="k">if</span> <span class="n">model</span> <span class="ow">in</span> <span class="p">(</span><span class="s2">&quot;gpt-3.5-turbo&quot;</span><span class="p">,</span> <span class="s2">&quot;gpt-4-turbo&quot;</span><span class="p">):</span>
         <span class="n">llm</span> <span class="o">=</span> <span class="n">ChatOpenAI</span><span class="p">(</span><span class="n">model</span><span class="o">=</span><span class="n">model</span><span class="p">,</span> <span class="n">temperature</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">openai_api_key</span><span class="o">=</span><span class="n">OPENAI_API_KEY</span><span class="p">)</span>
     <span class="k">elif</span> <span class="n">model</span> <span class="ow">in</span> <span class="p">(</span><span class="s2">&quot;llama3-70b-8192&quot;</span><span class="p">,</span> <span class="s2">&quot;mixtral-8x7b-32768&quot;</span><span class="p">):</span>
@@ -578,7 +597,7 @@
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">get_plot</span><span class="p">(</span><span class="n">output_steps</span><span class="p">):</span>            
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">get_plot</span><span class="p">(</span><span class="n">output_steps</span><span class="p">):</span>            
     <span class="k">for</span> <span class="n">step</span> <span class="ow">in</span> <span class="n">output_steps</span><span class="p">:</span>
         <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">step</span><span class="p">,</span> <span class="s1">&#39;observation&#39;</span><span class="p">)</span> <span class="ow">and</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">step</span><span class="o">.</span><span class="n">observation</span><span class="p">,</span> <span class="n">plt</span><span class="o">.</span><span class="n">Axes</span><span class="p">):</span>
             <span class="k">return</span> <span class="n">step</span><span class="o">.</span><span class="n">observation</span>
@@ -588,7 +607,7 @@
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">run_refresh</span><span class="p">(</span><span class="o">*</span><span class="n">ignore</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">run_refresh</span><span class="p">(</span><span class="o">*</span><span class="n">ignore</span><span class="p">):</span>
     <span class="n">agent_executor</span> <span class="o">=</span> <span class="n">get_extension</span><span class="p">(</span><span class="n">OPENAI_API_KEY</span><span class="o">=</span><span class="n">key_widget</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
     <span class="n">output</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">agent_executor</span><span class="o">.</span><span class="n">stream</span><span class="p">({</span><span class="s2">&quot;input&quot;</span><span class="p">:</span> <span class="n">query_widget</span><span class="o">.</span><span class="n">value</span><span class="p">}))</span>
     <span class="k">with</span> <span class="n">out</span><span class="p">:</span>
@@ -616,7 +635,7 @@
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">AuthenticationError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
 <span class="nn">Cell In[124], line 3,</span> in <span class="ni">run_refresh</span><span class="nt">(*ignore)</span>
-<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="k">def</span> <span class="nf">run_refresh</span><span class="p">(</span><span class="o">*</span><span class="n">ignore</span><span class="p">):</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="k">def</span><span class="w"> </span><span class="nf">run_refresh</span><span class="p">(</span><span class="o">*</span><span class="n">ignore</span><span class="p">):</span>
 <span class="g g-Whitespace">      </span><span class="mi">2</span>     <span class="n">agent_executor</span> <span class="o">=</span> <span class="n">get_extension</span><span class="p">(</span><span class="n">OPENAI_API_KEY</span><span class="o">=</span><span class="n">key_widget</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="n">model_widget</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
 <span class="ne">----&gt; </span><span class="mi">3</span>     <span class="n">output</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">agent_executor</span><span class="o">.</span><span class="n">stream</span><span class="p">({</span><span class="s2">&quot;input&quot;</span><span class="p">:</span> <span class="n">query_widget</span><span class="o">.</span><span class="n">value</span><span class="p">}))</span>
 <span class="g g-Whitespace">      </span><span class="mi">4</span>     <span class="k">with</span> <span class="n">out</span><span class="p">:</span>
@@ -675,7 +694,7 @@
 <span class="g g-Whitespace">    </span><span class="mi">516</span>             <span class="n">final_output</span> <span class="o">=</span> <span class="n">chunk</span>
 
 <span class="nn">File c:\Programs\miniconda\envs\llmhack\Lib\site-packages\langchain_core\runnables\base.py:2875,</span> in <span class="ni">RunnableSequence.stream</span><span class="nt">(self, input, config, **kwargs)</span>
-<span class="g g-Whitespace">   </span><span class="mi">2869</span> <span class="k">def</span> <span class="nf">stream</span><span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">2869</span> <span class="k">def</span><span class="w"> </span><span class="nf">stream</span><span class="p">(</span>
 <span class="g g-Whitespace">   </span><span class="mi">2870</span>     <span class="bp">self</span><span class="p">,</span>
 <span class="g g-Whitespace">   </span><span class="mi">2871</span>     <span class="nb">input</span><span class="p">:</span> <span class="n">Input</span><span class="p">,</span>
 <span class="g g-Whitespace">   </span><span class="mi">2872</span>     <span class="n">config</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">RunnableConfig</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
@@ -684,7 +703,7 @@
 <span class="ne">-&gt; </span><span class="mi">2875</span>     <span class="k">yield from</span> <span class="bp">self</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="nb">iter</span><span class="p">([</span><span class="nb">input</span><span class="p">]),</span> <span class="n">config</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
 <span class="nn">File c:\Programs\miniconda\envs\llmhack\Lib\site-packages\langchain_core\runnables\base.py:2862,</span> in <span class="ni">RunnableSequence.transform</span><span class="nt">(self, input, config, **kwargs)</span>
-<span class="g g-Whitespace">   </span><span class="mi">2856</span> <span class="k">def</span> <span class="nf">transform</span><span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">2856</span> <span class="k">def</span><span class="w"> </span><span class="nf">transform</span><span class="p">(</span>
 <span class="g g-Whitespace">   </span><span class="mi">2857</span>     <span class="bp">self</span><span class="p">,</span>
 <span class="g g-Whitespace">   </span><span class="mi">2858</span>     <span class="nb">input</span><span class="p">:</span> <span class="n">Iterator</span><span class="p">[</span><span class="n">Input</span><span class="p">],</span>
 <span class="g g-Whitespace">   </span><span class="mi">2859</span>     <span class="n">config</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">RunnableConfig</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
@@ -730,7 +749,7 @@
 <span class="g g-Whitespace">   </span><span class="mi">1291</span>         <span class="n">final</span> <span class="o">=</span> <span class="n">ichunk</span>
 
 <span class="nn">File c:\Programs\miniconda\envs\llmhack\Lib\site-packages\langchain_core\runnables\base.py:4736,</span> in <span class="ni">RunnableBindingBase.transform</span><span class="nt">(self, input, config, **kwargs)</span>
-<span class="g g-Whitespace">   </span><span class="mi">4730</span> <span class="k">def</span> <span class="nf">transform</span><span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">4730</span> <span class="k">def</span><span class="w"> </span><span class="nf">transform</span><span class="p">(</span>
 <span class="g g-Whitespace">   </span><span class="mi">4731</span>     <span class="bp">self</span><span class="p">,</span>
 <span class="g g-Whitespace">   </span><span class="mi">4732</span>     <span class="nb">input</span><span class="p">:</span> <span class="n">Iterator</span><span class="p">[</span><span class="n">Input</span><span class="p">],</span>
 <span class="g g-Whitespace">   </span><span class="mi">4733</span>     <span class="n">config</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">RunnableConfig</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
@@ -780,7 +799,7 @@
 
 <span class="nn">File c:\Programs\miniconda\envs\llmhack\Lib\site-packages\openai\resources\chat\completions.py:590,</span> in <span class="ni">Completions.create</span><span class="nt">(self, messages, model, frequency_penalty, function_call, functions, logit_bias, logprobs, max_tokens, n, presence_penalty, response_format, seed, stop, stream, stream_options, temperature, tool_choice, tools, top_logprobs, top_p, user, extra_headers, extra_query, extra_body, timeout)</span>
 <span class="g g-Whitespace">    </span><span class="mi">558</span> <span class="nd">@required_args</span><span class="p">([</span><span class="s2">&quot;messages&quot;</span><span class="p">,</span> <span class="s2">&quot;model&quot;</span><span class="p">],</span> <span class="p">[</span><span class="s2">&quot;messages&quot;</span><span class="p">,</span> <span class="s2">&quot;model&quot;</span><span class="p">,</span> <span class="s2">&quot;stream&quot;</span><span class="p">])</span>
-<span class="g g-Whitespace">    </span><span class="mi">559</span> <span class="k">def</span> <span class="nf">create</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">559</span> <span class="k">def</span><span class="w"> </span><span class="nf">create</span><span class="p">(</span>
 <span class="g g-Whitespace">    </span><span class="mi">560</span>     <span class="bp">self</span><span class="p">,</span>
    <span class="p">(</span><span class="o">...</span><span class="p">)</span>
 <span class="g g-Whitespace">    </span><span class="mi">588</span>     <span class="n">timeout</span><span class="p">:</span> <span class="nb">float</span> <span class="o">|</span> <span class="n">httpx</span><span class="o">.</span><span class="n">Timeout</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">|</span> <span class="n">NotGiven</span> <span class="o">=</span> <span class="n">NOT_GIVEN</span><span class="p">,</span>
@@ -822,7 +841,7 @@
 <span class="g g-Whitespace">    </span><span class="mi">624</span>     <span class="p">)</span>
 
 <span class="nn">File c:\Programs\miniconda\envs\llmhack\Lib\site-packages\openai\_base_client.py:1240,</span> in <span class="ni">SyncAPIClient.post</span><span class="nt">(self, path, cast_to, body, options, files, stream, stream_cls)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1226</span> <span class="k">def</span> <span class="nf">post</span><span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">1226</span> <span class="k">def</span><span class="w"> </span><span class="nf">post</span><span class="p">(</span>
 <span class="g g-Whitespace">   </span><span class="mi">1227</span>     <span class="bp">self</span><span class="p">,</span>
 <span class="g g-Whitespace">   </span><span class="mi">1228</span>     <span class="n">path</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
    <span class="p">(</span><span class="o">...</span><span class="p">)</span>
@@ -834,7 +853,7 @@
 <span class="ne">-&gt; </span><span class="mi">1240</span>     <span class="k">return</span> <span class="n">cast</span><span class="p">(</span><span class="n">ResponseT</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">request</span><span class="p">(</span><span class="n">cast_to</span><span class="p">,</span> <span class="n">opts</span><span class="p">,</span> <span class="n">stream</span><span class="o">=</span><span class="n">stream</span><span class="p">,</span> <span class="n">stream_cls</span><span class="o">=</span><span class="n">stream_cls</span><span class="p">))</span>
 
 <span class="nn">File c:\Programs\miniconda\envs\llmhack\Lib\site-packages\openai\_base_client.py:921,</span> in <span class="ni">SyncAPIClient.request</span><span class="nt">(self, cast_to, options, remaining_retries, stream, stream_cls)</span>
-<span class="g g-Whitespace">    </span><span class="mi">912</span> <span class="k">def</span> <span class="nf">request</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">912</span> <span class="k">def</span><span class="w"> </span><span class="nf">request</span><span class="p">(</span>
 <span class="g g-Whitespace">    </span><span class="mi">913</span>     <span class="bp">self</span><span class="p">,</span>
 <span class="g g-Whitespace">    </span><span class="mi">914</span>     <span class="n">cast_to</span><span class="p">:</span> <span class="n">Type</span><span class="p">[</span><span class="n">ResponseT</span><span class="p">],</span>
    <span class="p">(</span><span class="o">...</span><span class="p">)</span>
@@ -851,7 +870,7 @@
 <span class="nn">File c:\Programs\miniconda\envs\llmhack\Lib\site-packages\openai\_base_client.py:1020,</span> in <span class="ni">SyncAPIClient._request</span><span class="nt">(self, cast_to, options, remaining_retries, stream, stream_cls)</span>
 <span class="g g-Whitespace">   </span><span class="mi">1017</span>         <span class="n">err</span><span class="o">.</span><span class="n">response</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
 <span class="g g-Whitespace">   </span><span class="mi">1019</span>     <span class="n">log</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Re-raising status error&quot;</span><span class="p">)</span>
-<span class="ne">-&gt; </span><span class="mi">1020</span>     <span class="k">raise</span> <span class="bp">self</span><span class="o">.</span><span class="n">_make_status_error_from_response</span><span class="p">(</span><span class="n">err</span><span class="o">.</span><span class="n">response</span><span class="p">)</span> <span class="kn">from</span> <span class="kc">None</span>
+<span class="ne">-&gt; </span><span class="mi">1020</span>     <span class="k">raise</span> <span class="bp">self</span><span class="o">.</span><span class="n">_make_status_error_from_response</span><span class="p">(</span><span class="n">err</span><span class="o">.</span><span class="n">response</span><span class="p">)</span> <span class="kn">from</span><span class="w"> </span><span class="kc">None</span>
 <span class="g g-Whitespace">   </span><span class="mi">1022</span> <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_process_response</span><span class="p">(</span>
 <span class="g g-Whitespace">   </span><span class="mi">1023</span>     <span class="n">cast_to</span><span class="o">=</span><span class="n">cast_to</span><span class="p">,</span>
 <span class="g g-Whitespace">   </span><span class="mi">1024</span>     <span class="n">options</span><span class="o">=</span><span class="n">options</span><span class="p">,</span>
@@ -868,7 +887,7 @@
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">AuthenticationError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
 <span class="nn">Cell In[124], line 3,</span> in <span class="ni">run_refresh</span><span class="nt">(*ignore)</span>
-<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="k">def</span> <span class="nf">run_refresh</span><span class="p">(</span><span class="o">*</span><span class="n">ignore</span><span class="p">):</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="k">def</span><span class="w"> </span><span class="nf">run_refresh</span><span class="p">(</span><span class="o">*</span><span class="n">ignore</span><span class="p">):</span>
 <span class="g g-Whitespace">      </span><span class="mi">2</span>     <span class="n">agent_executor</span> <span class="o">=</span> <span class="n">get_extension</span><span class="p">(</span><span class="n">OPENAI_API_KEY</span><span class="o">=</span><span class="n">key_widget</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="n">model_widget</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
 <span class="ne">----&gt; </span><span class="mi">3</span>     <span class="n">output</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">agent_executor</span><span class="o">.</span><span class="n">stream</span><span class="p">({</span><span class="s2">&quot;input&quot;</span><span class="p">:</span> <span class="n">query_widget</span><span class="o">.</span><span class="n">value</span><span class="p">}))</span>
 <span class="g g-Whitespace">      </span><span class="mi">4</span>     <span class="k">with</span> <span class="n">out</span><span class="p">:</span>
@@ -927,7 +946,7 @@
 <span class="g g-Whitespace">    </span><span class="mi">516</span>             <span class="n">final_output</span> <span class="o">=</span> <span class="n">chunk</span>
 
 <span class="nn">File c:\Programs\miniconda\envs\llmhack\Lib\site-packages\langchain_core\runnables\base.py:2875,</span> in <span class="ni">RunnableSequence.stream</span><span class="nt">(self, input, config, **kwargs)</span>
-<span class="g g-Whitespace">   </span><span class="mi">2869</span> <span class="k">def</span> <span class="nf">stream</span><span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">2869</span> <span class="k">def</span><span class="w"> </span><span class="nf">stream</span><span class="p">(</span>
 <span class="g g-Whitespace">   </span><span class="mi">2870</span>     <span class="bp">self</span><span class="p">,</span>
 <span class="g g-Whitespace">   </span><span class="mi">2871</span>     <span class="nb">input</span><span class="p">:</span> <span class="n">Input</span><span class="p">,</span>
 <span class="g g-Whitespace">   </span><span class="mi">2872</span>     <span class="n">config</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">RunnableConfig</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
@@ -936,7 +955,7 @@
 <span class="ne">-&gt; </span><span class="mi">2875</span>     <span class="k">yield from</span> <span class="bp">self</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="nb">iter</span><span class="p">([</span><span class="nb">input</span><span class="p">]),</span> <span class="n">config</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
 <span class="nn">File c:\Programs\miniconda\envs\llmhack\Lib\site-packages\langchain_core\runnables\base.py:2862,</span> in <span class="ni">RunnableSequence.transform</span><span class="nt">(self, input, config, **kwargs)</span>
-<span class="g g-Whitespace">   </span><span class="mi">2856</span> <span class="k">def</span> <span class="nf">transform</span><span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">2856</span> <span class="k">def</span><span class="w"> </span><span class="nf">transform</span><span class="p">(</span>
 <span class="g g-Whitespace">   </span><span class="mi">2857</span>     <span class="bp">self</span><span class="p">,</span>
 <span class="g g-Whitespace">   </span><span class="mi">2858</span>     <span class="nb">input</span><span class="p">:</span> <span class="n">Iterator</span><span class="p">[</span><span class="n">Input</span><span class="p">],</span>
 <span class="g g-Whitespace">   </span><span class="mi">2859</span>     <span class="n">config</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">RunnableConfig</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
@@ -982,7 +1001,7 @@
 <span class="g g-Whitespace">   </span><span class="mi">1291</span>         <span class="n">final</span> <span class="o">=</span> <span class="n">ichunk</span>
 
 <span class="nn">File c:\Programs\miniconda\envs\llmhack\Lib\site-packages\langchain_core\runnables\base.py:4736,</span> in <span class="ni">RunnableBindingBase.transform</span><span class="nt">(self, input, config, **kwargs)</span>
-<span class="g g-Whitespace">   </span><span class="mi">4730</span> <span class="k">def</span> <span class="nf">transform</span><span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">4730</span> <span class="k">def</span><span class="w"> </span><span class="nf">transform</span><span class="p">(</span>
 <span class="g g-Whitespace">   </span><span class="mi">4731</span>     <span class="bp">self</span><span class="p">,</span>
 <span class="g g-Whitespace">   </span><span class="mi">4732</span>     <span class="nb">input</span><span class="p">:</span> <span class="n">Iterator</span><span class="p">[</span><span class="n">Input</span><span class="p">],</span>
 <span class="g g-Whitespace">   </span><span class="mi">4733</span>     <span class="n">config</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">RunnableConfig</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
@@ -1032,7 +1051,7 @@
 
 <span class="nn">File c:\Programs\miniconda\envs\llmhack\Lib\site-packages\openai\resources\chat\completions.py:590,</span> in <span class="ni">Completions.create</span><span class="nt">(self, messages, model, frequency_penalty, function_call, functions, logit_bias, logprobs, max_tokens, n, presence_penalty, response_format, seed, stop, stream, stream_options, temperature, tool_choice, tools, top_logprobs, top_p, user, extra_headers, extra_query, extra_body, timeout)</span>
 <span class="g g-Whitespace">    </span><span class="mi">558</span> <span class="nd">@required_args</span><span class="p">([</span><span class="s2">&quot;messages&quot;</span><span class="p">,</span> <span class="s2">&quot;model&quot;</span><span class="p">],</span> <span class="p">[</span><span class="s2">&quot;messages&quot;</span><span class="p">,</span> <span class="s2">&quot;model&quot;</span><span class="p">,</span> <span class="s2">&quot;stream&quot;</span><span class="p">])</span>
-<span class="g g-Whitespace">    </span><span class="mi">559</span> <span class="k">def</span> <span class="nf">create</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">559</span> <span class="k">def</span><span class="w"> </span><span class="nf">create</span><span class="p">(</span>
 <span class="g g-Whitespace">    </span><span class="mi">560</span>     <span class="bp">self</span><span class="p">,</span>
    <span class="p">(</span><span class="o">...</span><span class="p">)</span>
 <span class="g g-Whitespace">    </span><span class="mi">588</span>     <span class="n">timeout</span><span class="p">:</span> <span class="nb">float</span> <span class="o">|</span> <span class="n">httpx</span><span class="o">.</span><span class="n">Timeout</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">|</span> <span class="n">NotGiven</span> <span class="o">=</span> <span class="n">NOT_GIVEN</span><span class="p">,</span>
@@ -1074,7 +1093,7 @@
 <span class="g g-Whitespace">    </span><span class="mi">624</span>     <span class="p">)</span>
 
 <span class="nn">File c:\Programs\miniconda\envs\llmhack\Lib\site-packages\openai\_base_client.py:1240,</span> in <span class="ni">SyncAPIClient.post</span><span class="nt">(self, path, cast_to, body, options, files, stream, stream_cls)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1226</span> <span class="k">def</span> <span class="nf">post</span><span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">1226</span> <span class="k">def</span><span class="w"> </span><span class="nf">post</span><span class="p">(</span>
 <span class="g g-Whitespace">   </span><span class="mi">1227</span>     <span class="bp">self</span><span class="p">,</span>
 <span class="g g-Whitespace">   </span><span class="mi">1228</span>     <span class="n">path</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
    <span class="p">(</span><span class="o">...</span><span class="p">)</span>
@@ -1086,7 +1105,7 @@
 <span class="ne">-&gt; </span><span class="mi">1240</span>     <span class="k">return</span> <span class="n">cast</span><span class="p">(</span><span class="n">ResponseT</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">request</span><span class="p">(</span><span class="n">cast_to</span><span class="p">,</span> <span class="n">opts</span><span class="p">,</span> <span class="n">stream</span><span class="o">=</span><span class="n">stream</span><span class="p">,</span> <span class="n">stream_cls</span><span class="o">=</span><span class="n">stream_cls</span><span class="p">))</span>
 
 <span class="nn">File c:\Programs\miniconda\envs\llmhack\Lib\site-packages\openai\_base_client.py:921,</span> in <span class="ni">SyncAPIClient.request</span><span class="nt">(self, cast_to, options, remaining_retries, stream, stream_cls)</span>
-<span class="g g-Whitespace">    </span><span class="mi">912</span> <span class="k">def</span> <span class="nf">request</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">912</span> <span class="k">def</span><span class="w"> </span><span class="nf">request</span><span class="p">(</span>
 <span class="g g-Whitespace">    </span><span class="mi">913</span>     <span class="bp">self</span><span class="p">,</span>
 <span class="g g-Whitespace">    </span><span class="mi">914</span>     <span class="n">cast_to</span><span class="p">:</span> <span class="n">Type</span><span class="p">[</span><span class="n">ResponseT</span><span class="p">],</span>
    <span class="p">(</span><span class="o">...</span><span class="p">)</span>
@@ -1103,7 +1122,7 @@
 <span class="nn">File c:\Programs\miniconda\envs\llmhack\Lib\site-packages\openai\_base_client.py:1020,</span> in <span class="ni">SyncAPIClient._request</span><span class="nt">(self, cast_to, options, remaining_retries, stream, stream_cls)</span>
 <span class="g g-Whitespace">   </span><span class="mi">1017</span>         <span class="n">err</span><span class="o">.</span><span class="n">response</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
 <span class="g g-Whitespace">   </span><span class="mi">1019</span>     <span class="n">log</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Re-raising status error&quot;</span><span class="p">)</span>
-<span class="ne">-&gt; </span><span class="mi">1020</span>     <span class="k">raise</span> <span class="bp">self</span><span class="o">.</span><span class="n">_make_status_error_from_response</span><span class="p">(</span><span class="n">err</span><span class="o">.</span><span class="n">response</span><span class="p">)</span> <span class="kn">from</span> <span class="kc">None</span>
+<span class="ne">-&gt; </span><span class="mi">1020</span>     <span class="k">raise</span> <span class="bp">self</span><span class="o">.</span><span class="n">_make_status_error_from_response</span><span class="p">(</span><span class="n">err</span><span class="o">.</span><span class="n">response</span><span class="p">)</span> <span class="kn">from</span><span class="w"> </span><span class="kc">None</span>
 <span class="g g-Whitespace">   </span><span class="mi">1022</span> <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_process_response</span><span class="p">(</span>
 <span class="g g-Whitespace">   </span><span class="mi">1023</span>     <span class="n">cast_to</span><span class="o">=</span><span class="n">cast_to</span><span class="p">,</span>
 <span class="g g-Whitespace">   </span><span class="mi">1024</span>     <span class="n">options</span><span class="o">=</span><span class="n">options</span><span class="p">,</span>
@@ -1120,7 +1139,7 @@
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">BadRequestError</span><span class="g g-Whitespace">                           </span>Traceback (most recent call last)
 <span class="nn">Cell In[124], line 3,</span> in <span class="ni">run_refresh</span><span class="nt">(*ignore)</span>
-<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="k">def</span> <span class="nf">run_refresh</span><span class="p">(</span><span class="o">*</span><span class="n">ignore</span><span class="p">):</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="k">def</span><span class="w"> </span><span class="nf">run_refresh</span><span class="p">(</span><span class="o">*</span><span class="n">ignore</span><span class="p">):</span>
 <span class="g g-Whitespace">      </span><span class="mi">2</span>     <span class="n">agent_executor</span> <span class="o">=</span> <span class="n">get_extension</span><span class="p">(</span><span class="n">OPENAI_API_KEY</span><span class="o">=</span><span class="n">key_widget</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="n">model_widget</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
 <span class="ne">----&gt; </span><span class="mi">3</span>     <span class="n">output</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">agent_executor</span><span class="o">.</span><span class="n">stream</span><span class="p">({</span><span class="s2">&quot;input&quot;</span><span class="p">:</span> <span class="n">query_widget</span><span class="o">.</span><span class="n">value</span><span class="p">}))</span>
 <span class="g g-Whitespace">      </span><span class="mi">4</span>     <span class="k">with</span> <span class="n">out</span><span class="p">:</span>
@@ -1179,7 +1198,7 @@
 <span class="g g-Whitespace">    </span><span class="mi">516</span>             <span class="n">final_output</span> <span class="o">=</span> <span class="n">chunk</span>
 
 <span class="nn">File c:\Programs\miniconda\envs\llmhack\Lib\site-packages\langchain_core\runnables\base.py:2875,</span> in <span class="ni">RunnableSequence.stream</span><span class="nt">(self, input, config, **kwargs)</span>
-<span class="g g-Whitespace">   </span><span class="mi">2869</span> <span class="k">def</span> <span class="nf">stream</span><span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">2869</span> <span class="k">def</span><span class="w"> </span><span class="nf">stream</span><span class="p">(</span>
 <span class="g g-Whitespace">   </span><span class="mi">2870</span>     <span class="bp">self</span><span class="p">,</span>
 <span class="g g-Whitespace">   </span><span class="mi">2871</span>     <span class="nb">input</span><span class="p">:</span> <span class="n">Input</span><span class="p">,</span>
 <span class="g g-Whitespace">   </span><span class="mi">2872</span>     <span class="n">config</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">RunnableConfig</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
@@ -1188,7 +1207,7 @@
 <span class="ne">-&gt; </span><span class="mi">2875</span>     <span class="k">yield from</span> <span class="bp">self</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="nb">iter</span><span class="p">([</span><span class="nb">input</span><span class="p">]),</span> <span class="n">config</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
 <span class="nn">File c:\Programs\miniconda\envs\llmhack\Lib\site-packages\langchain_core\runnables\base.py:2862,</span> in <span class="ni">RunnableSequence.transform</span><span class="nt">(self, input, config, **kwargs)</span>
-<span class="g g-Whitespace">   </span><span class="mi">2856</span> <span class="k">def</span> <span class="nf">transform</span><span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">2856</span> <span class="k">def</span><span class="w"> </span><span class="nf">transform</span><span class="p">(</span>
 <span class="g g-Whitespace">   </span><span class="mi">2857</span>     <span class="bp">self</span><span class="p">,</span>
 <span class="g g-Whitespace">   </span><span class="mi">2858</span>     <span class="nb">input</span><span class="p">:</span> <span class="n">Iterator</span><span class="p">[</span><span class="n">Input</span><span class="p">],</span>
 <span class="g g-Whitespace">   </span><span class="mi">2859</span>     <span class="n">config</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">RunnableConfig</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
@@ -1234,7 +1253,7 @@
 <span class="g g-Whitespace">   </span><span class="mi">1291</span>         <span class="n">final</span> <span class="o">=</span> <span class="n">ichunk</span>
 
 <span class="nn">File c:\Programs\miniconda\envs\llmhack\Lib\site-packages\langchain_core\runnables\base.py:4736,</span> in <span class="ni">RunnableBindingBase.transform</span><span class="nt">(self, input, config, **kwargs)</span>
-<span class="g g-Whitespace">   </span><span class="mi">4730</span> <span class="k">def</span> <span class="nf">transform</span><span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">4730</span> <span class="k">def</span><span class="w"> </span><span class="nf">transform</span><span class="p">(</span>
 <span class="g g-Whitespace">   </span><span class="mi">4731</span>     <span class="bp">self</span><span class="p">,</span>
 <span class="g g-Whitespace">   </span><span class="mi">4732</span>     <span class="nb">input</span><span class="p">:</span> <span class="n">Iterator</span><span class="p">[</span><span class="n">Input</span><span class="p">],</span>
 <span class="g g-Whitespace">   </span><span class="mi">4733</span>     <span class="n">config</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">RunnableConfig</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
@@ -1280,7 +1299,7 @@
 <span class="g g-Whitespace">    </span><span class="mi">281</span>     <span class="n">generation</span> <span class="o">=</span> <span class="n">chat_result</span><span class="o">.</span><span class="n">generations</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
 
 <span class="nn">File c:\Programs\miniconda\envs\llmhack\Lib\site-packages\groq\resources\chat\completions.py:178,</span> in <span class="ni">Completions.create</span><span class="nt">(self, messages, model, frequency_penalty, logit_bias, logprobs, max_tokens, n, presence_penalty, response_format, seed, stop, stream, temperature, tool_choice, tools, top_logprobs, top_p, user, extra_headers, extra_query, extra_body, timeout)</span>
-<span class="g g-Whitespace">    </span><span class="mi">135</span> <span class="k">def</span> <span class="nf">create</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">135</span> <span class="k">def</span><span class="w"> </span><span class="nf">create</span><span class="p">(</span>
 <span class="g g-Whitespace">    </span><span class="mi">136</span>     <span class="bp">self</span><span class="p">,</span>
 <span class="g g-Whitespace">    </span><span class="mi">137</span>     <span class="o">*</span><span class="p">,</span>
    <span class="p">(</span><span class="o">...</span><span class="p">)</span>
@@ -1326,7 +1345,7 @@
 <span class="g g-Whitespace">    </span><span class="mi">209</span>     <span class="p">)</span>
 
 <span class="nn">File c:\Programs\miniconda\envs\llmhack\Lib\site-packages\groq\_base_client.py:1194,</span> in <span class="ni">SyncAPIClient.post</span><span class="nt">(self, path, cast_to, body, options, files, stream, stream_cls)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1180</span> <span class="k">def</span> <span class="nf">post</span><span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">1180</span> <span class="k">def</span><span class="w"> </span><span class="nf">post</span><span class="p">(</span>
 <span class="g g-Whitespace">   </span><span class="mi">1181</span>     <span class="bp">self</span><span class="p">,</span>
 <span class="g g-Whitespace">   </span><span class="mi">1182</span>     <span class="n">path</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
    <span class="p">(</span><span class="o">...</span><span class="p">)</span>
@@ -1338,7 +1357,7 @@
 <span class="ne">-&gt; </span><span class="mi">1194</span>     <span class="k">return</span> <span class="n">cast</span><span class="p">(</span><span class="n">ResponseT</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">request</span><span class="p">(</span><span class="n">cast_to</span><span class="p">,</span> <span class="n">opts</span><span class="p">,</span> <span class="n">stream</span><span class="o">=</span><span class="n">stream</span><span class="p">,</span> <span class="n">stream_cls</span><span class="o">=</span><span class="n">stream_cls</span><span class="p">))</span>
 
 <span class="nn">File c:\Programs\miniconda\envs\llmhack\Lib\site-packages\groq\_base_client.py:896,</span> in <span class="ni">SyncAPIClient.request</span><span class="nt">(self, cast_to, options, remaining_retries, stream, stream_cls)</span>
-<span class="g g-Whitespace">    </span><span class="mi">887</span> <span class="k">def</span> <span class="nf">request</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">887</span> <span class="k">def</span><span class="w"> </span><span class="nf">request</span><span class="p">(</span>
 <span class="g g-Whitespace">    </span><span class="mi">888</span>     <span class="bp">self</span><span class="p">,</span>
 <span class="g g-Whitespace">    </span><span class="mi">889</span>     <span class="n">cast_to</span><span class="p">:</span> <span class="n">Type</span><span class="p">[</span><span class="n">ResponseT</span><span class="p">],</span>
    <span class="p">(</span><span class="o">...</span><span class="p">)</span>
@@ -1355,7 +1374,7 @@
 <span class="nn">File c:\Programs\miniconda\envs\llmhack\Lib\site-packages\groq\_base_client.py:987,</span> in <span class="ni">SyncAPIClient._request</span><span class="nt">(self, cast_to, options, remaining_retries, stream, stream_cls)</span>
 <span class="g g-Whitespace">    </span><span class="mi">984</span>         <span class="n">err</span><span class="o">.</span><span class="n">response</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
 <span class="g g-Whitespace">    </span><span class="mi">986</span>     <span class="n">log</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Re-raising status error&quot;</span><span class="p">)</span>
-<span class="ne">--&gt; </span><span class="mi">987</span>     <span class="k">raise</span> <span class="bp">self</span><span class="o">.</span><span class="n">_make_status_error_from_response</span><span class="p">(</span><span class="n">err</span><span class="o">.</span><span class="n">response</span><span class="p">)</span> <span class="kn">from</span> <span class="kc">None</span>
+<span class="ne">--&gt; </span><span class="mi">987</span>     <span class="k">raise</span> <span class="bp">self</span><span class="o">.</span><span class="n">_make_status_error_from_response</span><span class="p">(</span><span class="n">err</span><span class="o">.</span><span class="n">response</span><span class="p">)</span> <span class="kn">from</span><span class="w"> </span><span class="kc">None</span>
 <span class="g g-Whitespace">    </span><span class="mi">989</span> <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_process_response</span><span class="p">(</span>
 <span class="g g-Whitespace">    </span><span class="mi">990</span>     <span class="n">cast_to</span><span class="o">=</span><span class="n">cast_to</span><span class="p">,</span>
 <span class="g g-Whitespace">    </span><span class="mi">991</span>     <span class="n">options</span><span class="o">=</span><span class="n">options</span><span class="p">,</span>
@@ -1377,7 +1396,7 @@
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">ValueError</span><span class="g g-Whitespace">                                </span>Traceback (most recent call last)
 <span class="nn">Cell In[124], line 3,</span> in <span class="ni">run_refresh</span><span class="nt">(*ignore)</span>
-<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="k">def</span> <span class="nf">run_refresh</span><span class="p">(</span><span class="o">*</span><span class="n">ignore</span><span class="p">):</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="k">def</span><span class="w"> </span><span class="nf">run_refresh</span><span class="p">(</span><span class="o">*</span><span class="n">ignore</span><span class="p">):</span>
 <span class="g g-Whitespace">      </span><span class="mi">2</span>     <span class="n">agent_executor</span> <span class="o">=</span> <span class="n">get_extension</span><span class="p">(</span><span class="n">OPENAI_API_KEY</span><span class="o">=</span><span class="n">key_widget</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="n">model_widget</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
 <span class="ne">----&gt; </span><span class="mi">3</span>     <span class="n">output</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">agent_executor</span><span class="o">.</span><span class="n">stream</span><span class="p">({</span><span class="s2">&quot;input&quot;</span><span class="p">:</span> <span class="n">query_widget</span><span class="o">.</span><span class="n">value</span><span class="p">}))</span>
 <span class="g g-Whitespace">      </span><span class="mi">4</span>     <span class="k">with</span> <span class="n">out</span><span class="p">:</span>
@@ -1505,7 +1524,7 @@
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">ValueError</span><span class="g g-Whitespace">                                </span>Traceback (most recent call last)
 <span class="nn">Cell In[124], line 3,</span> in <span class="ni">run_refresh</span><span class="nt">(*ignore)</span>
-<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="k">def</span> <span class="nf">run_refresh</span><span class="p">(</span><span class="o">*</span><span class="n">ignore</span><span class="p">):</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="k">def</span><span class="w"> </span><span class="nf">run_refresh</span><span class="p">(</span><span class="o">*</span><span class="n">ignore</span><span class="p">):</span>
 <span class="g g-Whitespace">      </span><span class="mi">2</span>     <span class="n">agent_executor</span> <span class="o">=</span> <span class="n">get_extension</span><span class="p">(</span><span class="n">OPENAI_API_KEY</span><span class="o">=</span><span class="n">key_widget</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="n">model_widget</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
 <span class="ne">----&gt; </span><span class="mi">3</span>     <span class="n">output</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">agent_executor</span><span class="o">.</span><span class="n">stream</span><span class="p">({</span><span class="s2">&quot;input&quot;</span><span class="p">:</span> <span class="n">query_widget</span><span class="o">.</span><span class="n">value</span><span class="p">}))</span>
 <span class="g g-Whitespace">      </span><span class="mi">4</span>     <span class="k">with</span> <span class="n">out</span><span class="p">:</span>
@@ -1633,7 +1652,7 @@
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">ValueError</span><span class="g g-Whitespace">                                </span>Traceback (most recent call last)
 <span class="nn">Cell In[124], line 3,</span> in <span class="ni">run_refresh</span><span class="nt">(*ignore)</span>
-<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="k">def</span> <span class="nf">run_refresh</span><span class="p">(</span><span class="o">*</span><span class="n">ignore</span><span class="p">):</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="k">def</span><span class="w"> </span><span class="nf">run_refresh</span><span class="p">(</span><span class="o">*</span><span class="n">ignore</span><span class="p">):</span>
 <span class="g g-Whitespace">      </span><span class="mi">2</span>     <span class="n">agent_executor</span> <span class="o">=</span> <span class="n">get_extension</span><span class="p">(</span><span class="n">OPENAI_API_KEY</span><span class="o">=</span><span class="n">key_widget</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="n">model_widget</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
 <span class="ne">----&gt; </span><span class="mi">3</span>     <span class="n">output</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">agent_executor</span><span class="o">.</span><span class="n">stream</span><span class="p">({</span><span class="s2">&quot;input&quot;</span><span class="p">:</span> <span class="n">query_widget</span><span class="o">.</span><span class="n">value</span><span class="p">}))</span>
 <span class="g g-Whitespace">      </span><span class="mi">4</span>     <span class="k">with</span> <span class="n">out</span><span class="p">:</span>
@@ -1847,8 +1866,8 @@ By Jan Janssen
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script defer src="../../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549"></script>
-<script defer src="../../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549"></script>
+  <script src="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
 
   <footer class="bd-footer">
   </footer>
