@@ -16,7 +16,7 @@ class TestInterfaceEMT(TestCase):
     @classmethod
     def setUpClass(cls):
         cls.calculator_str = "emt"
-        atom_dict = get_atom_dict_bulk_structure.invoke({"chemical_symbol": "Al"}).todict()
+        atom_dict = get_atom_dict_bulk_structure.invoke({"chemical_symbol": "Al"}).dict()
         cls.structure = get_atom_dict_equilibrated_structure.invoke(
             {"atom_dict": atom_dict, "calculator_str": cls.calculator_str}
         )
