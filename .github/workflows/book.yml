@@ -9,11 +9,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v4
+    - name: Conda config
+      run: echo -e "channels:\n  - conda-forge\n" > .condarc
     - uses: conda-incubator/setup-miniconda@v3
       with:
-        auto-update-conda: true
         python-version: "3.11"
-        auto-activate-base: false
+        condarc-file: .condarc
+        miniforge-version: latest
     - name: Install Jupyterbook
       shell: bash -l {0}
       run: |
