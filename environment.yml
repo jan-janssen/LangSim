@@ -1,6 +1,7 @@
 channels:
   - conda-forge
 dependencies:
+  - python >=3.11
   - ase =3.25.0
   - atomistics =0.2.5
   - langchain =0.3.26
