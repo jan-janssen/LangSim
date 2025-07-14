@@ -53,14 +53,18 @@ def get_atom_dict_equilibrated_structure(
     Returns:
         AtomsDict: DataClass representing the equilibrated atomic structure
     """
-    task_dict = optimize_positions_and_volume(structure=Atoms(**atom_dict.dict()))
-    atoms = evaluate_with_ase(
-        task_dict=task_dict,
-        ase_calculator=get_calculator(calculator_str=calculator_str),
-        ase_optimizer=LBFGS,
-        ase_optimizer_kwargs={"fmax": 0.000001},
-    )["structure_with_optimized_positions_and_volume"]
-    return AtomsDict(**{k: v.tolist() for k, v in atoms.todict().items()})
+    try:
+        task_dict = optimize_positions_and_volume(structure=Atoms(**atom_dict.dict()))
+        atoms = evaluate_with_ase(
+            task_dict=task_dict,
+            ase_calculator=get_calculator(calculator_str=calculator_str),
+            ase_optimizer=LBFGS,
+            ase_optimizer_kwargs={"fmax": 0.000001},
+        )["structure_with_optimized_positions_and_volume"]
+        return AtomsDict(**{k: v.tolist() for k, v in atoms.todict().items()})
+    except Exception as error:
+        # handle the exception
+        return "An exception occurred: {}"
 
 
 @tool
