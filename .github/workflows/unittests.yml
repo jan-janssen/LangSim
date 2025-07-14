@@ -25,9 +25,9 @@ jobs:
       uses: conda-incubator/setup-miniconda@v3
       with:
         python-version: ${{ matrix.python-version }}
-        environment-file: environment.yml
         condarc-file: .condarc
         miniforge-version: latest
+        environment-file: environment.yml
     - name: Test
       shell: bash -l {0}
       timeout-minutes: 6
