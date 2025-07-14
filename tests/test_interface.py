@@ -20,6 +20,7 @@ class TestInterfaceEMT(TestCase):
         cls.structure = get_atom_dict_equilibrated_structure.invoke(
             {"atom_dict": atom_dict, "calculator_str": cls.calculator_str}
         )
+        print(atom_dict, cls.structure)
 
     def test_structure(self):
         self.assertTrue(np.all(np.isclose(self.structure.positions, [[0.0, 0.0, 0.0]])))
